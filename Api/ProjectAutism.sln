@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectAutism", "ProjectAutism\ProjectAutism.csproj", "{257DC402-E212-49B4-AC84-9D519676BEFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectAutism.Data", "ProjectAutism.Data\ProjectAutism.Data.csproj", "{349ADD77-642B-451D-BDBA-3FFAADAC5375}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{257DC402-E212-49B4-AC84-9D519676BEFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257DC402-E212-49B4-AC84-9D519676BEFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257DC402-E212-49B4-AC84-9D519676BEFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257DC402-E212-49B4-AC84-9D519676BEFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{349ADD77-642B-451D-BDBA-3FFAADAC5375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{349ADD77-642B-451D-BDBA-3FFAADAC5375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{349ADD77-642B-451D-BDBA-3FFAADAC5375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{349ADD77-642B-451D-BDBA-3FFAADAC5375}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
