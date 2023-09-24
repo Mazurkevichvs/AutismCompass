@@ -41,7 +41,7 @@ const Header: React.FC = () => {
   return (
     <AppBar position="absolute" style={headerStyles.appBar}>
       <Container maxWidth="xl">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar sx={{ justifyContent: 'space-between', padding: 0 }}>
           <Box display="flex" alignItems="center">
             <img
               src="/img/main_icon.png"

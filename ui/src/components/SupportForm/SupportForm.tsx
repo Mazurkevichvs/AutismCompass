@@ -1,12 +1,13 @@
 import React from 'react';
-import { Container, Box, TextField, TextareaAutosize, Button, Typography } from '@mui/material';
+import { Container, Box, TextField, TextareaAutosize, Button, Typography,useMediaQuery, Theme } from '@mui/material';
 
 const SupportForm: React.FC = () => {
+  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   return (
     <Box sx={{ backgroundColor: '#D7BBF5', py: 10 }}>
       <Container
         maxWidth="lg"
-        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: isSmallScreen ? 'column' : 'row', }}>
         <form className="support__form">
           <Typography variant="h4" gutterBottom>
             Forma dla pomocy
@@ -50,17 +51,17 @@ const SupportForm: React.FC = () => {
             variant="contained"
             color="primary"
             fullWidth
-            style={{ marginTop: '16px', width: '30%' }}>
+            style={{ marginTop: '16px', width: '150px' }}>
             Get Support
           </Button>
         </form>
-        <Box sx={{ position: 'relative', zIndex: 1 }}>
+        <Box sx={{ position: 'relative', zIndex: 1 ,order: isSmallScreen ? '-1' : '1' , px: '60px', display: isSmallScreen ? 'none' : 'block'}}>
           <Box
             sx={{
               position: 'absolute',
               bottom: -40,
-              left: -60,
-              width: 'calc(100% + 120px)',
+              left: 0,
+              width: '480px',
               height: '50%',
               backgroundColor: '#E7CEA6',
               zIndex: -1,
