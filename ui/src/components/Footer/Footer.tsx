@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
         justifyContent: 'space-between',
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{display: 'flex'}}>
         <Box display="flex" alignItems="center">
           <img
             src="img/main_icon.png"
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
           </Link>
         </Box>
       </Container>
-      <Typography variant="body2" sx={{ flex: '1', textAlign: 'center' }}>
+      <Typography variant="body2" >
         © 2023 Autysci mówią
       </Typography>
       <Container maxWidth="lg">
