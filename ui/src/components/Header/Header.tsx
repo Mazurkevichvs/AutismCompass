@@ -12,32 +12,11 @@ import {
 import { NavItem } from '..';
 import { headerStyles } from '../../styles/theme';
 import { Menu as MenuIcon } from '@mui/icons-material';
+import {NavigationsProps} from '../../types/types'
 
-const NAVIGATIONS = [
-  {
-    name: 'Czym jest autyzm?',
-    path: '/czym-jest-autyzm',
-    sublinks: [
-      { name: 'Podlink 1', path: '/czym-jest-autyzm/link1' },
-      { name: 'Podlink 2', path: '/czym-jest-autyzm/link2' },
-    ],
-  },
-  {
-    name: 'Wsparcie dla osób z autyzmem',
-    path: '/wsparcie',
-    sublinks: [
-      { name: 'Podlink 3', path: '/wsparcie/link3' },
-      { name: 'Podlink 4', path: '/wsparcie/link4' },
-    ],
-  },
-  { name: 'Test diagnozujący', path: '/test-diagnozujacy' },
-  { name: 'Wydarzenia', path: '/wydarzenia' },
-  { name: 'O nas', path: '/o-nas' },
-];
-
-const Header: React.FC = () => {
+const Header: React.FC<NavigationsProps> = ({navigations}) => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
-  const navigationItem = NAVIGATIONS.map((page, i) => <NavItem key={i} page={page} />);
+  const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} />);
   return (
     <AppBar position="absolute" style={headerStyles.appBar}>
       <Container maxWidth="xl">

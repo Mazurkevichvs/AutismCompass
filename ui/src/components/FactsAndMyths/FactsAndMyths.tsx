@@ -34,7 +34,7 @@ const FactsAndMyths: React.FC = () => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   return (
-    <Container maxWidth="lg" sx={{ mb: '50px' }}>
+    <Container maxWidth="lg" sx={{ height: '100vh' }}>
       <Box my={4}>
         <Typography variant="h4" align="left" gutterBottom color='#00454C'>
           Fakty i mity?

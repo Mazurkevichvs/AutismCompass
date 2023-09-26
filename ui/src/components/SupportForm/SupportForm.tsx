@@ -4,7 +4,7 @@ import { Container, Box, TextField, TextareaAutosize, Button, Typography,useMedi
 const SupportForm: React.FC = () => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   return (
-    <Box sx={{ backgroundColor: '#D7BBF5', py: 10 }}>
+    <Box sx={{ backgroundColor: '#D7BBF5', height: '100vh'}}>
       <Container
         maxWidth="lg"
         sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: isSmallScreen ? 'column' : 'row', }}>

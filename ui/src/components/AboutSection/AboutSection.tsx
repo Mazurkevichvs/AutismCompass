@@ -6,7 +6,7 @@ const AboutSection: React.FC = () => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const theme = useTheme();
   return (
-    <Container maxWidth="lg" sx={{ mb: '50px' }}>
+    <Container maxWidth="lg" sx={{ height: '100vh' }}>
       <Box
         sx={{
           backgroundColor: theme.palette.background.default,

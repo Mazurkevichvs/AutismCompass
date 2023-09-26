@@ -5,9 +5,12 @@ import {
   Instagram as InstagramIcon,
   Twitter as TwitterIcon,
 } from '@mui/icons-material';
+import {NavigationsProps} from '../../types/types'
+import { NavItem } from '..';
 
-const Footer: React.FC = () => {
+const Footer: React.FC<NavigationsProps> = ({navigations}) => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} />);
   return (
     <footer>
       <Container
@@ -39,24 +42,7 @@ const Footer: React.FC = () => {
           </Box>
           <Typography variant="body2" sx={{order: isSmallScreen ? '1': ''}}>© 2023 Autysci mówią</Typography>
           <Box sx={{display:"flex" ,flexDirection: isSmallScreen ? 'column' : 'row', alignItems: 'center'}}  >
-            <Link href="#" color="inherit" sx={{ marginRight: '10px' }}>
-              Czym jest autyzm?
-            </Link>
-            <Link href="#" color="inherit" sx={{ marginRight: '10px' }}>
-              Wsparcie dla osób z autyzmem
-            </Link>
-            <Link href="#" color="inherit" sx={{ marginRight: '10px' }}>
-              Test diagnozujący
-            </Link>
-            <Link href="#" color="inherit" sx={{ marginRight: '10px' }}>
-              Wydarzenia
-            </Link>
-            <Link href="#" color="inherit" sx={{ marginRight: '10px' }}>
-              Gry
-            </Link>
-            <Link href="#" color="inherit">
-              O nas
-            </Link>
+          {navigationItem}
           </Box>
         </Toolbar>
       </Container>

@@ -17,6 +17,7 @@ export const headerStyles = {
     alignItems: 'center',
     cursor: 'pointer',
     ml: '30px',
+    height: '100%'
   },
 };
 
