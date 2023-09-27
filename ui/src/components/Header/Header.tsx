@@ -18,6 +18,7 @@ const Header: React.FC<NavigationsProps> = ({navigations}) => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} />);
   return (
+    <header>
     <AppBar position="absolute" style={headerStyles.appBar}>
       <Container maxWidth="xl">
         <Toolbar sx={{ justifyContent: 'space-between', padding: 0 }}>
@@ -44,6 +45,7 @@ const Header: React.FC<NavigationsProps> = ({navigations}) => {
         </Toolbar>
       </Container>
     </AppBar>
+    </header>
   );
 };
 

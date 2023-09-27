@@ -1,8 +1,0 @@
-.support__form {
-    width: 50%;
-}
-
-textarea::placeholder {
-    color: #000;
-    font-size: 16px;
-}
