@@ -34,9 +34,10 @@ const FactsAndMyths: React.FC = () => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   return (
-    <Container maxWidth="lg" sx={{ mb: '50px' }}>
-      <Box my={4}>
-        <Typography variant="h4" align="left" gutterBottom color='#00454C'>
+    <section>
+    <Container maxWidth="lg" >
+      <Box >
+        <Typography variant="h4" align="left" gutterBottom color='#00454C' mb={'50px'}>
           Fakty i mity?
         </Typography>
         <Typography variant="body1" align="left" mb={'50px'} paragraph color= '#00454C'>
@@ -49,6 +50,7 @@ const FactsAndMyths: React.FC = () => {
         </Box>
       </Box>
     </Container>
+    </section>
   );
 };
 

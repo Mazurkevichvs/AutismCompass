@@ -5,7 +5,7 @@ import './Main.scss';
 const Main: React.FC = () => {
   return (
     <>
-      <main>
+      <main className='main'>
         <Slider />
         <AboutSection />
         <Slider />

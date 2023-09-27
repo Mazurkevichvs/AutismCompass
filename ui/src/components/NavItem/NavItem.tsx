@@ -36,6 +36,7 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
           ...headerStyles.navigationLink,
           '&:hover': {
             color: '#008492',
+            borderBottom: '3px solid #008492'
           },
         }}
         onClick={handleClick}>
@@ -46,8 +47,8 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
           id="fade-menu"
           MenuListProps={{
             'aria-labelledby': 'fade-button',
-            
           }}
+          sx={{display: 'flex'}}
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
