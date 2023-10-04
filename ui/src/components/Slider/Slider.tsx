@@ -4,10 +4,12 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './Slider.scss';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography,useMediaQuery, Theme } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import useBreakpoints from '../../hooks/useBreakpoints';
 
 const Slider: React.FC = () => {
+  const { isSmallScreen, isMediumScreen, isLargeScreen } = useBreakpoints();
   return (
     <>
       <section className="slider-container">
@@ -34,7 +36,7 @@ const Slider: React.FC = () => {
                   textAlign: 'left',
                   zIndex: '1',
                 }}>
-                <Typography variant="h2">Lorem ipsum dolor sit amet consectetur.</Typography>
+                <Typography variant={isLargeScreen ? 'h2' : isMediumScreen ?  "h4" : 'h6'}>Lorem ipsum dolor sit amet consectetur.</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <Typography variant="body1">Dołącz się</Typography>
                   <ChevronRightIcon sx={{ width: '20px', height: '20px' }} />

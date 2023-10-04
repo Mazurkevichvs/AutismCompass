@@ -33,7 +33,7 @@ const Header: React.FC<NavigationsProps> = ({navigations}) => {
               Autism Compass
             </Typography>
           </Box>
-          <Box display="flex" alignItems="center" color="secondary">
+          <Box display="flex" alignItems="center" color="secondary" style={{ height: '100%' }}>
             {isSmallScreen ? (
               <IconButton color="primary">
                 <MenuIcon />
@@ -42,9 +42,11 @@ const Header: React.FC<NavigationsProps> = ({navigations}) => {
               navigationItem
             )}
           </Box>
+          
         </Toolbar>
       </Container>
     </AppBar>
+    
     </header>
   );
 };
