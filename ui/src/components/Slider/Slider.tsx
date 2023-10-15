@@ -4,7 +4,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './Slider.scss';
-import { Box, Typography,useMediaQuery, Theme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import useBreakpoints from '../../hooks/useBreakpoints';
 

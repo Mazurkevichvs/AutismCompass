@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Box, Container, Typography, useMediaQuery,Theme } from '@mui/material';
 import { AccordionItem } from '..';
 
@@ -30,8 +30,13 @@ const FACTS = [
   },
 ];
 const FactsAndMyths: React.FC = () => {
-  const fact = FACTS.map((accordion, index) => <AccordionItem key={index} data={accordion}/>);
+  const [openedAccordion, setOpenedAccordion] = useState<number | null>(null);
+  const fact = FACTS.map((accordion, index) => <AccordionItem key={index} data={accordion} isOpen={index === openedAccordion} onToggle={() => onToggle(index)}/>);
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+
+  const onToggle = (index:number) => {
+    setOpenedAccordion(index === openedAccordion ? null : index);
+  }
 
   return (
     <section>
@@ -46,7 +51,7 @@ const FactsAndMyths: React.FC = () => {
         </Typography>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: isSmallScreen ? 'column' : 'row' }}>
           <Box sx={{ width: isSmallScreen ? '100%' : '50%' }}>{fact}</Box>
-          <img src="/img/FactsAndMyths.png" alt="family" />
+          <img src="/img/FactsAndMyths.png" alt="family" className='facts__img'/>
         </Box>
       </Box>
     </Container>

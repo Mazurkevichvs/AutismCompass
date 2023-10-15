@@ -8,3 +8,4 @@ export {default as FactsAndMyths} from './FactsAndMyths/FactsAndMyths';
 export {default as AccordionItem} from './AccordionItem/AccordionItem';
 export {default as SupportForm} from './SupportForm/SupportForm';
 export {default as Footer} from './Footer/Footer';
+export {default as SideBarNav} from './SideBarNav/SideBarNav';

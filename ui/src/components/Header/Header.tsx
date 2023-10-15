@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -9,16 +9,17 @@ import {
   Theme,
   IconButton,
 } from '@mui/material';
-import { NavItem } from '..';
+import { NavItem, SideBarNav } from '..';
 import { headerStyles } from '../../styles/theme';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import {NavigationsProps} from '../../types/types'
+import './Header.scss'
 
 const Header: React.FC<NavigationsProps> = ({navigations}) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} />);
   return (
-    <header>
     <AppBar position="absolute" style={headerStyles.appBar}>
       <Container maxWidth="xl">
         <Toolbar sx={{ justifyContent: 'space-between', padding: 0 }}>
@@ -35,19 +36,19 @@ const Header: React.FC<NavigationsProps> = ({navigations}) => {
           </Box>
           <Box display="flex" alignItems="center" color="secondary" style={{ height: '100%' }}>
             {isSmallScreen ? (
-              <IconButton color="primary">
+              <IconButton color="primary" onClick={() => setMenuOpen(true)} className="menu-icon">
                 <MenuIcon />
               </IconButton>
             ) : (
-              navigationItem
+                navigationItem
             )}
           </Box>
-          
+          {menuOpen && isSmallScreen && (
+              <SideBarNav menuOpen={menuOpen} setMenuOpen={setMenuOpen} navigations={navigations} />
+            )}
         </Toolbar>
       </Container>
     </AppBar>
-    
-    </header>
   );
 };
 
