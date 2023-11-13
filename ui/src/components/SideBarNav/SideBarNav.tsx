@@ -11,7 +11,7 @@ interface SideMenuProps extends NavigationsProps {
 
 const SideMenu: React.FC<SideMenuProps> = ({ navigations, menuOpen ,setMenuOpen }) => {
   return (
-    <Paper className={`sidebar-nav ${menuOpen ? 'open' : ''}`}>
+    <Paper className={`sidebar__nav ${menuOpen ? 'open' : ''}`}>
       <Box display="flex" justifyContent="flex-end">
         <CloseIcon fontSize="large" onClick={() => setMenuOpen(false)} />
       </Box>
