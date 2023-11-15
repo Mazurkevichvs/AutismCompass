@@ -64,6 +64,7 @@ const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
               display: 'flex',
               flexDirection: isSmallScreen ? 'column' : 'row',
               alignItems: 'center',
+              height: '80px'
             }}>
             {navigationItem}
           </Box>

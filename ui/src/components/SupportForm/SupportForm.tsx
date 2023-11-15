@@ -5,7 +5,7 @@ const SupportForm: React.FC = () => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   return (
     <section>
-    <Box sx={{ backgroundColor: '#D7BBF5', height: '100vh', width: '100%', display:'flex', justifyContent: 'center', alignItems:'center', pb: '100px'}}>
+    <Box sx={{ backgroundColor: '#D7BBF5', height: '100%', width: '100%', display:'flex', justifyContent: 'center', alignItems:'center', pb: '100px'}}>
       <Container
         maxWidth="lg"
         sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: isSmallScreen ? 'column' : 'row', }}>

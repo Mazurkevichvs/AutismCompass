@@ -9,7 +9,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import useBreakpoints from '../../hooks/useBreakpoints';
 
 const Slider: React.FC = () => {
-  const { isSmallScreen, isMediumScreen, isLargeScreen } = useBreakpoints();
+  const { isMediumScreen, isLargeScreen } = useBreakpoints();
   return (
     <>
       <section className="slider-container">

@@ -34,7 +34,7 @@ const Header: React.FC<NavigationsProps> = ({navigations}) => {
               Autism Compass
             </Typography>
           </Box>
-          <Box display="flex" alignItems="center" color="secondary" style={{ height: '100%' }}>
+          <Box display="flex" alignItems="center" color="secondary" style={{ height: '80px' }}>
             {isSmallScreen ? ( !menuOpen &&
               <IconButton color="primary" onClick={() => setMenuOpen(true)} className="menu-icon">
                 <MenuIcon />

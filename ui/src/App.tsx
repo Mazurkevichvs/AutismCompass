@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import { Main, Header, Footer } from './components';
 import { Routes, Route } from 'react-router-dom';
+import Support from './pages/Support';
 
 const NAVIGATIONS = [
   {
@@ -22,16 +23,18 @@ const NAVIGATIONS = [
   },
   { name: 'Test diagnozujący', path: '/test-diagnozujacy' },
   { name: 'Wydarzenia', path: '/wydarzenia' },
-  { name: 'O nas', path: '/o-nas' },
 ];
 
 const App: React.FC = () => {
   return (
     <>
       <Header navigations={NAVIGATIONS}/>
+      <main>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/support" element={<Support />} />
       </Routes>
+      </main>
       <Footer navigations={NAVIGATIONS}/>
     </>
   );

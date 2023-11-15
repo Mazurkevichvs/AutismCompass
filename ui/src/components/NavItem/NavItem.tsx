@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  MenuItem,
-  Popper,
-  Grow,
-  Paper,
-  ClickAwayListener,
-  MenuList,
-} from '@mui/material';
+import { Box, MenuItem, Popper, Grow, Paper, ClickAwayListener, MenuList } from '@mui/material';
 import { headerStyles } from '../../styles/theme';
 import {
   ExpandMore as ExpandMoreIcon,
@@ -15,6 +7,7 @@ import {
   ChevronRight as ChevronRightIcon,
 } from '@mui/icons-material';
 import './NavItem.scss';
+import { Link } from 'react-router-dom';
 
 interface NavItemProps {
   page: {
@@ -77,38 +70,36 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
         onClick={handleToggle}>
         {page.name} {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </Box>
-      {page.sublinks ? 
+      {page.sublinks ? (
         <Popper
           open={open}
           anchorEl={anchorRef.current}
           role={undefined}
           placement="bottom-start"
           transition
-          disablePortal
-          >
+          disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
-            
               {...TransitionProps}
               style={{
                 transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}>
-              <Paper sx={{bgcolor: 'rgba(117, 188, 105)'}}>
+              <Paper sx={{ bgcolor: 'rgba(117, 188, 105)' }}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
                     id="composition-menu"
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}>
-                    { page.sublinks?.map((sublink, i) => (
-                      <MenuItem
+                    {page.sublinks?.map((sublink, i) => (
+                     <Link to={'/support'} key={i}> <MenuItem
                         sx={{
                           color: '#00454C',
                         }}
                         key={i}
                         onClick={handleClose}>
                         {sublink.name} <ChevronRightIcon />
-                      </MenuItem>
+                      </MenuItem></Link>
                     ))}
                   </MenuList>
                 </ClickAwayListener>
@@ -116,7 +107,7 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
             </Grow>
           )}
         </Popper>
-       : null}
+      ) : null}
     </>
   );
 };
