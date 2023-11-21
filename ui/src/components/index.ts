@@ -1,7 +1,7 @@
 export {default as Header} from './Header/Header';
 export {default as NavItem} from './NavItem/NavItem';
 export {default as Slider} from './Slider/Slider';
-export {default as Main} from './Main/Main';
+export {default as Main} from '../pages/Home';
 export {default as AboutSection} from './AboutSection/AboutSection';
 export {default as AboutCard} from './AboutCard/AboutCard';
 export {default as FactsAndMyths} from './FactsAndMyths/FactsAndMyths';
@@ -9,3 +9,4 @@ export {default as AccordionItem} from './AccordionItem/AccordionItem';
 export {default as SupportForm} from './SupportForm/SupportForm';
 export {default as Footer} from './Footer/Footer';
 export {default as SideBarNav} from './SideBarNav/SideBarNav';
+export {default as VideoSection} from './VideoSection/VideoSection';

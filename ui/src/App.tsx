@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.scss';
-import { Main, Header, Footer } from './components';
+import { Header, Footer, SupportForm } from './components';
 import { Routes, Route } from 'react-router-dom';
-import Support from './pages/Support';
+import {Home, Support} from './pages/index';
 
 const NAVIGATIONS = [
   {
@@ -31,10 +31,11 @@ const App: React.FC = () => {
       <Header navigations={NAVIGATIONS}/>
       <main>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Home />} />
         <Route path="/support" element={<Support />} />
       </Routes>
       </main>
+      <SupportForm/>
       <Footer navigations={NAVIGATIONS}/>
     </>
   );

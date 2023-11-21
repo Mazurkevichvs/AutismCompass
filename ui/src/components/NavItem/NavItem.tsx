@@ -23,7 +23,7 @@ interface NavItemProps {
 const NavItem: React.FC<NavItemProps> = ({ page }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-
+  const isOpenIcon = open ? <ExpandLessIcon /> : <ExpandMoreIcon />
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -32,7 +32,6 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
     if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -68,7 +67,7 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
         onClick={handleToggle}>
-        {page.name} {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        {page.name} {page.sublinks && isOpenIcon}
       </Box>
       {page.sublinks ? (
         <Popper
@@ -92,14 +91,17 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}>
                     {page.sublinks?.map((sublink, i) => (
-                     <Link to={'/support'} key={i}> <MenuItem
-                        sx={{
-                          color: '#00454C',
-                        }}
-                        key={i}
-                        onClick={handleClose}>
-                        {sublink.name} <ChevronRightIcon />
-                      </MenuItem></Link>
+                      <Link to={'/support'} key={i}>
+                        {' '}
+                        <MenuItem
+                          sx={{
+                            color: '#00454C',
+                          }}
+                          key={i}
+                          onClick={handleClose}>
+                          {sublink.name} <ChevronRightIcon />
+                        </MenuItem>
+                      </Link>
                     ))}
                   </MenuList>
                 </ClickAwayListener>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Container, useTheme } from '@mui/material';
 import './pages.scss'
+import { VideoSection } from '../components';
 const Support: React.FC = () => {
     const theme = useTheme();
   return (
@@ -13,6 +14,7 @@ const Support: React.FC = () => {
             </Box>
         </Container>
       </section>
+      <VideoSection/>
     </>
   );
 };
