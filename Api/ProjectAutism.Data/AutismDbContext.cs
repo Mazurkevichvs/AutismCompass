@@ -1,15 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectAutism.Models;
+using ProjectAutism.Data.Models;
 
 namespace ProjectAutism.Data;
 
 public class AutismDbContext : DbContext
 {
-    //TODO EFC Connection string(PostgreSQL),DB contex    
     public DbSet<Gathering> Gatherings { get; set; }
 
-    public AutismDbContext(DbContextOptions<AutismDbContext> options):
+    public AutismDbContext(DbContextOptions<AutismDbContext> options) :
         base(options)
     {
     }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Gathering>()
+            .Property(g => g.Type)
+            .HasConversion<string>();
+    }   
 }

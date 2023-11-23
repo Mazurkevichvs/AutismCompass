@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectAutism;
 using ProjectAutism.Data;
+using ProjectAutism.Data.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AutismDbContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("AutProjectDb")));
+builder.Services.AddScoped<IGatheringRepository, GatheringRepository>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
