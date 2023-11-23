@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Container, useTheme } from '@mui/material';
 import './pages.scss'
 import { VideoSection } from '../components';
+import SupportTabs from '../components/SupportTabs/SupportTabs';
 const Support: React.FC = () => {
     const theme = useTheme();
   return (
@@ -13,8 +14,9 @@ const Support: React.FC = () => {
                 <img src="img/support-family.png" alt="support family" />
             </Box>
         </Container>
-      </section>
-      <VideoSection/>
+      </section>     
+        <VideoSection/>
+        <SupportTabs/>
     </>
   );
 };

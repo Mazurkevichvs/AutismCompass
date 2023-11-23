@@ -64,7 +64,7 @@ const VideoSection: React.FC = () => {
             title="Autism Video"
             width="560"
             height="315"
-            src="https://www.youtube.com/embed/tEBsTX2OVgI"
+            // src="https://www.youtube.com/embed/tEBsTX2OVgI"
             allowFullScreen
           />
         </Paper>

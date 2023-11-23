@@ -10,3 +10,4 @@ export {default as SupportForm} from './SupportForm/SupportForm';
 export {default as Footer} from './Footer/Footer';
 export {default as SideBarNav} from './SideBarNav/SideBarNav';
 export {default as VideoSection} from './VideoSection/VideoSection';
+export {default as SupportTabs} from './SupportTabs/SupportTabs';
