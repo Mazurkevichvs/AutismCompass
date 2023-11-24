@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ProjectAutism.Data;
 using ProjectAutism.Data.Models;
-using ProjectAutism.Data.Repos;
-using Type = ProjectAutism.Data.Models.Type;
+using ProjectAutism.Repos;
 
 namespace ProjectAutism.Controllers;
 

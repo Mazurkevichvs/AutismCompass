@@ -1,4 +1,4 @@
-﻿namespace ProjectAutism.Data.Models;
+﻿namespace ProjectAutism;
 
 public enum Type
 {

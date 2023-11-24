@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectAutism;
 using ProjectAutism.Data;
-using ProjectAutism.Data.Repos;
+using ProjectAutism.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
 
