@@ -39,25 +39,44 @@ public class GatheringRepository : IGatheringRepository
         _autismDbContext.SaveChanges();
         return true;
     }
-    
-    public bool SubscribeToGathering(Credential credential, int gatheringId)
+
+    public async Task SubscribeToGathering(Gathering gathering, Credential credential)
     {
-      
-        var gatheringFromDb =_autismDbContext.Gatherings.FirstOrDefault(g => g.Id == gatheringId);
-        if (gatheringFromDb is null)
-            return false;
-        
+        var gatheringFromDb =_autismDbContext.Gatherings.FirstOrDefault(g => g.Id == gathering.Id);
+        /*if (gatheringFromDb is null)
+            return false;*/
+
         var smtpServer = _configuration["EmailSettings:SmtpServer"];
         var smtpPort = _configuration.GetValue<int>("EmailSettings:SmtpPort");
         var username = _configuration["EmailSettings:Username"];
         var password = _configuration["EmailSettings:Password"];
-        var smtpClient = new SmtpClient(smtpServer)
+
+        using (var client = new SmtpClient(smtpServer,smtpPort))
+        {
+            client.Credentials = new NetworkCredential(username, password);
+            client.EnableSsl = true;
+            client.TargetName = "STARTTLS";
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(username!),
+                Subject = "Fuck Youu",
+                Body = "<h1>Hello</h1> <h2> donate pls </h2>" +
+                       "<button> donate </button>",
+                IsBodyHtml = true,
+            };
+            mailMessage.To.Add(credential.Email);
+            await client.SendMailAsync(mailMessage);
+        }
+        
+        
+        /*var smtpClient = new SmtpClient(smtpServer)
         {
             Port = smtpPort,
             Credentials = new NetworkCredential(username, password),
             EnableSsl = true,
-        };
-
-        return true;
+        };*/
+       
+        
+        
     }
 }

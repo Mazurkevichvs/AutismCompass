@@ -46,8 +46,7 @@ public class GatheringController : ControllerBase
 
         return Ok(gathering);
     }
-
-
+    
     [HttpGet("Search")]
     public IActionResult FindByName([FromQuery] string name)
     {
@@ -62,4 +61,14 @@ public class GatheringController : ControllerBase
             return NotFound();
         return Ok();
     }
+
+    [HttpPost("Test")]
+    public async Task<IActionResult> SubscribeToGathering(Gathering gathering, Credential credential)
+    {
+       await _gatheringRepository.SubscribeToGathering(gathering, credential);
+       return Ok();
+    }
+    
+    
+
 }
