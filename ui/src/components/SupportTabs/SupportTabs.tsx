@@ -10,8 +10,8 @@ const SupportTabs: React.FC = () => {
 
   return (
     <>
-      <section>
-        <Container>
+      <section style={{backgroundColor:'#F5EAEB'}}>
+        <Container maxWidth="lg">
           <Box
             sx={{
               backgroundColor: '#BDE6D3',

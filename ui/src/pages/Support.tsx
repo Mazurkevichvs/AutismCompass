@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Typography, Container, useTheme } from '@mui/material';
 import './pages.scss'
-import { VideoSection } from '../components';
-import SupportTabs from '../components/SupportTabs/SupportTabs';
+import { SupportAdvices, VideoSection, SupportTabs } from '../components';
 const Support: React.FC = () => {
     const theme = useTheme();
   return (
@@ -17,6 +16,7 @@ const Support: React.FC = () => {
       </section>     
         <VideoSection/>
         <SupportTabs/>
+        <SupportAdvices/>
     </>
   );
 };
