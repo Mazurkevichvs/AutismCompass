@@ -2,27 +2,27 @@ import React from 'react';
 import './App.scss';
 import { Header, Footer, SupportForm } from './components';
 import { Routes, Route } from 'react-router-dom';
-import {Home, Support} from './pages/index';
+import {Events, Home, Support} from './pages/index';
 
 const NAVIGATIONS = [
   {
     name: 'Czym jest autyzm?',
-    path: '/czym-jest-autyzm',
+    path: '/',
     sublinks: [
-      { name: 'Podlink 1', path: '/czym-jest-autyzm/link1' },
-      { name: 'Podlink 2', path: '/czym-jest-autyzm/link2' },
+      { name: 'Podlink 1', path: '/' },
+      { name: 'Podlink 2', path: '/' },
     ],
   },
   {
     name: 'Wsparcie dla osób z autyzmem',
-    path: '/wsparcie',
+    path: '/support',
     sublinks: [
-      { name: 'Podlink 3', path: '/wsparcie/link3' },
-      { name: 'Podlink 4', path: '/wsparcie/link4' },
+      { name: 'Podlink 3', path: '/support' },
+      { name: 'Podlink 4', path: '/support' },
     ],
   },
-  { name: 'Test diagnozujący', path: '/test-diagnozujacy' },
-  { name: 'Wydarzenia', path: '/wydarzenia' },
+  { name: 'Wydarzenia', path: '/events' },
+  { name: 'Test diagnozujący', path: '/test' },
 ];
 
 const App: React.FC = () => {
@@ -33,9 +33,10 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/events" element={<Events />} />
       </Routes>
-      </main>
       <SupportForm/>
+      </main>
       <Footer navigations={NAVIGATIONS}/>
     </>
   );

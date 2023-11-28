@@ -23,7 +23,7 @@ interface NavItemProps {
 const NavItem: React.FC<NavItemProps> = ({ page }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-  const isOpenIcon = open ? <ExpandLessIcon /> : <ExpandMoreIcon />
+  const isOpenIcon = open ? <ExpandLessIcon /> : <ExpandMoreIcon />;
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -53,22 +53,37 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
   }, [open]);
   return (
     <>
-      <Box
-        sx={{
-          ...headerStyles.navigationLink,
-          '&:hover': {
-            color: '#008492',
-            borderBottom: '3px solid #008492',
-          },
-        }}
-        ref={anchorRef}
-        id="composition-button"
-        aria-controls={open ? 'composition-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}>
-        {page.name} {page.sublinks && isOpenIcon}
-      </Box>
+      {!page.sublinks ? (
+        <Link to={page.path} style={{ height: '100%' }}>
+          <Box
+            sx={{
+              ...headerStyles.navigationLink,
+              '&:hover': {
+                color: '#008492',
+                borderBottom: '3px solid #008492',
+              },
+            }}>
+            {page.name}
+          </Box>
+        </Link>
+      ) : (
+        <Box
+          sx={{
+            ...headerStyles.navigationLink,
+            '&:hover': {
+              color: '#008492',
+              borderBottom: '3px solid #008492',
+            },
+          }}
+          ref={anchorRef}
+          id="composition-button"
+          aria-controls={open ? 'composition-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}>
+          {page.name} {page.sublinks && isOpenIcon}
+        </Box>
+      )}
       {page.sublinks ? (
         <Popper
           open={open}
@@ -91,7 +106,7 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}>
                     {page.sublinks?.map((sublink, i) => (
-                      <Link to={'/support'} key={i}>
+                      <Link to={sublink.path} key={i}>
                         {' '}
                         <MenuItem
                           sx={{
