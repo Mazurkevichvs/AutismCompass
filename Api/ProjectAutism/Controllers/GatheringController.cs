@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectAutism.Data;
 using ProjectAutism.Data.Models;
 using ProjectAutism.Repos;
@@ -32,7 +34,6 @@ public class GatheringController : ControllerBase
             return NotFound("Unknown Gathering type");
         var addedGathering = _gatheringRepository.CreateGathering(gathering);
         return Ok(addedGathering);
-        
     }
 
     [HttpGet("{id}")]
@@ -46,8 +47,8 @@ public class GatheringController : ControllerBase
 
         return Ok(gathering);
     }
-    
-    [HttpGet("Search")]
+
+    [HttpGet("serch")]
     public IActionResult FindByName([FromQuery] string name)
     {
         var gatherings = _context.Gatherings.Where(gathering => gathering.Name == name).ToList();
@@ -62,13 +63,11 @@ public class GatheringController : ControllerBase
         return Ok();
     }
 
-    [HttpPost("Test")]
-    public async Task<IActionResult> SubscribeToGathering(Gathering gathering, Credential credential)
+    [HttpPost("subscribe-to-gathering")]
+    public async Task<IActionResult> SubscribeToGathering(int gatheringId, Credential credential)
     {
-       await _gatheringRepository.SubscribeToGathering(gathering, credential);
-       return Ok();
+        await _gatheringRepository.SubscribeToGathering(gatheringId, credential);
+        return Ok();
     }
     
-    
-
 }

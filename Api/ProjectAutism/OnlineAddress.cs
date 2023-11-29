@@ -2,5 +2,8 @@
 
 public class OnlineAddress
 {
-    public string City { get; set; }
+    public string Link {
+        get;
+        set;
+    }
 }

@@ -7,5 +7,5 @@ public interface IGatheringRepository
     IEnumerable<Gathering> GetGatherings();
     Gathering CreateGathering(Gathering gathering);
     bool DeleteGathering(int id);
-    Task SubscribeToGathering(Gathering gathering, Credential credential);
+    Task SubscribeToGathering(int gatheringId, Credential credential);
 }
