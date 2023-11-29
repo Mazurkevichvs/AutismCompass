@@ -4,28 +4,35 @@ import { Typography, CardContent, CardActions, Button, CardMedia, Card, Box } fr
 const EventsCardItem: React.FC = () => {
   return (
     <>
-      <Box>
+      <Box sx={{ maxWidth: '350px', m:'25px 0'}}>
         <Card>
-          <CardContent>
-            <CardMedia component="img" height="194" image="img/event-item1.png" alt="Paella dish" />
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              Word of the Day
-            </Typography>
+          <CardContent sx={{ bgcolor: '#92C48A', ':last-child': { pb: '16px' } }}>
+            <CardMedia
+              sx={{ mb: '10px' }}
+              component="img"
+              height="194"
+              image="img/event-item1.png"
+              alt="event"
+            />
             <Typography variant="h5" component="div">
-              asdasdad
+              Nazwa
             </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              adjective
+            <Typography sx={{ mb: 1.5, fontSize: '14px' }} color="text.secondary">
+              Gdansk, ul.Nieborowska 29/103
             </Typography>
-            <Typography variant="body2">
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
+            <Typography variant="body2" sx={{ mb: '15px' }}>
+              Lorem ipsum dolor sit amet consectetur. Aliquet fringilla in bibendum lectus elementum
+              pellentesque elit.
             </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <CardActions sx={{ p: 0 }}>
+                <Button variant="contained" size="small">Rejestracja</Button>
+              </CardActions>
+              <Typography sx={{ fontSize: '12px', fontWeight:'600' }} color="text.secondary">
+                15/11/23 15:30
+              </Typography>
+            </Box>
           </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
         </Card>
       </Box>
     </>
