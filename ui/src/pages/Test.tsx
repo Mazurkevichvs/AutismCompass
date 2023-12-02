@@ -6,6 +6,7 @@ const Test: React.FC = () => {
     <>
       <HeadingSection bgImage={'test-heading'} title={'Test diagnozujący'} />
       <TestAbout/>
+      
     </>
   );
 };
