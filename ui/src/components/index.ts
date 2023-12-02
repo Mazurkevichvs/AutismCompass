@@ -15,3 +15,5 @@ export { default as SupportAdvices } from './SupportAdvices/SupportAdvices';
 export { default as HeadingSection } from './HeadingSection/HeadingSection';
 export { default as EventsCardList } from './EventsCardList/EventsCardList';
 export { default as EventsCardItem } from './EventsCardItem/EventsCardItem';
+export { default as EventInfo } from './EventInfo/EventInfo';
+export { default as TestAbout } from './TestAbout/TestAbout';
