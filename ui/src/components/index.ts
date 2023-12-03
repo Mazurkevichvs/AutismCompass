@@ -17,3 +17,6 @@ export { default as EventsCardList } from './EventsCardList/EventsCardList';
 export { default as EventsCardItem } from './EventsCardItem/EventsCardItem';
 export { default as EventInfo } from './EventInfo/EventInfo';
 export { default as TestAbout } from './TestAbout/TestAbout';
+export { default as TestQuestionsList } from './TestQuestionsList/TestQuestionsList';
+export { default as TestQuestionsItem } from './TestQuestionsItem/TestQuestionsItem';
+export { default as TestResult } from './TestResult/TestResult';

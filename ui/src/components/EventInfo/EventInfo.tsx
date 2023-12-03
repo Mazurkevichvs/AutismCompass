@@ -7,7 +7,7 @@ const EventInfo: React.FC = () => {
     <>
       <section>
         <Container maxWidth="lg">
-          <Box sx={{ p: '55px', borderRadius: '25px', bgcolor: '#D7EFFF', display:'flex', flexDirection:'column', alignItems:'center' }}>
+          <Box sx={{ p: '55px', borderRadius: '25px', bgcolor: '#E6F1F8', display:'flex', flexDirection:'column', alignItems:'center' }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Box sx={{ width: '55%' }}>
                 <Typography variant="h4" gutterBottom>
@@ -43,7 +43,6 @@ const EventInfo: React.FC = () => {
                   <TextField sx={mb} label="Nazwisko" variant="filled" fullWidth required />
                 </Box>
                 <Button
-                  className="register-button"
                   variant="contained"
                   color="primary"
                   fullWidth
