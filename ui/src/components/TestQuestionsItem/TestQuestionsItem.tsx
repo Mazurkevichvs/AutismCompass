@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 
 interface QuestionComponentProps {
   question: string;
@@ -12,10 +12,10 @@ const TestQuestionsItem: React.FC<QuestionComponentProps> = ({ question, answers
   const handleAnswerClick = (index: number) => {
     setActiveAnswer(index);
   };
-
+const theme = useTheme()
   return (
     <>
-        <Box sx={{ my: 6, width:'45%', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+        <Box sx={{ my: 6, width:'45%', color:theme.palette.primary.main, display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
           <Typography variant="h6" sx={{ marginBottom: 1 }}>
             {question}
           </Typography>
@@ -27,6 +27,7 @@ const TestQuestionsItem: React.FC<QuestionComponentProps> = ({ question, answers
                 sx={{
                   backgroundColor: activeAnswer === index ? '#b4dbae' : '#d0d0d0',
                   padding: 2,
+                  textAlign:'center',
                   marginBottom: 3,
                   cursor: 'pointer',
                   borderRadius:'10px',

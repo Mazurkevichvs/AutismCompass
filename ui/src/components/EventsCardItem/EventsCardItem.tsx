@@ -1,12 +1,13 @@
 import React from 'react';
-import { Typography, CardContent, CardActions, Button, CardMedia, Card, Box } from '@mui/material';
+import { Typography, CardContent, CardActions, Button, CardMedia, Card, Box, useTheme } from '@mui/material';
 
 const EventsCardItem: React.FC = () => {
+  const theme = useTheme()
   return (
     <>
       <Box sx={{ maxWidth: '350px', m:'25px 0'}}>
         <Card>
-          <CardContent sx={{ bgcolor: '#92C48A', ':last-child': { pb: '16px' } }}>
+          <CardContent sx={{ bgcolor: '#92C48A',color:theme.palette.primary.main, ':last-child': { pb: '16px' } }}>
             <CardMedia
               sx={{ mb: '10px' }}
               component="img"

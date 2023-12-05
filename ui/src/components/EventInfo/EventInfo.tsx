@@ -1,13 +1,14 @@
 import React from 'react';
-import { Container, Paper, Typography, TextField, Button, Box } from '@mui/material';
+import { Container, Typography, TextField, Button, Box, useTheme } from '@mui/material';
 
 const EventInfo: React.FC = () => {
+  const theme = useTheme()
   const mb={mb:'30px'}
   return (
     <>
       <section>
         <Container maxWidth="lg">
-          <Box sx={{ p: '55px', borderRadius: '25px', bgcolor: '#E6F1F8', display:'flex', flexDirection:'column', alignItems:'center' }}>
+          <Box sx={{ p: '55px',color:theme.palette.primary.main, borderRadius: '25px', bgcolor: '#E6F1F8', display:'flex', flexDirection:'column', alignItems:'center' }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Box sx={{ width: '55%' }}>
                 <Typography variant="h4" gutterBottom>

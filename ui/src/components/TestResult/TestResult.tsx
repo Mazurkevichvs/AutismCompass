@@ -1,11 +1,12 @@
-import { Container, Typography, Box, TextField, Button } from '@mui/material';
+import { Container, Typography, Box, TextField, Button, useTheme } from '@mui/material';
 import React from 'react';
 
 const TestResult: React.FC = () => {
+  const theme = useTheme()
   return (
     <>
       <section>
-        <Container maxWidth="lg" sx={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+        <Container maxWidth="lg" sx={{display:'flex', flexDirection:'column', alignItems:'center', color:theme.palette.primary.main}}>
           <Typography variant="h4" gutterBottom mb={'20px'}>
           Wynik: Istnieje wysokie prawdopodobieństwo, ze znajdujesz się w spektrum autyzmu! 
           </Typography>

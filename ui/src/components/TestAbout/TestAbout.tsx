@@ -1,11 +1,12 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, useTheme } from '@mui/material';
 import React from 'react';
 
 const TestAbout: React.FC = () => {
+  const theme = useTheme();
   return (
     <>
-      <section style={{height:'100%'}}>
-        <Container maxWidth="lg" sx={{py:'50px'}}>
+      <section style={{ height: '100%' }}>
+        <Container maxWidth="lg" sx={{ py: '50px', color: theme.palette.primary.main }}>
           <Typography variant="h4" gutterBottom mb={'20px'}>
             Jak to działa?
           </Typography>
@@ -28,16 +29,23 @@ const TestAbout: React.FC = () => {
             ultricies fringilla felis ullamcorper. Ut cras urna ante massa ante tempus nisi mauris
             aliquet.
           </Typography>
-          <Box sx={{display:'flex', p:'25px', bgcolor:'#FFDFB9', color:'#FF8A00', borderRadius:'25px'}}>
+          <Box
+            sx={{
+              display: 'flex',
+              p: '25px',
+              bgcolor: '#FFDFB9',
+              color: '#FF8A00',
+              borderRadius: '25px',
+            }}>
             <img src="img/info-circle.svg" alt="info" />
-            <Typography variant="body1" align="left" sx={{ml:'20px'}}>
+            <Typography variant="body1" align="left" sx={{ ml: '20px' }}>
               Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis
               fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor
               ultricies fringilla felis ullamcorper. Ut cras urna ante massa ante tempus nisi mauris
-              aliquet.  Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis
-              fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor
-              ultricies fringilla felis ullamcorper. Ut cras urna ante massa ante tempus nisi mauris
-              aliquet.
+              aliquet. Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie
+              sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas
+              auctor ultricies fringilla felis ullamcorper. Ut cras urna ante massa ante tempus nisi
+              mauris aliquet.
             </Typography>
           </Box>
         </Container>

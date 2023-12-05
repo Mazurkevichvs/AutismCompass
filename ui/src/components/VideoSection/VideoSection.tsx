@@ -1,17 +1,18 @@
 import React from 'react';
-import { Container, Typography, Grid, Paper, Card, CardContent, CardMedia } from '@mui/material';
+import { Container, Typography, Grid, Paper, Card, CardContent, CardMedia, useTheme } from '@mui/material';
 
 const VideoSection: React.FC = () => {
+  const theme = useTheme()
   return (
     <section>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{color:theme.palette.primary.main}}>
         <Typography variant="h4" gutterBottom>
           Lorem ipsum dolor
         </Typography>
         <Grid container spacing={10} justifyContent="space-around" marginTop={1}>
           <Grid item xs={12} md={4}>
             <Card sx={{ bgcolor: '#EB6FA1', borderRadius: '25px' }}>
-              <CardContent>
+              <CardContent sx={{color:theme.palette.primary.main}}>
                 <Typography variant="h5" gutterBottom>
                   1. Lorem ipsum dolor sit
                 </Typography>
@@ -25,9 +26,9 @@ const VideoSection: React.FC = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} >
             <Card sx={{ bgcolor: '#FFE65D', borderRadius: '25px' }}>
-              <CardContent>
+              <CardContent sx={{color:theme.palette.primary.main}}>
                 <Typography variant="h5" gutterBottom>
                   2. Lorem ipsum dolor sit
                 </Typography>
@@ -43,7 +44,7 @@ const VideoSection: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={4}>
             <Card sx={{ bgcolor: '#AADDF0', borderRadius: '25px' }}>
-              <CardContent>
+              <CardContent sx={{color:theme.palette.primary.main}}>
                 <Typography variant="h5" gutterBottom>
                   3. Lorem ipsum dolor sit
                 </Typography>

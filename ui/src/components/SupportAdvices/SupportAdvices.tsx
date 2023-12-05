@@ -1,12 +1,13 @@
 import React from 'react';
-import { Container, Box, Typography } from '@mui/material';
+import { Container, Box, Typography, useTheme } from '@mui/material';
 
 const SupportAdvices: React.FC = () => {
+  const theme = useTheme()
   return (
     <>
       <section>
         <Container maxWidth="lg">
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', color:theme.palette.primary.main }}>
             <Box sx={{mr:'100px'}}>
               <img
                 src="/img/support-kid1.png"
@@ -30,7 +31,7 @@ const SupportAdvices: React.FC = () => {
               </Typography>
             </Box>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', my: 4 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', my: 4, color:theme.palette.primary.main}}>
             <Box>
               <Typography variant="h4" mb={2}>
                 Porada dla autystów 2
