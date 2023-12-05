@@ -4,18 +4,20 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 interface AboutCardProps {
   isSmallScreen: boolean;
+  title: String;
+  description: String;
 }
 
-const AboutCard: React.FC<AboutCardProps> = ({isSmallScreen}) => {
+const AboutCard: React.FC<AboutCardProps> = ({isSmallScreen, title, description}) => {
   return (
     <Box sx={{width: isSmallScreen ? '100%' : '45%', mb: isSmallScreen ? '30px' : '0'}}>
       <Card sx={{ backgroundColor: '#E6F1F8' }}>
         <CardContent sx={{padding: '40px'}}>
           <Typography variant="h6" gutterBottom color= '#00454C'>
-            Lorem ipsum dolor sit amet
+            {title}
           </Typography>
           <Typography mb={'25px'} variant="body2" color= '#00454C'>
-          Lorem ipsum dolor sit amet consectetur. Scelerisque diam vulputate arcu amet quam. Proin feugiat arcu magna sit neque interdum pretium lacinia dui. Ipsum quam molestie cras faucibus turpis ac ut. Sed mattis sagittis vestibulum sagittis ornare at nullam est mattis. Platea etiam suspendisse eleifend sed tortor sed.
+          {description}
           </Typography>
           <Button variant="text" color="primary">
             Więcej <ChevronRightIcon/>

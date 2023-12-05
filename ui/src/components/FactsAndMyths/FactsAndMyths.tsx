@@ -4,27 +4,27 @@ import { AccordionItem } from '..';
 
 const FACTS = [
   {
-    title: 'Lorem ipsum dolor sit amet consectetur.',
+    title: 'Autyzm jest nieuleczalny.',
     content:
       'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
   },
   {
-    title: 'Lorem ipsum dolor sit amet consectetur.',
+    title: 'Autyzm nie jest chorobą, a zaburzeniem, które trwa całe życie.',
     content:
       'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
   },
   {
-    title: 'Lorem ipsum dolor sit amet consectetur.',
+    title: 'Autyzm dotyczy tylko dzieci.',
     content:
       'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
   },
   {
-    title: 'Lorem ipsum dolor sit amet consectetur.',
+    title: 'Autyzm to zaburzenie dotyczące osób w różnym wieku.',
     content:
       'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
   },
   {
-    title: 'Lorem ipsum dolor sit amet consectetur.',
+    title: 'Osoby z autyzmem nie mówią.',
     content:
       'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
   },

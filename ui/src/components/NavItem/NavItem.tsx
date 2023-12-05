@@ -18,9 +18,10 @@ interface NavItemProps {
       path: string;
     }[];
   };
+  isFooter?: boolean;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ page }) => {
+const NavItem: React.FC<NavItemProps> = ({ page, isFooter }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
   const isOpenIcon = open ? <ExpandLessIcon /> : <ExpandMoreIcon />;
@@ -98,7 +99,7 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
               style={{
                 transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}>
-              <Paper sx={{ bgcolor: 'rgba(117, 188, 105)' }}>
+              <Paper sx={{ bgcolor: isFooter ? '#AEDBF9' : 'rgba(117, 188, 105, 0.7)' }}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}

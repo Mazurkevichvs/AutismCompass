@@ -3,7 +3,6 @@ import {
   Box,
   Container,
   Typography,
-  Link,
   Toolbar,
   useMediaQuery,
   Theme,
@@ -13,12 +12,13 @@ import {
   Instagram as InstagramIcon,
   Twitter as TwitterIcon,
 } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import { NavigationsProps } from '../../types/types';
 import { NavItem } from '..';
 
 const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
-  const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} />);
+  const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} isFooter={true}/>);
   return (
     <footer className='footer'>
       <Container
@@ -34,7 +34,8 @@ const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
             justifyContent: 'space-between',
             flexDirection: isSmallScreen ? 'column' : 'row',
           }}>
-          <Box display="flex" alignItems="center">
+            <Link to={'/'}>
+          <Box display="flex" alignItems="center" mr={'10px'}>
             <img
               src="img/main_icon.png"
               alt="Autism Compass"
@@ -45,14 +46,15 @@ const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
               Autism Compass
             </Typography>
           </Box>
-          <Box display="flex" alignItems="center">
-            <Link href="#" color="inherit" sx={{ marginRight: '10px' }}>
+          </Link>
+          <Box display="flex" alignItems="center" mr={'10px'}>
+            <Link to="/" color="inherit" style={{ marginRight: '10px' }}>
               <FacebookIcon />
             </Link>
-            <Link href="#" color="inherit" sx={{ marginRight: '10px' }}>
+            <Link to="/" color="inherit" style={{ marginRight: '10px' }}>
               <InstagramIcon />
             </Link>
-            <Link href="#" color="inherit">
+            <Link to="/" color="inherit">
               <TwitterIcon />
             </Link>
           </Box>
