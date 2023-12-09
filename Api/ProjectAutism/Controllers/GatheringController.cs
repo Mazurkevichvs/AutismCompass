@@ -11,12 +11,10 @@ namespace ProjectAutism.Controllers;
 [Route("api/events")]
 public class GatheringController : ControllerBase
 {
-    private AutismDbContext _context;
     private readonly IGatheringRepository _gatheringRepository;
 
-    public GatheringController(AutismDbContext context, IGatheringRepository gatheringRepository)
+    public GatheringController( IGatheringRepository gatheringRepository)
     {
-        _context = context;
         _gatheringRepository = gatheringRepository;
     }
 
@@ -26,43 +24,21 @@ public class GatheringController : ControllerBase
         return _gatheringRepository.GetGatherings();
     }
 
-    [HttpPost]
-    public IActionResult CreateGathering(Gathering gathering)
+    [HttpGet("addresses/get")]
+    public IEnumerable<Address> GetAddresses()
     {
-        //some more validation?
-        if (gathering.Type is not (Type.Offline or Type.Online))
+        return _gatheringRepository.GetAddresses();
+    }
+    
+    [HttpPost]
+    public IActionResult CreateGathering(GatheringModelCreate gatheringModelCreate)
+    {
+        if (gatheringModelCreate.Type is not (Type.Offline or Type.Online))
             return NotFound("Unknown Gathering type");
-        var addedGathering = _gatheringRepository.CreateGathering(gathering);
+        var addedGathering = _gatheringRepository.CreateGathering(gatheringModelCreate);
         return Ok(addedGathering);
     }
-
-    [HttpGet("{id}")]
-    public IActionResult FindById(int id)
-    {
-        var gathering = _context.Gatherings.FirstOrDefault(g => g.Id == id);
-        if (gathering == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(gathering);
-    }
-
-    [HttpGet("serch")]
-    public IActionResult FindByName([FromQuery] string name)
-    {
-        var gatherings = _context.Gatherings.Where(gathering => gathering.Name == name).ToList();
-        return Ok(gatherings);
-    }
-
-    [HttpDelete("{id}")]
-    public IActionResult DeleteGathering(int id)
-    {
-        if (!_gatheringRepository.DeleteGathering(id))
-            return NotFound();
-        return Ok();
-    }
-
+    
     [HttpPost("subscribe-to-gathering")]
     public async Task<IActionResult> SubscribeToGathering(int gatheringId, Credential credential)
     {

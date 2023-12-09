@@ -5,7 +5,11 @@ namespace ProjectAutism.Repos;
 public interface IGatheringRepository
 {
     IEnumerable<Gathering> GetGatherings();
-    Gathering CreateGathering(Gathering gathering);
+
+    IEnumerable<Address> GetAddresses();
+
+    Gathering CreateGathering(GatheringModelCreate gatheringModelCreate);
+
     bool DeleteGathering(int id);
     Task SubscribeToGathering(int gatheringId, Credential credential);
 }
