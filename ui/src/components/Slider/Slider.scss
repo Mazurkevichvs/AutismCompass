@@ -1,3 +1,7 @@
+.slider-container {
+  height: 100%;
+}
+
 .swiper {
   height: 100%;
 }
@@ -18,6 +22,10 @@
   object-fit: cover;
 }
 
+.slide-content {
+  position: relative;
+}
+
 .slider__wave__svg {
   display: inline-block;
   position: absolute;
@@ -27,15 +35,6 @@
   z-index: 1;
   transform: rotate(180deg);
 }
-.slider {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-  vertical-align: middle;
-  overflow: hidden;
-}
-
 .svg__path {
   stroke: none;
   fill: rgba(117, 188, 105, 0.7);
@@ -47,6 +46,6 @@
     height: 100vh;
   }
   .slider__wave__svg {
-    bottom: 0px;
+    bottom: 100px;
   }
 }

@@ -16,14 +16,17 @@ interface AccordionItemProps {
     title?: string;
     content: string;
   };
+  isOpen: boolean,
+  onToggle: () => void;
 }
 
-const AccordionItem: React.FC<AccordionItemProps> = ({ data }) => {
+const AccordionItem: React.FC<AccordionItemProps> = ({ data, isOpen, onToggle }) => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
-  const [isOpened, setIsOpened] = useState(false);
+  
   return (
     <Accordion
-      onClick={() => setIsOpened(!isOpened)}
+      expanded={isOpen}
+      onChange={onToggle}
       sx={{
         mb: '25px',
         color: theme.palette.primary.main,
@@ -39,7 +42,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ data }) => {
             alignItems: 'center',
           }}>
           <Typography variant="h6">{data.title}</Typography>
-          {isOpened ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          {isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </Box>
       </AccordionSummary>
       <AccordionDetails>
