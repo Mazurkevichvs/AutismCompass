@@ -1,0 +1,28 @@
+.support__form {
+  width: 50%;
+}
+
+textarea::placeholder {
+  color: #000;
+  font-size: 16px;
+}
+
+section {
+  scroll-snap-align: start;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.facts__img {
+  height: 100%;
+}
