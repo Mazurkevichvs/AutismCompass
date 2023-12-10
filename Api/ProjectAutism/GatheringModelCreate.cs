@@ -10,4 +10,5 @@ public class GatheringModelCreate
     public Address Address { get; set; }
     public string? ImageLink { get; set; }
     public string? Description { get; set; }
+    public string? ShortDescription { get; set; }
 }

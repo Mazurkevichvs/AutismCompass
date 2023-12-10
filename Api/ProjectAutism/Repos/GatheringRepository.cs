@@ -46,6 +46,7 @@ public class GatheringRepository : IGatheringRepository
             Date = gatheringModelCreate.Date,
             ImageLink = gatheringModelCreate.ImageLink,
             Description = gatheringModelCreate.Description,
+            ShortDescription = gatheringModelCreate.ShortDescription
         };
         _autismDbContext.Addresses.Add(address);
         _autismDbContext.SaveChanges();
