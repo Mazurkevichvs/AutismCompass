@@ -1,54 +1,49 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectAutism.Data;
-using ProjectAutism.Models;
+using ProjectAutism.Data.Models;
+using ProjectAutism.Repos;
 
 namespace ProjectAutism.Controllers;
 
 [ApiController]
-[Route("events")]
+[Route("api/events")]
 public class GatheringController : ControllerBase
 {
-   // public static List<Gathering> Gatherings = new List<Gathering>();
-    private AutismDbContext _context;
+    private readonly IGatheringRepository _gatheringRepository;
 
-    public GatheringController(AutismDbContext context)
+    public GatheringController( IGatheringRepository gatheringRepository)
     {
-        _context = context;
+        _gatheringRepository = gatheringRepository;
     }
-    
+
     [HttpGet]
-    public IActionResult GetEvents()
+    public IEnumerable<Gathering> GetEvents()
     {
-        var gatherings = _context.Gatherings.ToList();
-        return Ok(gatherings);
+        return _gatheringRepository.GetGatherings();
     }
 
+    [HttpGet("addresses/get")]
+    public IEnumerable<Address> GetAddresses()
+    {
+        return _gatheringRepository.GetAddresses();
+    }
+    
     [HttpPost]
-    public IActionResult CreateGathering(Gathering gathering)
+    public IActionResult CreateGathering(GatheringModelCreate gatheringModelCreate)
     {
-        
-        var addedGathering = _context.Gatherings.Add(gathering);
-        _context.SaveChanges();
-        return Ok(addedGathering.Entity);
-    }
-    [HttpGet("{id}")]
-    public IActionResult FindById(int id)
-    {
-        var gathering = _context.Gatherings.FirstOrDefault(g => g.Id == id );
-        if (gathering == null)
-        {
-            return NotFound();
-        }
-        return Ok(gathering);
+        if (gatheringModelCreate.Type is not (Type.Offline or Type.Online))
+            return NotFound("Unknown Gathering type");
+        var addedGathering = _gatheringRepository.CreateGathering(gatheringModelCreate);
+        return Ok(addedGathering);
     }
     
-    
-    [HttpGet("Serch")]
-    public IActionResult FindByName( [FromQuery] string name)
+    [HttpPost("subscribe-to-gathering")]
+    public async Task<IActionResult> SubscribeToGathering(int gatheringId, Credential credential)
     {
-
-        var gatherings = _context.Gatherings.Where(gathering => gathering.Name == name).ToList();
-        return Ok(gatherings);
+        await _gatheringRepository.SubscribeToGathering(gatheringId, credential);
+        return Ok();
     }
+    
 }

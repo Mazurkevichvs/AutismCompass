@@ -16,4 +16,23 @@
       <ProjectReference Include="..\ProjectAutism.Data\ProjectAutism.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Update="appsettings.Development.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </Content>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <None Update="EmailTemplates\OfflineEmailHtmlTemplate.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="EmailTemplates\OnlineEmailHtmlTemplate.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+
+
+
 </Project>

@@ -1,0 +1,51 @@
+.slider-container {
+  height: 100%;
+}
+
+.swiper {
+  height: 100%;
+}
+
+.swiper-button-prev {
+  margin-left: 20px;
+}
+.swiper-button-next {
+  margin-right: 20px;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: #fff;
+}
+
+.slide-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.slide-content {
+  position: relative;
+}
+
+.slider__wave__svg {
+  display: inline-block;
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  transform: rotate(180deg);
+}
+.svg__path {
+  stroke: none;
+  fill: rgba(117, 188, 105, 0.7);
+  z-index: 2;
+}
+
+@media (min-width: 1440px) {
+  .swiper {
+    height: 100vh;
+  }
+  .slider__wave__svg {
+    bottom: 100px;
+  }
+}
