@@ -15,6 +15,16 @@ builder.Services.AddDbContext<AutismDbContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("AutProjectDb")));
 builder.Services.AddScoped<IGatheringRepository, GatheringRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -26,6 +36,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseCors("AllowAnyOrigin");
 app.MapControllers();
 app.Run();
