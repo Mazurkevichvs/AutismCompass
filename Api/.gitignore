@@ -6,6 +6,7 @@
 .idea
 
 appsettings.Development.json
+appsettings.json
 
 **/.idea/**/dataSources/
 **/.idea/**/dataSources.ids
