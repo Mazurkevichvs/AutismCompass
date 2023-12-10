@@ -12,7 +12,6 @@ public class Gathering
     [Column("date")] public DateTime Date { get; set; }
     [Column("address_id")] public int AddressId { get; set; } 
     public Address Address { get; set; }
-    [Column("image_link")] public string? ImageLink { get; set; }
     [Column("description")] public string? Description { get; set; }
     [Column("short_description")]public string? ShortDescription { get; set; }
 }

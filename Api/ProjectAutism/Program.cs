@@ -15,16 +15,6 @@ builder.Services.AddDbContext<AutismDbContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("AutProjectDb")));
 builder.Services.AddScoped<IGatheringRepository, GatheringRepository>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAnyOrigin", builder =>
-    {
-        builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
-});
-
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -33,9 +23,28 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseRouting();
 
 app.UseAuthorization();
-app.UseCors("AllowAnyOrigin");
+#pragma warning disable ASP0014
+// Ensures the correct order of middleware when used with SPA proxy
+//app.UseEndpoints(_ => { });
+#pragma warning restore ASP0014
+
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSpa(x =>
+    {
+        var spaConfigSection = app.Configuration.GetSection("SpaDevelopmentServer");
+        var spaServer = spaConfigSection["SpaServer"];
+        var spaUrl = spaConfigSection[$"Url:{spaServer}"];
+        x.UseProxyToSpaDevelopmentServer("http://localhost:5173/");
+    });
+}
+
+app.UseHttpsRedirection();
+
 app.MapControllers();
+
 app.Run();

@@ -44,7 +44,6 @@ public class GatheringRepository : IGatheringRepository
             Name = gatheringModelCreate.Name,
             Type = gatheringModelCreate.Type,
             Date = gatheringModelCreate.Date,
-            ImageLink = gatheringModelCreate.ImageLink,
             Description = gatheringModelCreate.Description,
             ShortDescription = gatheringModelCreate.ShortDescription
         };
