@@ -28,7 +28,7 @@ app.UseRouting();
 app.UseAuthorization();
 #pragma warning disable ASP0014
 // Ensures the correct order of middleware when used with SPA proxy
-//app.UseEndpoints(_ => { });
+app.UseEndpoints(_ => { });
 #pragma warning restore ASP0014
 
 
