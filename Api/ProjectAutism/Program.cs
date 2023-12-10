@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
         var spaConfigSection = app.Configuration.GetSection("SpaDevelopmentServer");
         var spaServer = spaConfigSection["SpaServer"];
         var spaUrl = spaConfigSection[$"Url:{spaServer}"];
-        x.UseProxyToSpaDevelopmentServer(spaUrl!);
+        x.UseProxyToSpaDevelopmentServer("http://localhost:5173/");
     });
 }
 
