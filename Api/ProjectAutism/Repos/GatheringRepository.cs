@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Mail;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 using ProjectAutism.Data;
 using ProjectAutism.Data.Models;
 
@@ -20,7 +21,10 @@ public class GatheringRepository : IGatheringRepository
 
     public IEnumerable<Gathering> GetGatherings()
     {
-        return _autismDbContext.Gatherings.ToList();
+        var gatheringsWithAddresses = _autismDbContext.Gatherings
+            .Include(gathering => gathering.Address)
+            .ToList();
+        return gatheringsWithAddresses;
     }
 
     public IEnumerable<Address> GetAddresses()
