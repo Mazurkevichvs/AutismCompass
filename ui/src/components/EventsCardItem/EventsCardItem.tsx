@@ -1,7 +1,9 @@
 import React from 'react';
 import { Typography, CardContent, CardActions, Button, CardMedia, Card, Box, useTheme } from '@mui/material';
+import {EventType} from "../../types/types"
 
-const EventsCardItem: React.FC = () => {
+
+const EventsCardItem: React.FC<EventType> = ({eventData}) => {
   const theme = useTheme()
   return (
     <>
@@ -16,21 +18,20 @@ const EventsCardItem: React.FC = () => {
               alt="event"
             />
             <Typography variant="h5" component="div">
-              Nazwa
+              {eventData.name}
             </Typography>
             <Typography sx={{ mb: 1.5, fontSize: '14px' }} color="text.secondary">
               Gdansk, ul.Nieborowska 29/103
             </Typography>
             <Typography variant="body2" sx={{ mb: '15px' }}>
-              Lorem ipsum dolor sit amet consectetur. Aliquet fringilla in bibendum lectus elementum
-              pellentesque elit.
+              {eventData.shortDescription}
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <CardActions sx={{ p: 0 }}>
                 <Button variant="contained" size="small">Rejestracja</Button>
               </CardActions>
               <Typography sx={{ fontSize: '12px', fontWeight:'600' }} color="text.secondary">
-                15/11/23 15:30
+                {eventData.date}
               </Typography>
             </Box>
           </CardContent>
