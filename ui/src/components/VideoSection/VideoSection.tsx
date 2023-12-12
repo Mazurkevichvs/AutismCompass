@@ -7,7 +7,7 @@ const VideoSection: React.FC = () => {
     <section>
       <Container maxWidth="lg" sx={{color:theme.palette.primary.main}}>
         <Typography variant="h4" gutterBottom>
-          Lorem ipsum dolor
+        Jak pomagać osobom Neuroróżnorodnym?
         </Typography>
         <Grid container spacing={10} justifyContent="space-around" marginTop={1}>
           <Grid item xs={12} md={4}>

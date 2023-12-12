@@ -1,34 +1,9 @@
 import React, {useState} from 'react';
 import { Box, Container, Typography, useMediaQuery,Theme } from '@mui/material';
 import { AccordionItem } from '..';
+import { FACTS } from '../../consts/consts';
 
-const FACTS = [
-  {
-    title: 'Autyzm jest nieuleczalny.',
-    content:
-      'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
-  },
-  {
-    title: 'Autyzm nie jest chorobą, a zaburzeniem, które trwa całe życie.',
-    content:
-      'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
-  },
-  {
-    title: 'Autyzm dotyczy tylko dzieci.',
-    content:
-      'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
-  },
-  {
-    title: 'Autyzm to zaburzenie dotyczące osób w różnym wieku.',
-    content:
-      'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
-  },
-  {
-    title: 'Osoby z autyzmem nie mówią.',
-    content:
-      'Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor',
-  },
-];
+
 const FactsAndMyths: React.FC = () => {
   const [openedAccordion, setOpenedAccordion] = useState<number | null>(null);
   const fact = FACTS.map((accordion, index) => <AccordionItem key={index} data={accordion} isOpen={index === openedAccordion} onToggle={() => onToggle(index)}/>);
@@ -39,18 +14,19 @@ const FactsAndMyths: React.FC = () => {
   }
 
   return (
-    <section>
+    <section style={{height: openedAccordion !== null ? '100%' : '100vh'}}>
     <Container maxWidth="lg" >
       <Box >
-        <Typography variant="h4" align="left" gutterBottom color='#00454C' mb={'50px'}>
+        <Typography variant="h4" align="left" gutterBottom sx={{mt: openedAccordion !== null ? '30px' : '0px', color:'#00454C' , mb:'50px'}}>
           Fakty i mity?
         </Typography>
         <Typography variant="body1" align="left" mb={'50px'} paragraph color= '#00454C'>
-          Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis
-          fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor
+        Wokół autyzmu powstało wiele stereotypów,, a społeczeństwo jest nieświadome tego jak często powielają mity na temat autyzmu. Oto kilka wybranych faktów i mitów na temat spektrum: 
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: isSmallScreen ? 'column' : 'row' }}>
-          <Box sx={{ width: isSmallScreen ? '100%' : '50%' }}>{fact}</Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: isSmallScreen ? 'column' : 'row', mb: openedAccordion !== null ? '30px' : '0px' }}>
+          <Box sx={{ width: isSmallScreen ? '100%' : '50%' }}>
+            {fact}
+            </Box>
           <img src="/img/FactsAndMyths.png" alt="family" className='facts__img'/>
         </Box>
       </Box>
