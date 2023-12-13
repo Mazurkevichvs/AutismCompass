@@ -74,3 +74,9 @@ export const FACTS = [
       'MIT Nieprawdziwe jest stwierdzenie, że wszystkie osoby z autyzmem nie mówią. Niektóre osoby z autyzmem mogą mieć trudności w komunikacji werbalnej lub wyrażaniu się słownie. Mogą preferować inne formy komunikacji, takie jak komunikacja niewerbalna, gesty, mowa ciała, obrazki, lub też korzystać z technologii wspomagającej komunikację, takiej jak tablice komunikacyjne czy urządzenia AAC (Augmentative and Alternative Communication). Wielu ludzi z autyzmem ma zdolność do mówienia, a niektórzy rozwijają pełne zdolności językowe na poziomie zgodnym z normami społecznymi. Ważne jest zrozumienie, że brak mowy lub trudności w mówieniu nie oznaczają braku inteligencji czy zrozumienia. Osoby z autyzmem mają unikalne style komunikacji, i istnieją różnorodne metody, aby wspierać ich komunikację, dostosowane do ich indywidualnych potrzeb.',
   },
 ];
+
+export const SUPPORTSTICKERS = [
+  {id: '1', title:'Dostosowane Edukacyjne i Terapeutyczne Podejście', description: 'Dla dzieci z autyzmem, dostosowane podejście edukacyjne i terapeutyczne, takie jak terapia behawioralna, terapia mowy, czy terapia zajęciowa, może być kluczowe dla ich rozwoju.', color:'#EB6FA1' },
+  {id: '2', title:'Zrozumienie i Akceptacja', description: 'Akceptuj jednostkę z autyzmem bez uprzedzeń i zrozum, że każda osoba jest unikalna. Edukacja na temat autyzmu może pomóc zrozumieć specyficzne cechy tego zaburzenia.', color:'#FFE65D' },
+  {id: '3', title:'Uwzględnienie Zainteresowań', description: 'Zachęcaj do rozwijania zainteresowań i umiejętności, które mogą być obsesyjne lub szczególnie fascynujące dla osoby z autyzmem. To może być także drogą do budowania relacji.', color:'#AADDF0' },
+]
