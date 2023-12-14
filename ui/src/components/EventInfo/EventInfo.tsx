@@ -1,21 +1,28 @@
 import React from 'react';
 import { Container, Typography, TextField, Button, Box, useTheme } from '@mui/material';
+import { EventType } from '../../types/types';
 
-const EventInfo: React.FC = () => {
+interface EventInfoProps {
+  eventID: Number,
+  events: EventType[]
+}
+
+const EventInfo: React.FC<EventInfoProps> = ({eventID, events}) => {
+  const clickedEvent = events.find((el) => el.id === eventID)
   const theme = useTheme()
   const mb={mb:'30px'}
   return (
     <>
-      <section>
+      {clickedEvent && <section>
         <Container maxWidth="lg">
           <Box sx={{ p: '55px',color:theme.palette.primary.main, borderRadius: '25px', bgcolor: '#E6F1F8', display:'flex', flexDirection:'column', alignItems:'center' }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Box sx={{ width: '55%' }}>
                 <Typography variant="h4" gutterBottom>
-                  Supported Decision-Making: Supported Decision-Making Agreements
+                {clickedEvent.name}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-                  Kiedy: Listopad 1, 2023
+                  Kiedy: {clickedEvent}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary" gutterBottom>
                   Gdzie: Gdansk, ul.Nieborowska 29/103
@@ -54,7 +61,7 @@ const EventInfo: React.FC = () => {
             </Box>
           </Box>
         </Container>
-      </section>
+      </section>}
     </>
   );
 };

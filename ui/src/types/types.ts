@@ -14,7 +14,8 @@ export interface EventType {
   name: String,
   type: Number,
   date: Date,
-  adress: {
+  addressId: Number,
+  address: {
     id: Number,
     city: String,
     street: String,
