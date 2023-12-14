@@ -17,17 +17,10 @@ const SupportAdvices: React.FC = () => {
             </Box>
             <Box>
               <Typography variant="h4" mb={2}>
-                Porada dla autystów 1
+              Dokąd udać się z dzieckiem z podejrzeniem zaburzeń ze spektrum autyzmu?
               </Typography>
               <Typography variant="body1">
-                Lorem ipsum dolor sit amet consectetur. Aliquet fringilla in bibendum lectus
-                elementum pellentesque elit. Ornare ut porttitor facilisis viverra risus. Felis nec
-                sed sit in egestas. Vulputate egestas tincidunt vitae hendrerit laoreet. Diam massa
-                platea in magna. Mauris mattis elementum commodo leo hendrerit. Sit tellus luctus
-                mauris sit ultrices varius sit volutpat eu. Risus bibendum nunc lorem nullam sit.
-                Pulvinar augue turpis ullamcorper potenti tristique turpis libero facilisi nec. In
-                pellentesque volutpat aliquet ultricies faucibus aliquet lorem. Fermentum arcu sed
-                luctus viverra maecenas lacinia.
+              Najbardziej korzystną sytuacją w przypadku podejrzeń dotyczących zaburzeń ze spektrum autyzmu jest skierowanie dziecka do zespołu diagnostycznego, który obejmuje specjalistów z różnych dziedzin. Taki zespół może składać się, na przykład, z psychiatry dziecięcego, psychologa, pedagoga czy logopedy. Rodzice mają możliwość skierowania się z dzieckiem do poradni psychologiczno-pedagogicznej, gdzie również istnieje kompetencja do diagnozowania tego rodzaju zaburzeń. Alternatywą jest również skorzystanie z usług placówek komercyjnych, które specjalizują się w diagnozowaniu zaburzeń ze spektrum autyzmu. 
               </Typography>
             </Box>
           </Box>

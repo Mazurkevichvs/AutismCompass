@@ -11,7 +11,8 @@ import useBreakpoints from '../../hooks/useBreakpoints';
 interface SliderProps {
   isHead: Boolean,
   data: {
-    title:String
+    title:String,
+    description?: String
   }[]
 }
 
@@ -44,7 +45,7 @@ const Slider: React.FC<SliderProps> = ({isHead, data}) => {
                   zIndex: '1',
                 }}>
                 <Typography variant={isLargeScreen ? 'h2' : isMediumScreen ?  "h4" : 'h6'}>{el.title}</Typography>
-                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                 <Box sx={{ display: 'flex',width:'110px', alignItems: 'center', cursor:'pointer',transition: 'transform 0.5s ease-in-out', ':hover': {color: 'rgb(117, 188, 105)', transform: 'translateX(20px)' } }}>
                   <Typography variant="body1">Dołącz się</Typography>
                   <ChevronRightIcon sx={{ width: '20px', height: '20px' }} />
                 </Box>
@@ -62,7 +63,8 @@ const Slider: React.FC<SliderProps> = ({isHead, data}) => {
                   zIndex: '1',
                   bgcolor: 'rgba(167,130,149,.6)'
                 }}>
-                <Typography variant="h4">{el.title}</Typography>
+                <Typography sx={{ mb:'25px', textTransform:'uppercase'}} variant="h4">{el.title}</Typography>
+                <Typography variant="h4">{el.description}</Typography>
               </Box>}
             </SwiperSlide>
           ))}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Typography,
@@ -28,6 +28,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ data, isOpen, onToggle })
       expanded={isOpen}
       onChange={onToggle}
       sx={{
+        p:'10px',
         mb: '25px',
         color: theme.palette.primary.main,
         backgroundColor: '#B4DBAE',

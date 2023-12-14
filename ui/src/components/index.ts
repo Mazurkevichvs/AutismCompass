@@ -20,3 +20,4 @@ export { default as TestAbout } from './TestAbout/TestAbout';
 export { default as TestQuestionsList } from './TestQuestionsList/TestQuestionsList';
 export { default as TestQuestionsItem } from './TestQuestionsItem/TestQuestionsItem';
 export { default as TestResult } from './TestResult/TestResult';
+export { default as SupportStickerItem } from './SupportStickerItem/SupportStickerItem';
