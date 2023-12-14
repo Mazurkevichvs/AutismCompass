@@ -80,3 +80,46 @@ export const SUPPORTSTICKERS = [
   {id: '2', title:'Zrozumienie i Akceptacja', description: 'Akceptuj jednostkę z autyzmem bez uprzedzeń i zrozum, że każda osoba jest unikalna. Edukacja na temat autyzmu może pomóc zrozumieć specyficzne cechy tego zaburzenia.', color:'#FFE65D' },
   {id: '3', title:'Uwzględnienie Zainteresowań', description: 'Zachęcaj do rozwijania zainteresowań i umiejętności, które mogą być obsesyjne lub szczególnie fascynujące dla osoby z autyzmem. To może być także drogą do budowania relacji.', color:'#AADDF0' },
 ]
+
+export const AUTISMTESTQUESTIONS = [
+  {
+    id: 1,
+    question: "Czy osoba unika kontaktu wzrokowego?",
+    answers: ["Zawsze", "Czasami", "Rzadko"]
+  },
+  {
+    id: 2,
+    question: "Czy osoba jest wrażliwa na bodźce sensoryczne (np. światło, dźwięki)?",
+    answers: ["Bardzo wrażliwa", "Średnio wrażliwa", "Nie wrażliwa"]
+  },
+  {
+    id: 3,
+    question: "Czy osoba ma trudności w zrozumieniu sygnałów społecznych?",
+    answers: ["Zawsze", "Okazjonalnie", "Rzadko"]
+  },
+  {
+    id: 4,
+    question: "Czy osoba angażuje się w powtarzalne zachowania (np. machanie rękami, kołysanie się)?",
+    answers: ["Często", "Czasami", "Rzadko"]
+  },
+  {
+    id: 5,
+    question: "Czy osoba interesuje się wąskim zakresem tematów?",
+    answers: ["Bardzo skoncentrowane zainteresowania", "Średnie zainteresowania", "Różnorodne zainteresowania"]
+  },
+  {
+    id: 6,
+    question: "Czy osoba ma trudności z zmianami w rutynie?",
+    answers: ["Silna awersja do zmian", "Trudności w adaptacji", "Łatwo się adaptuje"]
+  },
+  {
+    id: 7,
+    question: "Czy osoba ma trudności z werbalną komunikacją?",
+    answers: ["Ograniczona komunikacja werbalna", "Średnia komunikacja werbalna", "Silna komunikacja werbalna"]
+  },
+  {
+    id: 8,
+    question: "Czy osoba czuje się komfortowo w sytuacjach społecznych?",
+    answers: ["Nieswojo", "Średni komfort", "Bardzo komfortowo"]
+  }
+];
