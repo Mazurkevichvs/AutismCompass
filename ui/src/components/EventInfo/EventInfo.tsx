@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { LegacyRef } from 'react';
 import { Container, Typography, TextField, Button, Box, useTheme } from '@mui/material';
 import { EventType } from '../../types/types';
 
 interface EventInfoProps {
-  eventID: Number,
-  events: EventType[]
+  transformDateAndAdress: (eventData:EventType) => {address:String, date:string},
+  clickedEvent:EventType;
+  eventInfoRef: LegacyRef<HTMLElement>
 }
 
-const EventInfo: React.FC<EventInfoProps> = ({eventID, events}) => {
-  const clickedEvent = events.find((el) => el.id === eventID)
+const EventInfo: React.FC<EventInfoProps> = ({transformDateAndAdress, clickedEvent, eventInfoRef}) => {
   const theme = useTheme()
   const mb={mb:'30px'}
+  const transformedData = transformDateAndAdress(clickedEvent)
   return (
     <>
-      {clickedEvent && <section>
+      <section ref={eventInfoRef}>
         <Container maxWidth="lg">
           <Box sx={{ p: '55px',color:theme.palette.primary.main, borderRadius: '25px', bgcolor: '#E6F1F8', display:'flex', flexDirection:'column', alignItems:'center' }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -22,16 +23,13 @@ const EventInfo: React.FC<EventInfoProps> = ({eventID, events}) => {
                 {clickedEvent.name}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-                  Kiedy: {clickedEvent}
+                  Kiedy: {transformedData.date}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-                  Gdzie: Gdansk, ul.Nieborowska 29/103
+                  Gdzie: {transformedData.address}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  Autism Speaks Walk is powered by the love of people with autism and the parents,
-                  grandparents, siblings, friends, relatives and providers who support them. Autism
-                  Speaks Walk is powered by the love of people with autism and the parents,
-                  grandparents, siblings, friends, relatives and providers who support them.
+                  {clickedEvent.description}
                 </Typography>
               </Box>
               <img
@@ -61,7 +59,7 @@ const EventInfo: React.FC<EventInfoProps> = ({eventID, events}) => {
             </Box>
           </Box>
         </Container>
-      </section>}
+      </section>
     </>
   );
 };

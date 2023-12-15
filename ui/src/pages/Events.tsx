@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { HeadingSection, EventsCardList, EventInfo } from '../components';
 import { EventType } from '../types/types';
 
 const Events: React.FC = () => {
   const [eventID, setEventId] = useState<Number>(0);
   const [events, setEvents] = useState<EventType[] | []>([]);
+  const eventInfoRef = useRef<HTMLDivElement>(null);
+  const clickedEvent = events.find((el) => el.id === eventID);
+
+  const scrollToSection = () => {
+    if (eventInfoRef.current) {
+      eventInfoRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const transformDateAndAdress = (
-    eventDate: String,
-    eventAddress: {
-      id: Number;
-      city: String;
-      street: String;
-      house: Number;
-      apartment: Number;
-      link: String;
-    },
+    eventData:EventType
   ) => {
     return {
-      date: new Date(eventDate).toLocaleString(),
-      address: eventAddress.type
-        ? 'Online'
-        : `${eventAddress.city}, ul. ${eventAddress.street} ${eventAddress.house}/${eventAddress.apartment}`,
+      date: new Date(eventData.date).toLocaleString(),
+      address: eventData.type
+        ? 'Online' 
+        : `${eventData.address.city}, ul. ${eventData.address.street} ${eventData.address.house}/${eventData.address.apartment}`
     };
   };
   const fetchEvents = async () => {
@@ -43,12 +43,13 @@ const Events: React.FC = () => {
         setEventId={setEventId}
         events={events}
         transformDateAndAdress={transformDateAndAdress}
+        scrollToSection={scrollToSection}
       />
-      <EventInfo
-        eventID={eventID}
-        events={events}
+      {clickedEvent && <EventInfo
         transformDateAndAdress={transformDateAndAdress}
-      />
+        clickedEvent={clickedEvent}
+        eventInfoRef={eventInfoRef}
+      />}
     </>
   );
 };

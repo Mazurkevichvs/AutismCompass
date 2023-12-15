@@ -4,14 +4,18 @@ import {EventType} from "../../types/types"
 
 interface EventsCardItemProps {
   eventData: EventType,
-  setEventId: Dispatch<SetStateAction<Number>>
+  setEventId: Dispatch<SetStateAction<Number>>,
+  transformDateAndAdress: (eventData:EventType) => {address:String, date:string},
+  scrollToSection: () => void
 }
 
-const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId}) => {
+const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, transformDateAndAdress, scrollToSection}) => {
   const theme = useTheme()
   const handleClick = () => {
     setEventId(eventData.id)
+    scrollToSection()
   }
+  const transormedData = transformDateAndAdress(eventData)
   return (
     <>
       <Box sx={{ maxWidth: '350px', m:'25px 0'}}>
@@ -28,7 +32,7 @@ const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId}) 
               {eventData.name}
             </Typography>
             <Typography sx={{ mb: 1.5, fontSize: '14px' }} color="text.secondary">
-              {address}
+              {transormedData.address}
             </Typography>
             <Typography variant="body2" sx={{ mb: '15px' }}>
               {eventData.shortDescription}
@@ -38,7 +42,7 @@ const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId}) 
                 <Button onClick={handleClick} variant="contained" size="small">Więcej</Button>
               </CardActions>
               <Typography sx={{ fontSize: '12px', fontWeight:'600' }} color="text.secondary">
-                {date}
+                {transormedData.date}
               </Typography>
             </Box>
           </CardContent>

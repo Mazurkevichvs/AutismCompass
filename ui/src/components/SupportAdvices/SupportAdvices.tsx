@@ -27,17 +27,11 @@ const SupportAdvices: React.FC = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', my: 4, color:theme.palette.primary.main}}>
             <Box>
               <Typography variant="h4" mb={2}>
-                Porada dla autystów 2
+              Gdzie znaleźć wsparcie: Przewodnik dla rodziców dzieci z podejrzeniem zaburzeń ze spektrum autyzmu.
               </Typography>
               <Typography variant="body1">
-                Lorem ipsum dolor sit amet consectetur. Aliquet fringilla in bibendum lectus
-                elementum pellentesque elit. Ornare ut porttitor facilisis viverra risus. Felis nec
-                sed sit in egestas. Vulputate egestas tincidunt vitae hendrerit laoreet. Diam massa
-                platea in magna. Mauris mattis elementum commodo leo hendrerit. Sit tellus luctus
-                mauris sit ultrices varius sit volutpat eu. Risus bibendum nunc lorem nullam sit.
-                Pulvinar augue turpis ullamcorper potenti tristique turpis libero facilisi nec. In
-                pellentesque volutpat aliquet ultricies faucibus aliquet lorem. Fermentum arcu sed
-                luctus viverra maecenas lacinia.
+              Diagnoza spektrum autyzmu (ASD) jest kompleksowym procesem, zwykle przeprowadzanym przez zespół specjalistów. Włącza to ocenę zachowań, zdolności komunikacyjnych i społecznych. Diagnostyka ASD może obejmować wywiady z opiekunami, obserwacje, testy psychologiczne i ewentualnie badania neurologiczne. Ważne jest, aby uwzględnić różnorodność objawów i indywidualny kontekst każdego pacjenta. Ostateczna diagnoza umożliwia lepsze zrozumienie potrzeb osoby z autyzmem i dostosowanie strategii terapeutycznych.
+
               </Typography>
             </Box>
             <Box sx={{ml:'100px'}}>
