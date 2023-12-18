@@ -14,6 +14,7 @@ import { ExpandMore as ExpandMoreIcon, ExpandLess as ExpandLessIcon } from '@mui
 interface AccordionItemProps {
   data: {
     title?: string;
+    type: Number;
     content: string;
   };
   isOpen: boolean,
@@ -31,7 +32,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ data, isOpen, onToggle })
         p:'10px',
         mb: '25px',
         color: theme.palette.primary.main,
-        backgroundColor: '#B4DBAE',
+        backgroundColor: data.type ? '#B4DBAE' : '#A78295',
         ':last-of-type': { mb: isSmallScreen ? '25px' : '0px' },
       }}>
       <AccordionSummary>
