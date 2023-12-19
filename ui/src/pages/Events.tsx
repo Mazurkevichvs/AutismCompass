@@ -5,6 +5,7 @@ import { EventType } from '../types/types';
 const Events: React.FC = () => {
   const [eventID, setEventId] = useState<Number>(0);
   const [events, setEvents] = useState<EventType[] | []>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const eventInfoRef = useRef<HTMLDivElement>(null);
   const clickedEvent = events.find((el) => el.id === eventID);
 
@@ -17,7 +18,7 @@ const Events: React.FC = () => {
     eventData:EventType
   ) => {
     return {
-      date: new Date(eventData.date).toLocaleString(),
+      date: new Date(eventData.date).toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'} ),
       address: eventData.type
         ? 'Online' 
         : `${eventData.address.city}, ul. ${eventData.address.street} ${eventData.address.house}/${eventData.address.apartment}`
@@ -28,9 +29,10 @@ const Events: React.FC = () => {
       const res = await fetch('http://localhost:5154/api/events');
       const data: EventType[] = await res.json();
       setEvents(data);
+      setIsLoading(false)
     } catch (err) {
       console.error(err);
-    }
+    } 
   };
   useEffect(() => {
     fetchEvents();
@@ -44,6 +46,7 @@ const Events: React.FC = () => {
         events={events}
         transformDateAndAdress={transformDateAndAdress}
         scrollToSection={scrollToSection}
+        isLoading={isLoading}
       />
       {clickedEvent && <EventInfo
         transformDateAndAdress={transformDateAndAdress}

@@ -19,8 +19,8 @@ const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, t
   return (
     <>
       <Box sx={{ maxWidth: '350px', m:'25px 0'}}>
-        <Card>
-          <CardContent sx={{ bgcolor: '#92C48A',color:theme.palette.primary.main, ':last-child': { pb: '16px' } }}>
+        <Card sx={{height:'100%'}}>
+          <CardContent sx={{display:'flex', flexDirection:'column', bgcolor: '#92C48A',color:theme.palette.primary.main, height:'100%', ':last-child': { pb: '16px' } }}>
             <CardMedia
               sx={{ mb: '10px' }}
               component="img"
@@ -37,7 +37,7 @@ const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, t
             <Typography variant="body2" sx={{ mb: '15px' }}>
               {eventData.shortDescription}
             </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt:'auto' }}>
               <CardActions sx={{ p: 0 }}>
                 <Button onClick={handleClick} variant="contained" size="small">Więcej</Button>
               </CardActions>
