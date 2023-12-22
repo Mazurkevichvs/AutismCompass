@@ -14,6 +14,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AutismDbContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("AutProjectDb")));
 builder.Services.AddScoped<IGatheringRepository, GatheringRepository>();
+builder.Services.AddScoped<SupportRepository>();
+builder.Services.AddScoped<MailHandler>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

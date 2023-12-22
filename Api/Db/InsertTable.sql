@@ -8,7 +8,7 @@ INTO gathering (address_id, name, type, date, description, short_description)
 SELECT address_id,
        'Spektakl włączający zmysły: Mała Syrenka Disneya, Musical',
        0,
-       '2023-02-10T12:00:00.385'::timestamp,
+       '2023-02-10T12:00'::timestamp,
        'Celem tego przedstawienia włączającego zmysły jest stworzenie przyjaznego i wspierającego środowiska dla dzieci i dorosłych ze spektrum autyzmu, a także osób z innymi problemami związanymi z wrażliwością lub niepełnosprawnością rozwojową. Aby stworzyć scenerię włączającą zmysły, w produkcji wprowadzono niewielkie zmiany, obejmujące zmniejszony poziom dźwięku, brak migających i stroboskopowych świateł oraz minimalne efekty specjalne. Teren przylegający do teatru został wyznaczony jako Cichy Pokój, w którym pracują specjalnie przeszkoleni wolontariusze, którzy zapewniają wsparcie publiczności. Oparta na jednej z najbardziej ukochanych historii Hansa Christiana Andersena i klasycznym filmie animowanym, Mała Syrenka Disneya to zniewalająco piękna historia miłosna na wieki. Muzyka skomponowana przez ośmiokrotnego zdobywcę Oscara Alana Menkena, teksty autorstwa Howarda Ashmana i Glenna Slatera oraz fascynująca książka Douga Wrighta sprawiają, że ta podejrzana baśń podbije Twoje serce nieodpartymi piosenkami, takimi jak „Under the Sea”, „Kiss the Woman” i „Part Of your world”. Ariel, najmłodsza córka króla Trytona, pragnie ścigać ludzkiego księcia Eryka w świecie powyżej, targując się ze złą morską wiedźmą Ursulą, by zamieniła swój ogon na nogi. Ale okazja nie jest taka, jak się wydaje, a Ariel potrzebuje pomocy swoich kolorowych przyjaciół, ryby Flądra, mewy Scuttle i kraba Sebastiana, aby przywrócić porządek w morzu. Skorzystaj z bezpłatnych zajęć artystycznych i rzemieślniczych organizowanych przed pokazem przez Young at Art Museum! Dołącz do nas po koncercie i spotkaj się z bohaterami!',
        'Celem tego przedstawienia włączającego zmysły jest stworzenie przyjaznego i wspierającego środowiska dla dzieci i dorosłych ze spektrum autyzmu, a także osób z innymi problemami związanymi z wrażliwością lub niepełnosprawnością rozwojową.'
 FROM inserted_address;
@@ -23,12 +23,12 @@ INTO gathering (address_id, name, type, date, description, short_description)
 SELECT address_id,
        'Promowanie Niezależności: Życie i Transport',
        1,
-       '2023-02-14T18:00:00.385'::timestamp,
-       'Dowiedz się więcej na temat: Kroków do podjęcia teraz, aby wspierać niezależne życie w przyszłości Programów dostępnych w społeczności wspierających niezależne życie Źródeł finansowania promujących niezależne życie Planowania transportu Kroków do promowania indywidualnego bezpieczeństwa',
+       '2023-02-14T18:00:00.385',
+       'Dowiedz się więcej na temat: Kroków do podjęcia teraz, aby wspierać niezależne życie w przyszłości Programów dostępnych w społeczności wspierających niezależne życie Źródeł finansowania promujących niezależne życie Planowania transportu Kroków do promowania indywidualnego bezpieczeństwa.',
        'Dołącz do wydarzenia "Promowanie Niezależności: Życie i Transport". Dowiedz się, jakie kroki podjąć już teraz, aby wspierać niezależne życie w przyszłości'
 FROM inserted_address;
 
-WITH inserted_address AS (
+WITH inserted_address AS (  
     INSERT INTO address (city, street, house, apartment)
         VALUES ('Gdynia', 'Stefana Okrzei', 6, 12)
         RETURNING address_id)

@@ -13,7 +13,7 @@ public class GatheringController : ControllerBase
 {
     private readonly IGatheringRepository _gatheringRepository;
 
-    public GatheringController( IGatheringRepository gatheringRepository)
+    public GatheringController(IGatheringRepository gatheringRepository)
     {
         _gatheringRepository = gatheringRepository;
     }
