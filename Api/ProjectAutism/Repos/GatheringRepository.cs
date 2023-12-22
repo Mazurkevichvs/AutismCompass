@@ -9,14 +9,13 @@ namespace ProjectAutism.Repos;
 
 public class GatheringRepository : IGatheringRepository
 {
-    private readonly IConfiguration _configuration;
-
     private readonly AutismDbContext _autismDbContext;
-
-    public GatheringRepository(AutismDbContext autismDbContext, IConfiguration configuration)
+    private readonly MailHandler _mailHandler;
+    
+    public GatheringRepository(AutismDbContext autismDbContext, MailHandler mailHandler)
     {
         _autismDbContext = autismDbContext;
-        _configuration = configuration;
+        _mailHandler = mailHandler;
     }
 
     public IEnumerable<Gathering> GetGatherings()
@@ -71,7 +70,7 @@ public class GatheringRepository : IGatheringRepository
     }
 
     public async Task SubscribeToGathering(int gatheringId, Credential credential)
-    {
+    { 
         var gatheringFromDb = _autismDbContext.Gatherings.FirstOrDefault(g => g.Id == gatheringId);
         if (gatheringFromDb is null)
             return;
@@ -81,24 +80,11 @@ public class GatheringRepository : IGatheringRepository
 
         gatheringFromDb.Address = addressFromDb;
 
-        var smtpServer = _configuration["EmailSettings:SmtpServer"];
-        var smtpPort = _configuration.GetValue<int>("EmailSettings:SmtpPort");
-        var username = _configuration["EmailSettings:Username"];
-        var password = _configuration["EmailSettings:Password"];
-
-        using var client = new SmtpClient(smtpServer, smtpPort);
-        client.Credentials = new NetworkCredential(username, password);
-        client.EnableSsl = true;
-        client.TargetName = "STARTTLS";
-        var mailMessage = new MailMessage
-        {
-            From = new MailAddress(username!),
-            Subject = "Event Subscription Confirmation",
-            Body = BuildBody(gatheringFromDb, credential),
-            IsBodyHtml = true,
-        };
-        mailMessage.To.Add(credential.Email);
-        await client.SendMailAsync(mailMessage);
+        var body = BuildBody(gatheringFromDb, credential);
+        var mailMessage = _mailHandler.BuildMailForSend(body,credential.Email);
+        
+        
+        await _mailHandler.SendMessage(mailMessage);
     }
 
     private static string BuildBody(Gathering gathering, Credential credential)
@@ -115,6 +101,7 @@ public class GatheringRepository : IGatheringRepository
                 {
                     bodyTemplate = reader.ReadToEnd();
                 }
+
                 body = bodyTemplate.Replace("[Name]", credential.Name)
                     .Replace("[Surname]", credential.Surname)
                     .Replace("[EventDate]", gathering.Date.ToLongDateString())
@@ -131,11 +118,12 @@ public class GatheringRepository : IGatheringRepository
                 {
                     bodyTemplate = reader.ReadToEnd();
                 }
+
                 body = bodyTemplate.Replace("[Name]", credential.Name)
                     .Replace("[Surname]", credential.Surname)
                     .Replace("[EventDate]", gathering.Date.ToLongDateString())
                     .Replace("[EventTitle]", gathering.Name)
-                    .Replace("[EventLink]",gathering.Address.Link)
+                    .Replace("[EventLink]", gathering.Address.Link)
                     .Replace("[EventDescription]", gathering.Description);
                 return body;
             default:

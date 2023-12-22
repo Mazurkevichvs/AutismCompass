@@ -24,11 +24,11 @@ SELECT address_id,
        'Promowanie Niezależności: Życie i Transport',
        1,
        '2023-02-14T18:00:00.385'::timestamp,
-       'Dowiedz się więcej na temat: Kroków do podjęcia teraz, aby wspierać niezależne życie w przyszłości Programów dostępnych w społeczności wspierających niezależne życie Źródeł finansowania promujących niezależne życie Planowania transportu Kroków do promowania indywidualnego bezpieczeństwa',
+       'Dowiedz się więcej na temat: Kroków do podjęcia teraz, aby wspierać niezależne życie w przyszłości Programów dostępnych w społeczności wspierających niezależne życie Źródeł finansowania promujących niezależne życie Planowania transportu Kroków do promowania indywidualnego bezpieczeństwa.',
        'Dołącz do wydarzenia "Promowanie Niezależności: Życie i Transport". Dowiedz się, jakie kroki podjąć już teraz, aby wspierać niezależne życie w przyszłości'
 FROM inserted_address;
 
-WITH inserted_address AS (
+WITH inserted_address AS (  
     INSERT INTO address (city, street, house, apartment)
         VALUES ('Gdynia', 'Stefana Okrzei', 6, 12)
         RETURNING address_id)

@@ -13,7 +13,7 @@ public class GatheringController : ControllerBase
 {
     private readonly IGatheringRepository _gatheringRepository;
 
-    public GatheringController( IGatheringRepository gatheringRepository)
+    public GatheringController(IGatheringRepository gatheringRepository)
     {
         _gatheringRepository = gatheringRepository;
     }
@@ -42,8 +42,18 @@ public class GatheringController : ControllerBase
     [HttpPost("subscribe-to-gathering")]
     public async Task<IActionResult> SubscribeToGathering(int gatheringId, Credential credential)
     {
-        await _gatheringRepository.SubscribeToGathering(gatheringId, credential);
-        return Ok();
+
+        try
+        {
+            await _gatheringRepository.SubscribeToGathering(gatheringId, credential);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return NotFound(e);
+        }
+       
+       
     }
     
 }
