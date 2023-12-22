@@ -21,12 +21,17 @@ public class SupportController : ControllerBase
     
     
     [HttpPost]
-    public IActionResult GetSupport(Credential credential)
+    public async Task<IActionResult> GetSupport(Credential credential)
     {
-        var isMessageSend  =_supportRepository.SendSupportMessage(credential);
-        if(isMessageSend.IsCompletedSuccessfully) 
-            return Ok("Massage send successfully");
-        return NotFound(isMessageSend);
+        try
+        {
+           await _supportRepository.SendSupportMessage(credential);
+           return Ok("Massage send successfully");
+        }
+        catch (Exception e)
+        {
+            return NotFound(e);
+        }
     }
 
     
