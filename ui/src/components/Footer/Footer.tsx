@@ -7,11 +7,6 @@ import {
   useMediaQuery,
   Theme,
 } from '@mui/material';
-import {
-  Facebook as FacebookIcon,
-  Instagram as InstagramIcon,
-  Twitter as TwitterIcon,
-} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { NavigationsProps } from '../../types/types';
 import { NavItem } from '..';
@@ -47,19 +42,8 @@ const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
             </Typography>
           </Box>
           </Link>
-          <Box display="flex" alignItems="center" mr={'10px'}>
-            <Link to="/" color="inherit" style={{ marginRight: '10px' }}>
-              <FacebookIcon />
-            </Link>
-            <Link to="/" color="inherit" style={{ marginRight: '10px' }}>
-              <InstagramIcon />
-            </Link>
-            <Link to="/" color="inherit">
-              <TwitterIcon />
-            </Link>
-          </Box>
           <Typography variant="body2" sx={{ order: isSmallScreen ? '1' : '' }}>
-            © 2023 Autysci mówią
+            © 2023 Autism Compass
           </Typography>
           <Box
             sx={{

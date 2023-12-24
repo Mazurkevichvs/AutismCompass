@@ -50,26 +50,31 @@ export const MESSAGESLIDERTITLES = [
 export const FACTS = [
   {
     title: 'Autyzm jest nieuleczalny.',
+    type: 1,
     content:
       'FAKT Na obecnym etapie, autyzm nie jest uznawany za chorobę, a zatem nie ma jednoznacznego leczenia czy "uleczenia". Autyzm to trwałe spektrum zaburzeń rozwojowych, które wpływają na rozwój jednostki.Jednakże, istnieją różne formy terapii, interwencji i programów edukacyjnych, które mogą znacząco poprawić funkcjonowanie osoby z autyzmem. Wczesna interwencja, intensywna terapia behawioralna, terapia mowy, terapia zajęciowa czy terapia sensoryczna to tylko kilka przykładów działań, które mogą pomóc w rozwijaniu umiejętności społecznych, komunikacyjnych i adaptacyjnych. Warto jednak zaznaczyć, że skuteczność tych interwencji może być bardzo zróżnicowana w zależności od indywidualnych cech każdej osoby z autyzmem. Pomimo braku "uleczenia" autyzmu, odpowiednie wsparcie i terapie mogą znacząco poprawić jakość życia i umożliwić rozwój wielu umiejętności.',
   },
   {
     title: 'Autyzm nie jest chorobą, a zaburzeniem, które trwa całe życie.',
+    type: 1,
     content:
       'FAKT Tak, autyzm jest rozumiany jako zaburzenie neurobiologiczne, a nie choroba. Choroby często są związane z konkretnymi patologiami, infekcjami lub procesami, które można zidentyfikować i leczyć w sposób jednoznaczny. Natomiast autyzm to spektrum zaburzeń rozwojowych.Autyzm charakteryzuje się różnorodnością objawów i stopniem ich nasilenia, co sprawia, że nie ma jednego jednoznacznego przebiegu. Jednak wiele osób z autyzmem doświadcza wyzwań w zakresie komunikacji, zrozumienia społecznych norm oraz elastycznego dostosowywania się do zmieniającego się otoczenia. Ważne jest podkreślenie, że autyzm trwa przez całe życie, ale to nie oznacza, że rozwój i postępy nie są możliwe. Wczesna interwencja, terapie behawioralne, edukacja specjalna i inne formy wsparcia mogą znacząco poprawić umiejętności jednostki z autyzmem i zwiększyć jej zdolność do samodzielnego funkcjonowania w społeczeństwie.',
   },
   {
     title: 'Autyzm dotyczy tylko dzieci.',
+    type: 0,
     content:
       'MIT Autyzm to spektrum zaburzeń rozwojowych, które utrzymuje się przez całe życie jednostki. Chociaż objawy autyzmu często po raz pierwszy zauważa się u dzieci w okresie wczesnego dzieciństwa, to jednak wpływają one na rozwój jednostki na przestrzeni całego życia. Osoby z autyzmem dorastają i stają się dorosłymi, a ich potrzeby i wyzwania mogą się zmieniać w miarę upływu czasu. W ostatnich latach zwiększa się świadomość potrzeby zrozumienia i wspierania osób dorosłych z autyzmem, zarówno w obszarze edukacji, jak i w miejscu pracy. To podkreśla znaczenie dostosowywania wsparcia i terapii do potrzeb jednostki na różnych etapach jej życia.',
   },
   {
     title: 'Autyzm to zaburzenie dotyczące osób w różnym wieku.',
+    type: 1,
     content:
       'FAKT Tak, autyzm to zaburzenie, które może dotyczyć osób w różnym wieku. Autyzm jest zazwyczaj zauważalny w okresie wczesnego dzieciństwa, ale nie jest to ograniczenie jedynie do dzieci.Wpływ autyzmu może być różny w zależności od stopnia nasilenia objawów, indywidualnych cech danej osoby i skuteczności dostępnych form wsparcia. Osoby z autyzmem często potrzebują specjalistycznej pomocy i interwencji, zwłaszcza w obszarze komunikacji społecznej, interakcji społecznych i adaptacyjnych umiejętności.',
   },
   {
     title: 'Osoby z autyzmem nie mówią.',
+    type: 0,
     content:
       'MIT Nieprawdziwe jest stwierdzenie, że wszystkie osoby z autyzmem nie mówią. Niektóre osoby z autyzmem mogą mieć trudności w komunikacji werbalnej lub wyrażaniu się słownie. Mogą preferować inne formy komunikacji, takie jak komunikacja niewerbalna, gesty, mowa ciała, obrazki, lub też korzystać z technologii wspomagającej komunikację, takiej jak tablice komunikacyjne czy urządzenia AAC (Augmentative and Alternative Communication). Wielu ludzi z autyzmem ma zdolność do mówienia, a niektórzy rozwijają pełne zdolności językowe na poziomie zgodnym z normami społecznymi. Ważne jest zrozumienie, że brak mowy lub trudności w mówieniu nie oznaczają braku inteligencji czy zrozumienia. Osoby z autyzmem mają unikalne style komunikacji, i istnieją różnorodne metody, aby wspierać ich komunikację, dostosowane do ich indywidualnych potrzeb.',
   },

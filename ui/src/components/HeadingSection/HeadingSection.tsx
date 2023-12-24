@@ -13,11 +13,11 @@ const HeadingSection: React.FC<HeadingSectionProps> = ({bgImage, title}) => {
       <section
         style={{ backgroundImage: `url('/img/${bgImage}.png')`, backgroundSize: 'cover' }}>
         <Container maxWidth="lg">
-          <Box sx={{ color: '#fff' }}>
-            <Typography variant={'h2'} sx={{ mt: 5, width: '50%' }}>
+          <Box sx={{ color: '#fff', bgcolor: 'rgba(117, 188, 105, 0.6)',width: '50%', p:'20px', borderRadius: '15px' }}>
+            <Typography variant={'h2'} sx={{ width: '100%', fontWeight:'600' }}>
               {title}
             </Typography>
-            <Box sx={{ display: 'flex',width:'110px', alignItems: 'center', cursor:'pointer',transition: 'transform 0.5s ease-in-out', ':hover': {color: 'rgb(117, 188, 105)', transform: 'translateX(20px)' } }}>
+            <Box sx={{ display: 'flex',width:'110px', alignItems: 'center', cursor:'pointer',transition: 'transform 0.5s ease-in-out', ':hover': { transform: 'translateX(20px)' } }}>
               <Typography variant="body1">Więcej</Typography>
               <ChevronRightIcon sx={{ width: '20px', height: '20px' }} />
             </Box>
