@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, RefObject } from 'react';
 import { Box, Typography, useMediaQuery, Theme, Container, useTheme } from '@mui/material';
 import { AboutCard } from '..';
 import {DESCRIPTION} from '../../consts/consts'
 
-const AboutSection: React.FC = () => {
+interface AbourSectionProp {
+  homeRef: RefObject<HTMLElement> 
+}
+
+const AboutSection: React.FC<AbourSectionProp> = ({homeRef}) => {
   const [expandedCards, setExpandedCards] = useState<number[]>([]);
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const theme = useTheme();
@@ -19,7 +23,7 @@ const AboutSection: React.FC = () => {
   };
 
   return (
-    <section style={{ height: expandedCards.length > 0 ? '100%' : '100vh' }}>
+    <section ref={homeRef} style={{ height: expandedCards.length > 0 ? '100%' : '100vh' }}>
       <Container maxWidth="lg">
         <Box
           sx={{

@@ -10,7 +10,7 @@ export interface NavigationsProps {
 }
 
 export interface EventType {
-  id: Number,
+  id: number,
   name: String,
   type: Number,
   date: Date,

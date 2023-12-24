@@ -1,3 +1,11 @@
+import { RefObject  } from "react";
+
+export const scrollToSection = (ref:RefObject<HTMLElement>) => {
+  if (ref.current) {
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 export const DESCRIPTION = [
   {
     id: 1,
@@ -21,7 +29,7 @@ export const HEADSLIDERTITLES = [
   { title: 'Grupa wsparcia dla doroslych osob z autyzmem.' },
   { title: 'Rodzice dzieci w spektrum.' },
   { title: 'Spektrum autyzmu - rozwiazania terapeutyczne.' },
-  { title: 'W artosciowe lektury dla dzieci i doroslych.' },
+  { title: 'Wartosciowe lektury dla dzieci i doroslych.' },
 ];
 
 export const MESSAGESLIDERTITLES = [
@@ -89,42 +97,70 @@ export const SUPPORTSTICKERS = [
 export const AUTISMTESTQUESTIONS = [
   {
     id: 1,
-    question: "Czy osoba unika kontaktu wzrokowego?",
-    answers: ["Zawsze", "Czasami", "Rzadko"]
+    question: "Jak często zauważasz, że unikasz kontaktu wzrokowego?"
   },
   {
     id: 2,
-    question: "Czy osoba jest wrażliwa na bodźce sensoryczne (np. światło, dźwięki)?",
-    answers: ["Bardzo wrażliwa", "Średnio wrażliwa", "Nie wrażliwa"]
+    question: "Czy obserwujesz u siebie powtarzające się ruchy, gesty lub obrzędy?"
   },
   {
     id: 3,
-    question: "Czy osoba ma trudności w zrozumieniu sygnałów społecznych?",
-    answers: ["Zawsze", "Okazjonalnie", "Rzadko"]
+    question: "W jakim stopniu wykazujesz zainteresowanie powtarzalnymi wzorcami lub przedmiotami?"
   },
   {
     id: 4,
-    question: "Czy osoba angażuje się w powtarzalne zachowania (np. machanie rękami, kołysanie się)?",
-    answers: ["Często", "Czasami", "Rzadko"]
+    question: "Czy notujesz u siebie powtarzające się słownictwo lub zwroty w rozmowie?"
   },
   {
     id: 5,
-    question: "Czy osoba interesuje się wąskim zakresem tematów?",
-    answers: ["Bardzo skoncentrowane zainteresowania", "Średnie zainteresowania", "Różnorodne zainteresowania"]
+    question: "Jak często zauważasz trudności w nawiązywaniu i utrzymywaniu relacji z rówieśnikami?"
   },
   {
     id: 6,
-    question: "Czy osoba ma trudności z zmianami w rutynie?",
-    answers: ["Silna awersja do zmian", "Trudności w adaptacji", "Łatwo się adaptuje"]
+    question: "Czy wykazujesz nadmierne zainteresowanie szczegółami, ale masz trudności w zrozumieniu całości?"
   },
   {
     id: 7,
-    question: "Czy osoba ma trudności z werbalną komunikacją?",
-    answers: ["Ograniczona komunikacja werbalna", "Średnia komunikacja werbalna", "Silna komunikacja werbalna"]
+    question: "W jakim stopniu obserwujesz trudności w dostosowywaniu się do zmian rutynowych?"
   },
   {
     id: 8,
-    question: "Czy osoba czuje się komfortowo w sytuacjach społecznych?",
-    answers: ["Nieswojo", "Średni komfort", "Bardzo komfortowo"]
-  }
+    question: "Czy masz ograniczone zainteresowania społeczne?"
+  },
+  {
+    id: 9,
+    question: "Jak często występują u ciebie uporczywe zainteresowania specyficznymi tematami lub obszarami?"
+  },
+  {
+    id: 10,
+    question: "Czy wykazujesz trudności w rozumieniu czyichś uczuć lub perspektywy?"
+  },
+  {
+    id: 11,
+    question: "W jakim stopniu obserwujesz u siebie powtarzające się ruchy ciała, takie jak kołysanie się czy uderzanie w przedmioty?"
+  },
+  {
+    id: 12,
+    question: " Czy zauważasz trudności w zrozumieniu i reagowaniu na niezwykłe bodźce sensoryczne, takie jak dźwięki, światła czy dotyk?"
+  },
+  {
+    id: 13,
+    question: "Jak często wykazujesz nadmierne przywiązanie do konkretnych przedmiotów?"
+  },
+  {
+    id: 14,
+    question: "Czy zauważasz, że masz trudności w komunikacji werbalnej lub niewerbalnej?"
+  },
+  {
+    id: 15,
+    question: "W jakim stopniu reagujesz na zmiany w otoczeniu lub planie dnia?"
+  },
 ];
+
+export const AUTISMTESTANSWERS = [
+{id: 1, answer: 'nigdy', points:'0'},
+{id: 2, answer: 'bardzo rzadko', points:'1'},
+{id: 3, answer: 'czasami', points:'2'},
+{id: 4, answer: 'często', points:'3'},
+{id: 5, answer: 'bardzo często', points:'4'},
+]

@@ -3,7 +3,11 @@ import { Box, Typography, useTheme } from '@mui/material';
 
 interface QuestionComponentProps {
   question: string;
-  answers: string[];
+  answers: {
+    id:number,
+    answer:string,
+    points:string
+  }[];
 }
 
 const TestQuestionsItem: React.FC<QuestionComponentProps> = ({ question, answers }) => {
@@ -20,7 +24,7 @@ const theme = useTheme()
             {question}
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            {answers.map((answer, index) => (
+            {answers.map((el, index) => (
               <Box
                 key={index}
                 onClick={() => handleAnswerClick(index)}
@@ -33,7 +37,7 @@ const theme = useTheme()
                   borderRadius:'10px',
                   ':hover': {backgroundColor: activeAnswer === index ? '#b8e0b1' : '#c6dac3'}
                 }}>
-                {answer}
+                {el.answer}
               </Box>
             ))}
           </Box>

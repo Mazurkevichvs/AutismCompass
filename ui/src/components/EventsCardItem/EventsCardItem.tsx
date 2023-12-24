@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, RefObject, SetStateAction } from 'react';
 import { Typography, CardContent, CardActions, Button, CardMedia, Card, Box, useTheme } from '@mui/material';
 import {EventType} from "../../types/types"
 
@@ -6,14 +6,16 @@ interface EventsCardItemProps {
   eventData: EventType,
   setEventId: Dispatch<SetStateAction<Number>>,
   transformDateAndAdress: (eventData:EventType) => {address:String, date:string},
-  scrollToSection: () => void
+  scrollToSection: (ref:RefObject<HTMLElement>) => void,
+  pic:string,
+  eventInfoRef: RefObject<HTMLElement>;
 }
 
-const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, transformDateAndAdress, scrollToSection}) => {
+const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, transformDateAndAdress, scrollToSection, pic, eventInfoRef}) => {
   const theme = useTheme()
   const handleClick = () => {
     setEventId(eventData.id)
-    scrollToSection()
+    scrollToSection(eventInfoRef)
   }
   const transormedData = transformDateAndAdress(eventData)
   return (
@@ -25,7 +27,7 @@ const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, t
               sx={{ mb: '10px' }}
               component="img"
               height="194"
-              image="img/event-item1.png"
+              image={`img/${pic}.png`}
               alt="event"
             />
             <Typography variant="h5" component="div">

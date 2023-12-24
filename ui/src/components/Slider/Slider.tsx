@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -10,13 +10,15 @@ import useBreakpoints from '../../hooks/useBreakpoints';
 
 interface SliderProps {
   isHead: Boolean;
+  scrollToSection?: (ref:RefObject<HTMLElement>) => void;
+  homeRef?: RefObject<HTMLElement>;
   data: {
     title: String;
     description?: String;
   }[];
 }
 
-const Slider: React.FC<SliderProps> = ({ isHead, data }) => {
+const Slider: React.FC<SliderProps> = ({ isHead, data, scrollToSection, homeRef }) => {
   const { isMediumScreen, isLargeScreen } = useBreakpoints();
   return (
     <>
@@ -60,6 +62,7 @@ const Slider: React.FC<SliderProps> = ({ isHead, data }) => {
                     {el.title}
                   </Typography>
                   <Box
+                    onClick={() => homeRef && scrollToSection && scrollToSection(homeRef)}
                     sx={{
                       display: 'flex',
                       width: '110px',
@@ -68,7 +71,7 @@ const Slider: React.FC<SliderProps> = ({ isHead, data }) => {
                       transition: 'transform 0.5s ease-in-out',
                       ':hover': { transform: 'translateX(20px)' },
                     }}>
-                    <Typography variant="body1">Dołącz się</Typography>
+                    <Typography variant="body1">Więcej</Typography>
                     <ChevronRightIcon sx={{ width: '20px', height: '20px' }} />
                   </Box>
                 </Box>

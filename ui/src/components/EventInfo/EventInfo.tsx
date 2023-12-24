@@ -1,5 +1,15 @@
 import React, { LegacyRef, useState } from 'react';
-import { Container, Typography, TextField, Button, Box, useTheme } from '@mui/material';
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Box,
+  useTheme,
+  CircularProgress,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 import { EventType } from '../../types/types';
 
 interface EventInfoProps {
@@ -18,6 +28,7 @@ const EventInfo: React.FC<EventInfoProps> = ({
   clickedEvent,
   eventInfoRef,
 }) => {
+  const [open, setOpen] = React.useState(false);
   const [eventRegistrationData, setEventRegistrationData] = useState<EventRegistrationObject>({
     email: '',
     name: '',
@@ -29,6 +40,12 @@ const EventInfo: React.FC<EventInfoProps> = ({
   const mb = { mb: '30px' };
   const transformedData = transformDateAndAdress(clickedEvent);
 
+  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   const formValidation = () => {
     if (!eventRegistrationData.email || !/^\S+@\S+\.\S+$/.test(eventRegistrationData.email))
       setErrors({ ...errors, email: true });
@@ -56,10 +73,13 @@ const EventInfo: React.FC<EventInfoProps> = ({
             body: JSON.stringify(eventRegistrationData),
           },
         );
-        console.log(response);
-
         if (response.ok) {
-          console.log('Registration successful');
+          setOpen(true);
+          setEventRegistrationData({
+            email: '',
+            name: '',
+            surname: '',
+          });
         } else {
           console.error('Registration failed');
         }
@@ -111,8 +131,10 @@ const EventInfo: React.FC<EventInfoProps> = ({
               <Typography variant="h6" gutterBottom>
                 Zarejestruj się na wydarzenie:
               </Typography>
-              <form onSubmit={submitEventRegistration}>
-                <Box className="form-fields">
+              <form
+                onSubmit={submitEventRegistration}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Box>
                   <TextField
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                       setEventRegistrationData({
@@ -157,12 +179,21 @@ const EventInfo: React.FC<EventInfoProps> = ({
                     required
                   />
                 </Box>
-                <Button variant="contained" color="primary" fullWidth type="submit">
-                  Register
-                </Button>
+                {isLoading ? (
+                  <CircularProgress />
+                ) : (
+                  <Button variant="contained" color="primary" fullWidth type="submit">
+                    Zarejestruj się
+                  </Button>
+                )}
               </form>
             </Box>
           </Box>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity={errors ? 'error' : "success"} sx={{ width: '100%' }}>
+              {errors ? 'Rejestracja się nie udała' : 'Dziękujemy za rejestracje!'}
+            </Alert>
+          </Snackbar>
         </Container>
       </section>
     </>
