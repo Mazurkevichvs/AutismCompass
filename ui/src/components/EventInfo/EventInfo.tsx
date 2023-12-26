@@ -117,7 +117,7 @@ const EventInfo: React.FC<EventInfoProps> = ({
                 </Typography>
               </Box>
               <img
-                src="https://placekitten.com/400/300"
+                src={`img/${clickedEvent.imgLink}`}
                 alt="Event"
                 style={{ width: '40%', borderRadius: '25px', height: '350px' }}
               />

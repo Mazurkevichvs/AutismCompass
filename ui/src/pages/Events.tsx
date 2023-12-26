@@ -34,7 +34,6 @@ const Events: React.FC = () => {
   };
   useEffect(() => {
     fetchEvents();
-    console.log(events);
   }, []);
   return (
     <>

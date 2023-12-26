@@ -34,10 +34,9 @@ const EventsCardList: React.FC<EventsCardListProps> = ({
                   <Skeleton variant="rounded" width={350} height={560}/>
                 </Box>
               ))
-            : events.map((el, id) => (
+            : events.map((el) => (
                 <EventsCardItem
                   key={el.id}
-                  pic={`event-${id+1}`}
                   eventData={el}
                   setEventId={setEventId}
                   transformDateAndAdress={transformDateAndAdress}

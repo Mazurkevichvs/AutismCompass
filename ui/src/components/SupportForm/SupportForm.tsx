@@ -59,7 +59,6 @@ const SupportForm: React.FC = () => {
             body: JSON.stringify(supportFromData),
           },
         );
-        console.log(response)
         if (response.ok) {
           setOpen(true);
           setSupportFromData({
@@ -74,7 +73,6 @@ const SupportForm: React.FC = () => {
         console.error('Error during registration', error);
       } finally {
         setIsLoading(false);
-        console.log(errors)
       }
     } else setOpen(true);
   };

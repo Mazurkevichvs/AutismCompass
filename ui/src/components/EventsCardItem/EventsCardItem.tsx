@@ -7,11 +7,10 @@ interface EventsCardItemProps {
   setEventId: Dispatch<SetStateAction<Number>>,
   transformDateAndAdress: (eventData:EventType) => {address:String, date:string},
   scrollToSection: (ref:RefObject<HTMLElement>) => void,
-  pic:string,
   eventInfoRef: RefObject<HTMLElement>;
 }
 
-const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, transformDateAndAdress, scrollToSection, pic, eventInfoRef}) => {
+const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, transformDateAndAdress, scrollToSection, eventInfoRef}) => {
   const theme = useTheme()
   const handleClick = () => {
     setEventId(eventData.id)
@@ -27,7 +26,7 @@ const EventsCardItem: React.FC<EventsCardItemProps> = ({eventData, setEventId, t
               sx={{ mb: '10px' }}
               component="img"
               height="194"
-              image={`img/${pic}.png`}
+              image={`img/${eventData.imgLink}`}
               alt="event"
             />
             <Typography variant="h5" component="div">
