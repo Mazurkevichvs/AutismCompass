@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, RefObject, SetStateAction } from 'react';
 import { EventsCardItem } from '..';
 import { Box, Container, Skeleton } from '@mui/material';
 import { EventType } from '../../types/types';
@@ -7,8 +7,10 @@ interface EventsCardListProps {
   setEventId: Dispatch<SetStateAction<Number>>;
   events: EventType[];
   transformDateAndAdress: (eventData: EventType) => { address: String; date: string };
-  scrollToSection: () => void;
+  scrollToSection: (ref:RefObject<HTMLElement>) => void;
   isLoading: Boolean;
+  eventSectionRef: RefObject<HTMLElement>;
+  eventInfoRef: RefObject<HTMLElement>;
 }
 
 const EventsCardList: React.FC<EventsCardListProps> = ({
@@ -17,26 +19,30 @@ const EventsCardList: React.FC<EventsCardListProps> = ({
   transformDateAndAdress,
   scrollToSection,
   isLoading,
+  eventSectionRef,
+  eventInfoRef
 }) => {
   return (
     <>
-      <section style={{ height: '100%' }}>
+      <section ref={eventSectionRef} style={{ height: '100%' }}>
         <Container
           maxWidth="lg"
           sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           {isLoading
             ? [...new Array(6)].map((_el, id) => (
-                <Box sx={{ maxWidth: '350px', m: '25px 0' }}>
-                  <Skeleton variant="rounded" width={350} height={560} key={id} />
+                <Box key={id} sx={{ maxWidth: '350px', m: '25px 0' }}>
+                  <Skeleton variant="rounded" width={350} height={560}/>
                 </Box>
               ))
             : events.map((el, id) => (
                 <EventsCardItem
-                  key={id}
+                  key={el.id}
+                  pic={`event-${id+1}`}
                   eventData={el}
                   setEventId={setEventId}
                   transformDateAndAdress={transformDateAndAdress}
                   scrollToSection={scrollToSection}
+                  eventInfoRef={eventInfoRef}
                 />
               ))}
         </Container>

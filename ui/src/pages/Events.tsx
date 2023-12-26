@@ -1,19 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import { HeadingSection, EventsCardList, EventInfo } from '../components';
 import { EventType } from '../types/types';
+import { scrollToSection } from '../consts/consts';
 
 const Events: React.FC = () => {
   const [eventID, setEventId] = useState<Number>(0);
   const [events, setEvents] = useState<EventType[] | []>([]);
   const [isLoading, setIsLoading] = useState(true);
   const eventInfoRef = useRef<HTMLDivElement>(null);
+  const eventSectionRef = useRef<HTMLDivElement>(null);
   const clickedEvent = events.find((el) => el.id === eventID);
 
-  const scrollToSection = () => {
-    if (eventInfoRef.current) {
-      eventInfoRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+ 
   const transformDateAndAdress = (
     eventData:EventType
   ) => {
@@ -40,13 +38,15 @@ const Events: React.FC = () => {
   }, []);
   return (
     <>
-      <HeadingSection bgImage={'event-group'} title={'Wydarzenia'} />
+      <HeadingSection eventSectionRef={eventSectionRef} bgImage={'event-group'} title={'Wydarzenia'} scrollToSection={scrollToSection} />
       <EventsCardList
+        eventSectionRef={eventSectionRef}
         setEventId={setEventId}
         events={events}
         transformDateAndAdress={transformDateAndAdress}
         scrollToSection={scrollToSection}
         isLoading={isLoading}
+        eventInfoRef={eventInfoRef}
       />
       {clickedEvent && <EventInfo
         transformDateAndAdress={transformDateAndAdress}

@@ -1,19 +1,83 @@
-import React from 'react';
+import React, { useState, FormEvent, SyntheticEvent } from 'react';
 import {
   Container,
   Box,
   TextField,
-  TextareaAutosize,
   Button,
   Typography,
   useMediaQuery,
   Theme,
   useTheme,
+  CircularProgress,
+  Snackbar,
+  Alert,
 } from '@mui/material';
+import { FormDataObject } from '../../types/types';
 
 const SupportForm: React.FC = () => {
+  const [supportFromData, setSupportFromData] = useState<FormDataObject>({
+    email: '',
+    name: '',
+    surname: '',
+  });
+  const [errors, setErrors] = useState({ email: false, name: false, surname: false });
+  const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const theme = useTheme();
+
+  const handleClose = (_event?: SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+  const formValidation = () => {
+    if (!supportFromData.email || !/^\S+@\S+\.\S+$/.test(supportFromData.email))
+      setErrors({ ...errors, email: true });
+    if (!supportFromData.name || typeof supportFromData.name !== 'string')
+      setErrors({ ...errors, name: true });
+    if (!supportFromData.surname || typeof supportFromData.surname !== 'string')
+      setErrors({ ...errors, surname: true });
+
+    return !errors.email && !errors.name && !errors.surname ? true : false;
+  };
+
+  const submitSupportFrom = async (event: FormEvent) => {
+    event.preventDefault();
+    const isValid = formValidation();
+    if (isValid) {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `http://localhost:5154/api/support`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(supportFromData),
+          },
+        );
+        console.log(response)
+        if (response.ok) {
+          setOpen(true);
+          setSupportFromData({
+            email: '',
+            name: '',
+            surname: '',
+          });
+        } else {
+          console.error('Registration failed');
+        }
+      } catch (error) {
+        console.error('Error during registration', error);
+      } finally {
+        setIsLoading(false);
+        console.log(errors)
+      }
+    } else setOpen(true);
+  };
   return (
     <section>
       <Box
@@ -35,11 +99,17 @@ const SupportForm: React.FC = () => {
             flexDirection: isSmallScreen ? 'column' : 'row',
             color: theme.palette.primary.main,
           }}>
-          <form className="support__form">
+          <form onSubmit={submitSupportFrom} className="support__form">
             <Typography variant="h4" gutterBottom>
               Forma dla pomocy
             </Typography>
             <TextField
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setSupportFromData({
+                ...supportFromData,
+                name: event.target.value,
+              });
+            }}
               fullWidth
               label="Imię"
               variant="filled"
@@ -48,6 +118,12 @@ const SupportForm: React.FC = () => {
               sx={{ bgcolor: '#A78295' }}
             />
             <TextField
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setSupportFromData({
+                ...supportFromData,
+                surname: event.target.value,
+              });
+            }}
               fullWidth
               label="Nazwisko"
               variant="filled"
@@ -56,6 +132,12 @@ const SupportForm: React.FC = () => {
               sx={{ bgcolor: '#A78295' }}
             />
             <TextField
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setSupportFromData({
+                ...supportFromData,
+                email: event.target.value,
+              });
+            }}
               fullWidth
               label="Email"
               variant="filled"
@@ -63,24 +145,16 @@ const SupportForm: React.FC = () => {
               required
               sx={{ bgcolor: '#A78295' }}
             />
-            <TextareaAutosize
-              minRows={4}
-              placeholder="Wiadomość"
-              required
-              style={{
-                width: '100%',
-                padding: '8px',
-                marginTop: '16px',
-                backgroundColor: '#A78295',
-              }}
-            />
-            <Button
+            {isLoading ? (
+                  <CircularProgress />
+                ) : (<Button
               variant="contained"
               color="primary"
               fullWidth
+              type='submit'
               style={{ marginTop: '16px', width: '150px' }}>
-              Get Support
-            </Button>
+              Wyślij
+            </Button>)}
           </form>
           <Box
             sx={{
@@ -111,6 +185,11 @@ const SupportForm: React.FC = () => {
               }}
             />
           </Box>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity={Object.values(errors).includes(true) ? 'error' : 'success'} sx={{ width: '100%' }}>
+              {Object.values(errors).includes(true) ? 'Mail nie został wysłany' : 'Mail został wysłany!'}
+            </Alert>
+          </Snackbar>
         </Container>
       </Box>
     </section>

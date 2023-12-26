@@ -1,16 +1,21 @@
-import React, { LegacyRef, useState } from 'react';
-import { Container, Typography, TextField, Button, Box, useTheme } from '@mui/material';
-import { EventType } from '../../types/types';
+import React, { RefObject, useState,SyntheticEvent, FormEvent } from 'react';
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Box,
+  useTheme,
+  CircularProgress,
+  Snackbar,
+  Alert,
+} from '@mui/material';
+import { EventType, FormDataObject } from '../../types/types';
 
 interface EventInfoProps {
   transformDateAndAdress: (eventData: EventType) => { address: String; date: string };
   clickedEvent: EventType;
-  eventInfoRef: LegacyRef<HTMLElement>;
-}
-interface EventRegistrationObject {
-  email: string;
-  name: string;
-  surname: string;
+  eventInfoRef: RefObject<HTMLElement>;
 }
 
 const EventInfo: React.FC<EventInfoProps> = ({
@@ -18,7 +23,8 @@ const EventInfo: React.FC<EventInfoProps> = ({
   clickedEvent,
   eventInfoRef,
 }) => {
-  const [eventRegistrationData, setEventRegistrationData] = useState<EventRegistrationObject>({
+  const [open, setOpen] = useState(false);
+  const [eventRegistrationData, setEventRegistrationData] = useState<FormDataObject>({
     email: '',
     name: '',
     surname: '',
@@ -29,6 +35,12 @@ const EventInfo: React.FC<EventInfoProps> = ({
   const mb = { mb: '30px' };
   const transformedData = transformDateAndAdress(clickedEvent);
 
+  const handleClose = (_event?: SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   const formValidation = () => {
     if (!eventRegistrationData.email || !/^\S+@\S+\.\S+$/.test(eventRegistrationData.email))
       setErrors({ ...errors, email: true });
@@ -40,7 +52,7 @@ const EventInfo: React.FC<EventInfoProps> = ({
     return !errors.email && !errors.name && !errors.surname ? true : false;
   };
 
-  const submitEventRegistration = async (event: React.FormEvent) => {
+  const submitEventRegistration = async (event: FormEvent) => {
     event.preventDefault();
     const isValid = formValidation();
     if (isValid) {
@@ -56,10 +68,13 @@ const EventInfo: React.FC<EventInfoProps> = ({
             body: JSON.stringify(eventRegistrationData),
           },
         );
-        console.log(response);
-
         if (response.ok) {
-          console.log('Registration successful');
+          setOpen(true);
+          setEventRegistrationData({
+            email: '',
+            name: '',
+            surname: '',
+          });
         } else {
           console.error('Registration failed');
         }
@@ -111,8 +126,10 @@ const EventInfo: React.FC<EventInfoProps> = ({
               <Typography variant="h6" gutterBottom>
                 Zarejestruj się na wydarzenie:
               </Typography>
-              <form onSubmit={submitEventRegistration}>
-                <Box className="form-fields">
+              <form
+                onSubmit={submitEventRegistration}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Box>
                   <TextField
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                       setEventRegistrationData({
@@ -157,12 +174,21 @@ const EventInfo: React.FC<EventInfoProps> = ({
                     required
                   />
                 </Box>
-                <Button variant="contained" color="primary" fullWidth type="submit">
-                  Register
-                </Button>
+                {isLoading ? (
+                  <CircularProgress />
+                ) : (
+                  <Button variant="contained" color="primary" fullWidth type="submit">
+                    Zarejestruj się
+                  </Button>
+                )}
               </form>
             </Box>
           </Box>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity={errors ? 'error' : "success"} sx={{ width: '100%' }}>
+              {errors ? 'Rejestracja się nie udała' : 'Dziękujemy za rejestracje!'}
+            </Alert>
+          </Snackbar>
         </Container>
       </section>
     </>

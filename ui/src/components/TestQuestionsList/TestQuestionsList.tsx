@@ -2,11 +2,12 @@ import { Box, Container , Button} from '@mui/material';
 import React from 'react';
 import { TestQuestionsItem } from '..';
 import { AUTISMTESTQUESTIONS } from '../../consts/consts';
+import { AUTISMTESTANSWERS } from '../../consts/consts';
 
 
 
 const TestQuestionsList: React.FC = () => {
-    const testQuestionsItems = AUTISMTESTQUESTIONS.map((el) => <TestQuestionsItem question={el.question} answers={el.answers} key={el.id}/>)
+    const testQuestionsItems = AUTISMTESTQUESTIONS.map((el) => <TestQuestionsItem question={el.question} answers={AUTISMTESTANSWERS} key={el.id}/>)
   return (
     <>
       <section style={{height:'100%'}}>

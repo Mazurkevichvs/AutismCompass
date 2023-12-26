@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { Container, Typography, Grid, Paper, CardMedia, useTheme } from '@mui/material';
 import { SupportStickerItem } from '..';
 import { SUPPORTSTICKERS } from '../../consts/consts';
 
-const VideoSection: React.FC = () => {
+interface VideoSectionProps {
+  eventSectionRef: RefObject<HTMLElement>
+}
+
+const VideoSection: React.FC<VideoSectionProps> = ({eventSectionRef}) => {
   const theme = useTheme()
   return (
-    <section>
+    <section ref={eventSectionRef}>
       <Container maxWidth="lg" sx={{color:theme.palette.primary.main}}>
         <Typography variant="h4" gutterBottom>
         Jak pomagać osobom Neuroróżnorodnym?

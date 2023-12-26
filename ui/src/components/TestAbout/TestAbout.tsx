@@ -1,11 +1,15 @@
+import React, { RefObject } from 'react';
 import { Box, Container, Typography, useTheme } from '@mui/material';
-import React from 'react';
 
-const TestAbout: React.FC = () => {
+interface TestAboutProps {
+  eventSectionRef: RefObject<HTMLElement>
+}
+
+const TestAbout: React.FC<TestAboutProps> = ({eventSectionRef}) => {
   const theme = useTheme();
   return (
     <>
-      <section style={{ height: '100%' }}>
+      <section ref={eventSectionRef} style={{ height: '100%' }}>
         <Container maxWidth="lg" sx={{ py: '50px', color: theme.palette.primary.main }}>
           <Typography variant="h4" gutterBottom mb={'20px'}>
             Jak to działa?

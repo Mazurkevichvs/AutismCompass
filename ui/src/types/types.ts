@@ -8,9 +8,13 @@ export interface NavigationsProps {
         }[] 
     }[]
 }
-
+export interface FormDataObject {
+  email: string;
+  name: string;
+  surname: string;
+}
 export interface EventType {
-  id: Number,
+  id: number,
   name: String,
   type: Number,
   date: Date,

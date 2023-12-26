@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { Box, Typography, Container } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 interface HeadingSectionProps {
     bgImage: String,
     title: String,
+    eventSectionRef: RefObject<HTMLElement>;
+    scrollToSection: (ref:RefObject<HTMLElement>) => void;
 }
 
-const HeadingSection: React.FC<HeadingSectionProps> = ({bgImage, title}) => {
+const HeadingSection: React.FC<HeadingSectionProps> = ({bgImage, title, scrollToSection,eventSectionRef }) => {
   return (
     <>
       <section
@@ -17,7 +19,7 @@ const HeadingSection: React.FC<HeadingSectionProps> = ({bgImage, title}) => {
             <Typography variant={'h2'} sx={{ width: '100%', fontWeight:'600' }}>
               {title}
             </Typography>
-            <Box sx={{ display: 'flex',width:'110px', alignItems: 'center', cursor:'pointer',transition: 'transform 0.5s ease-in-out', ':hover': { transform: 'translateX(20px)' } }}>
+            <Box onClick={() => scrollToSection(eventSectionRef)} sx={{ display: 'flex',width:'110px', alignItems: 'center', cursor:'pointer',transition: 'transform 0.5s ease-in-out', ':hover': { transform: 'translateX(20px)' } }}>
               <Typography variant="body1">Więcej</Typography>
               <ChevronRightIcon sx={{ width: '20px', height: '20px' }} />
             </Box>
