@@ -1,4 +1,4 @@
-import React, { LegacyRef, useState } from 'react';
+import React, { RefObject, useState,SyntheticEvent, FormEvent } from 'react';
 import {
   Container,
   Typography,
@@ -10,17 +10,12 @@ import {
   Snackbar,
   Alert,
 } from '@mui/material';
-import { EventType } from '../../types/types';
+import { EventType, FormDataObject } from '../../types/types';
 
 interface EventInfoProps {
   transformDateAndAdress: (eventData: EventType) => { address: String; date: string };
   clickedEvent: EventType;
-  eventInfoRef: LegacyRef<HTMLElement>;
-}
-interface EventRegistrationObject {
-  email: string;
-  name: string;
-  surname: string;
+  eventInfoRef: RefObject<HTMLElement>;
 }
 
 const EventInfo: React.FC<EventInfoProps> = ({
@@ -28,8 +23,8 @@ const EventInfo: React.FC<EventInfoProps> = ({
   clickedEvent,
   eventInfoRef,
 }) => {
-  const [open, setOpen] = React.useState(false);
-  const [eventRegistrationData, setEventRegistrationData] = useState<EventRegistrationObject>({
+  const [open, setOpen] = useState(false);
+  const [eventRegistrationData, setEventRegistrationData] = useState<FormDataObject>({
     email: '',
     name: '',
     surname: '',
@@ -40,7 +35,7 @@ const EventInfo: React.FC<EventInfoProps> = ({
   const mb = { mb: '30px' };
   const transformedData = transformDateAndAdress(clickedEvent);
 
-  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (_event?: SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -57,7 +52,7 @@ const EventInfo: React.FC<EventInfoProps> = ({
     return !errors.email && !errors.name && !errors.surname ? true : false;
   };
 
-  const submitEventRegistration = async (event: React.FormEvent) => {
+  const submitEventRegistration = async (event: FormEvent) => {
     event.preventDefault();
     const isValid = formValidation();
     if (isValid) {
