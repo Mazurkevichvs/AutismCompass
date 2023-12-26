@@ -14,4 +14,5 @@ public class Gathering
     public Address Address { get; set; }
     [Column("description")] public string? Description { get; set; }
     [Column("short_description")]public string? ShortDescription { get; set; }
+    [Column("img_link")] public string? ImgLink { get; set; }
 }
