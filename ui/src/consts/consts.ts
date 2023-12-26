@@ -6,6 +6,19 @@ export const scrollToSection = (ref:RefObject<HTMLElement>) => {
   }
 };
 
+export const NAVIGATIONS = [
+  {
+    name: 'Czym jest autyzm?',
+    path: '/',
+  },
+  {
+    name: 'Wsparcie dla osób z autyzmem',
+    path: '/support',
+  },
+  { name: 'Wydarzenia', path: '/events' },
+  { name: 'Test diagnozujący', path: '/test' },
+];
+
 export const DESCRIPTION = [
   {
     id: 1,

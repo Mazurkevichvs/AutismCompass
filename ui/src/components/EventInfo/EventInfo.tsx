@@ -185,8 +185,8 @@ const EventInfo: React.FC<EventInfoProps> = ({
             </Box>
           </Box>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity={errors ? 'error' : "success"} sx={{ width: '100%' }}>
-              {errors ? 'Rejestracja się nie udała' : 'Dziękujemy za rejestracje!'}
+            <Alert onClose={handleClose} severity={Object.values(errors).includes(true) ? 'error' : "success"} sx={{ width: '100%' }}>
+              {Object.values(errors).includes(true) ? 'Rejestracja się nie udała' : 'Dziękujemy za rejestracje!'}
             </Alert>
           </Snackbar>
         </Container>

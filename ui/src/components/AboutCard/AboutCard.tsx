@@ -19,11 +19,11 @@ const AboutCard: React.FC<AboutCardProps> = ({isSmallScreen, description, isOpen
   const [height, setHeight] = useState(isOpened ? '500px' : '300px');
   const handleButtonClick = () => {
     onCardClick();
-    setHeight((prevHeight) => (prevHeight === '500px' ? '300px' : '500px')); // Toggle between 'auto' and '100px'
+    setHeight((prevHeight) => (prevHeight === '500px' ? '300px' : '500px'));
   };
   return (
-    <Box sx={{width: isSmallScreen ? '100%' : '45%', mb: isSmallScreen ? '30px' : '0'}}>
-      <Card sx={{ backgroundColor: '#E6F1F8', height, transition: 'height 0.2s ease-in-out' }}>
+    <Box sx={{width: isSmallScreen ? '70%' : '45%', mb: isSmallScreen ? '30px' : '0'}}>
+      <Card sx={{ backgroundColor: '#E6F1F8', minHeight: height, transition: 'height 0.2s ease-in-out' }}>
         <CardContent sx={{padding: '40px', display:'flex', flexDirection:'column', justifyContent:'space-between', alignItems:'left' ,height:'100%'}}>
           <Typography variant="h6" gutterBottom color= '#00454C'>
             {description.title}
