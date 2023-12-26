@@ -7,6 +7,7 @@
     date         TIMESTAMP    NOT NULL,
     description  TEXT  NULL,
     short_description TEXT NULL,
+    img_link TEXT NOT NULL,
     primary key (gathering_id),
     constraint fk_address
         foreign key (address_id)
