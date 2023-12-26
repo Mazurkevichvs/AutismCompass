@@ -9,8 +9,8 @@ SELECT address_id,
        'Spektakl włączający zmysły: Mała Syrenka Disneya, Musical',
        0,
        '2023-02-10T12:00:00.385'::timestamp,
-       'Celem tego przedstawienia włączającego zmysły jest stworzenie przyjaznego i wspierającego środowiska dla dzieci i dorosłych ze spektrum autyzmu, a także osób z innymi problemami związanymi z wrażliwością lub niepełnosprawnością rozwojową. Aby stworzyć scenerię włączającą zmysły, w produkcji wprowadzono niewielkie zmiany, obejmujące zmniejszony poziom dźwięku, brak migających i stroboskopowych świateł oraz minimalne efekty specjalne. Teren przylegający do teatru został wyznaczony jako Cichy Pokój, w którym pracują specjalnie przeszkoleni wolontariusze, którzy zapewniają wsparcie publiczności. Oparta na jednej z najbardziej ukochanych historii Hansa Christiana Andersena i klasycznym filmie animowanym, Mała Syrenka Disneya to zniewalająco piękna historia miłosna na wieki. Muzyka skomponowana przez ośmiokrotnego zdobywcę Oscara Alana Menkena, teksty autorstwa Howarda Ashmana i Glenna Slatera oraz fascynująca książka Douga Wrighta sprawiają, że ta podejrzana baśń podbije Twoje serce nieodpartymi piosenkami, takimi jak „Under the Sea”, „Kiss the Woman” i „Part Of your world”. Ariel, najmłodsza córka króla Trytona, pragnie ścigać ludzkiego księcia Eryka w świecie powyżej, targując się ze złą morską wiedźmą Ursulą, by zamieniła swój ogon na nogi. Ale okazja nie jest taka, jak się wydaje, a Ariel potrzebuje pomocy swoich kolorowych przyjaciół, ryby Flądra, mewy Scuttle i kraba Sebastiana, aby przywrócić porządek w morzu. Skorzystaj z bezpłatnych zajęć artystycznych i rzemieślniczych organizowanych przed pokazem przez Young at Art Museum! Dołącz do nas po koncercie i spotkaj się z bohaterami!',
-       'Celem tego przedstawienia włączającego zmysły jest stworzenie przyjaznego i wspierającego środowiska dla dzieci i dorosłych ze spektrum autyzmu, a także osób z innymi problemami związanymi z wrażliwością lub niepełnosprawnością rozwojową.',
+       'Przedstawienie zmysłów ma na celu stworzenie przyjaznego środowiska dla osób ze spektrum autyzmu i innych z wrażliwościami. Zmniejszono poziom dźwięku, wyeliminowano migające światła i efekty specjalne. Utworzono Cichy Pokój z wsparciem wolontariuszy. Inspiracją jest \"Mała Syrenka Disneya\" z muzyką Alana Menkena. Opowieść o Ariel, córce króla Trytona, pragnącej być z ludzkim księciem, z rybą Flądrą, mewą Scuttle i krabem Sebastianem. Po przedstawieniu organizowane są darmowe zajęcia artystyczne przez Young at Art Museum, a po koncercie można spotkać się z bohaterami.',
+       'Przedstawienie zmysłów ma na celu stworzenie przyjaznego środowiska dla osób ze spektrum autyzmu i innych z wrażliwościami. Zmniejszono poziom dźwięku, wyeliminowano migające światła i efekty...',
        'event1.png'
 FROM inserted_address;
 
@@ -26,7 +26,7 @@ SELECT address_id,
        1,
        '2023-02-14T18:00:00.385'::timestamp,
        'Dowiedz się więcej na temat: Kroków do podjęcia teraz, aby wspierać niezależne życie w przyszłości Programów dostępnych w społeczności wspierających niezależne życie Źródeł finansowania promujących niezależne życie Planowania transportu Kroków do promowania indywidualnego bezpieczeństwa.',
-       'Dołącz do wydarzenia "Promowanie Niezależności: Życie i Transport". Dowiedz się, jakie kroki podjąć już teraz, aby wspierać niezależne życie w przyszłości',
+       'Dołącz do wydarzenia \"Promowanie Niezależności: Życie i Transport\". Dowiedz się, jakie kroki podjąć już teraz, aby wspierać niezależne życie w przyszłości Programów dostępnych w społeczności...',
        'event2.png'
 FROM inserted_address;
 
@@ -38,11 +38,11 @@ WITH inserted_address AS (
 INSERT
 INTO gathering (address_id, name, type, date, description, short_description, img_link)
 SELECT address_id,
-       'Wspieranie Funkcji Wykonawczych Uczniów ze Spektrum Autyzmu w Klasie: Odpowiedzi na Pytania, Część I',
+       'Wspieranie Funkcji Wykonawczych Uczniów ze Spektrum Autyzmu I',
        0,
        '2023-02-21T9:00:00.385'::timestamp,
        'Pierwsza sesja naukowa będzie poświęcona powszechnym różnicom w funkcjonowaniu wykonawczym u uczniów ze spektrum autyzmu. Zdefiniuj funkcjonowanie wykonawcze i jego znaczenie dla młodzieży z zaburzeniami ze spektrum autyzmu. Poznaj różnice w funkcjonowaniu wykonawczym, które są powszechne u młodzieży ze spektrum autyzmu. Zidentyfikuj różnice w funkcjonowaniu wykonawczym wśród młodzieży ze spektrum autyzmu na podstawie jednego przypadku.',
-       'Celem tej dwuczłonowej serii jest rozwinięcie treści dydaktycznych omawianych podczas wcześniejszych sesji dotyczących funkcji wykonawczych [Część 1, Część 2] i zapewnienie dodatkowej okazji do omówienia przykładu przypadku, uczestnictwa w dyskusji oraz dostatecznego czasu na pytania i odpowiedzi.',
+       'Pierwsza sesja naukowa będzie poświęcona powszechnym różnicom w funkcjonowaniu wykonawczym u uczniów ze spektrum autyzmu. Zdefiniuj funkcjonowanie wykonawcze i jego znaczenie dla młodzieży...',
        'event3.png'
 FROM inserted_address;
 
@@ -74,7 +74,7 @@ SELECT address_id,
        1,
        '2023-02-25T17:00:00.385'::timestamp,
        'Zapewnimy przegląd Zasad Dobre Prace jako potencjalnego źródła miejsc pracy w konkurencyjnym środowisku dla osób niepełnosprawnych. Wyróżnimy przykłady osób niepełnosprawnych już pracujących w branżach objętych inicjatywą Dobre Prace. Zbadamy strategie, które mogą pomóc pracodawcom korzystać z pracowników niepełnosprawnych w swojej sile roboczej, w tym pracowników z istotnymi niepełnosprawnościami. Przedstawimy liderów biznesu, którzy omówią wkład osób niepełnosprawnych w ich zespole pracowniczym. ',
-       'W tym webinarium prelegenci podzielą się strategiami wspierającymi przedsiębiorstwo i pracowników, mając na celu zapewnienie wspólnego sukcesu, promowanie retencji oraz tworzenie możliwości awansu.',
+       'Zapewnimy przegląd Zasad Dobre Prace jako potencjalnego źródła miejsc pracy w konkurencyjnym środowisku dla osób niepełnosprawnych. Wyróżnimy przykłady osób niepełnosprawnych...',
        'event5.png'
 FROM inserted_address;
 
@@ -89,7 +89,7 @@ SELECT address_id,
        1,
        '2023-02-28T18:00:00.385'::timestamp,
        'Kluczowi liderzy zaangażowani w uchwalenie i początkową implementację ustawy podzielą się swoimi osobistymi historiami i spostrzeżeniami. Od działań lobbingowych, które przyczyniły się do jej uchwalenia, po wpływ prawa na społeczność osób niepełnosprawnych i szersze społeczeństwo, w tej 90-minutowej dyskusji panelowej omówione zostaną bariery, sukcesy i nauki, aby pomóc w kształtowaniu przyszłej współpracy i budowania koalicji.',
-       'Na spotakniu będą omówione bariery, sukcesy i nauki, aby pomóc w kształtowaniu przyszłej współpracy i budowania koalicji.',
+       'Kluczowi liderzy zaangażowani w uchwalenie i początkową implementację ustawy podzielą się swoimi osobistymi historiami i spostrzeżeniami. Od działań lobbingowych, które przyczyniły się do jej uchwalenia...',
        'event6.png'
 FROM inserted_address;
 
@@ -121,7 +121,7 @@ SELECT address_id,
        0,
        '2023-03-12T18:00:00.385'::timestamp,
        'Według najnowszych statystyk Centrum Kontroli i Zapobiegania Chorobom, jedna na 36 osób otrzymuje diagnozę zaburzeń ze spektrum autyzmu. Obecnie bardziej niż kiedykolwiek istotne jest zrozumienie tego stanu, jego wpływu na społeczność oraz jak lepiej wspierać osoby dotknięte tym schorzeniem.',
-       'Usłyszysz również relację od jednej z rodzin na temat ich doświadczeń i będziesz mieć możliwość zadawania pytań naszym specialistom.',
+       'Według najnowszych statystyk Centrum Kontroli i Zapobiegania Chorobom, jedna na 36 osób otrzymuje diagnozę zaburzeń ze spektrum autyzmu. Obecnie bardziej niż kiedykolwiek istotne jest zrozumienie tego stanu...',
        'event8.png'
 FROM inserted_address;
 WITH inserted_address AS (
@@ -136,6 +136,6 @@ SELECT address_id,
        1,
        '2023-04-05T17:30:00.385'::timestamp,
        'Neurodywersyfikacja definiowana jest jako szeroki zakres różnic neurologicznych, które obdarzają jednostkę unikalnymi umiejętnościami, zdolnościami i perspektywami. Akceptowanie i szacunek dla takich różnic wspiera równość, różnorodność i włączenie w miejscu pracy, w domu i społeczności.',
-       'Dowody wskazują, że osoby z różnicami neurologicznymi w miejscu pracy poprawiają kulturę wewnętrzną i zwiększają zaangażowanie pracowników.',
+       'Neurodywersyfikacja definiowana jest jako szeroki zakres różnic neurologicznych, które obdarzają jednostkę unikalnymi umiejętnościami, zdolnościami i perspektywami. Akceptowanie i szacunek dla takich różnic...',
        'event9.png'
 FROM inserted_address;
