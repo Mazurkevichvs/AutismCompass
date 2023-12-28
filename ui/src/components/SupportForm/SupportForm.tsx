@@ -15,12 +15,17 @@ import {
 import { FormDataObject } from '../../types/types';
 
 const SupportForm: React.FC = () => {
-  const [supportFromData, setSupportFromData] = useState<FormDataObject>({
+  const [supportFormData, setSupportFormData] = useState<FormDataObject>({
     email: '',
     name: '',
     surname: '',
   });
-  const [errors, setErrors] = useState({ email: false, name: false, surname: false });
+  const [errors, setErrors] = useState({
+    email: false,
+    name: false,
+    surname: false,
+    submit: false,
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
@@ -33,14 +38,28 @@ const SupportForm: React.FC = () => {
     setOpen(false);
   };
   const formValidation = () => {
-    if (!supportFromData.email || !/^\S+@\S+\.\S+$/.test(supportFromData.email))
-      setErrors({ ...errors, email: true });
-    if (!supportFromData.name || typeof supportFromData.name !== 'string')
-      setErrors({ ...errors, name: true });
-    if (!supportFromData.surname || typeof supportFromData.surname !== 'string')
-      setErrors({ ...errors, surname: true });
-
-    return !errors.email && !errors.name && !errors.surname ? true : false;
+    let isValid = true;
+    if (!supportFormData.email || !/^\S+@\S+\.\S+$/.test(supportFormData.email)) {
+      setErrors((prev) => ({ ...prev, email: true }));
+      isValid = false;
+    } else setErrors((prev) => ({ ...prev, email: false }));
+    if (
+      !supportFormData.name ||
+      !supportFormData.name.trim() ||
+      /\d/.test(supportFormData.name)
+    ) {
+      setErrors((prev) => ({ ...prev, name: true }));
+      isValid = false;
+    } else setErrors((prev) => ({ ...prev, name: false }));
+    if (
+      !supportFormData.surname ||
+      !supportFormData.surname.trim() ||
+      /\d/.test(supportFormData.surname)
+    ) {
+      setErrors((prev) => ({ ...prev, surname: true }));
+      isValid = false;
+    } else setErrors((prev) => ({ ...prev, surname: false }));
+    return isValid;
   };
 
   const submitSupportFrom = async (event: FormEvent) => {
@@ -49,32 +68,29 @@ const SupportForm: React.FC = () => {
     if (isValid) {
       try {
         setIsLoading(true);
-        const response = await fetch(
-          `http://localhost:5154/api/support`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(supportFromData),
+        const response = await fetch(`http://localhost:5154/api/support`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-        );
+          body: JSON.stringify(supportFormData),
+        });
         if (response.ok) {
-          setOpen(true);
-          setSupportFromData({
+          setSupportFormData({
             email: '',
             name: '',
             surname: '',
           });
-        } else {
-          console.error('Registration failed');
-        }
+          setErrors((prev) => ({ ...prev, submit: false }));
+        } 
       } catch (error) {
-        console.error('Error during registration', error);
+        console.error('Błąd wysyłki emaila', error);
+        setErrors((prev) => ({ ...prev, submit: true }));
       } finally {
         setIsLoading(false);
+        setOpen(true);
       }
-    } else setOpen(true);
+    }
   };
   return (
     <section>
@@ -102,57 +118,65 @@ const SupportForm: React.FC = () => {
               Forma dla pomocy
             </Typography>
             <TextField
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setSupportFromData({
-                ...supportFromData,
-                name: event.target.value,
-              });
-            }}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setSupportFormData({
+                  ...supportFormData,
+                  name: event.target.value,
+                });
+              }}
               fullWidth
               label="Imię"
               variant="filled"
               margin="normal"
               required
               sx={{ bgcolor: '#A78295' }}
+              error={errors.name && true}
+                    helperText={errors.name && 'Wprowadź poprawne imię!'}
             />
             <TextField
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setSupportFromData({
-                ...supportFromData,
-                surname: event.target.value,
-              });
-            }}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setSupportFormData({
+                  ...supportFormData,
+                  surname: event.target.value,
+                });
+              }}
               fullWidth
               label="Nazwisko"
               variant="filled"
               margin="normal"
               required
               sx={{ bgcolor: '#A78295' }}
+              error={errors.surname && true}
+                    helperText={errors.surname && 'Wprowadź poprawne nazwisko!'}
             />
             <TextField
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setSupportFromData({
-                ...supportFromData,
-                email: event.target.value,
-              });
-            }}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setSupportFormData({
+                  ...supportFormData,
+                  email: event.target.value,
+                });
+              }}
               fullWidth
               label="Email"
               variant="filled"
               margin="normal"
               required
               sx={{ bgcolor: '#A78295' }}
+              error={errors.email && true}
+              helperText={errors.email && 'Wprowadź poprawny email!'}
             />
             {isLoading ? (
-                  <CircularProgress />
-                ) : (<Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              type='submit'
-              style={{ marginTop: '16px', width: '150px' }}>
-              Wyślij
-            </Button>)}
+              <CircularProgress />
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                type="submit"
+                sx={{ marginTop: '16px', width: '150px' }}>
+                Wyślij
+              </Button>
+            )}
           </form>
           <Box
             sx={{
@@ -184,8 +208,13 @@ const SupportForm: React.FC = () => {
             />
           </Box>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity={Object.values(errors).includes(true) ? 'error' : 'success'} sx={{ width: '100%' }}>
-              {Object.values(errors).includes(true) ? 'Mail nie został wysłany' : 'Mail został wysłany!'}
+            <Alert
+              onClose={handleClose}
+              severity={Object.values(errors).includes(true) ? 'error' : 'success'}
+              sx={{ width: '100%' }}>
+              {Object.values(errors).includes(true)
+                ? 'Mail nie został wysłany'
+                : 'Mail został wysłany!'}
             </Alert>
           </Snackbar>
         </Container>

@@ -8,14 +8,15 @@ import useBreakpoints from '../../hooks/useBreakpoints';
 const FactsAndMyths: React.FC = () => {
   const [openedAccordion, setOpenedAccordion] = useState<number | null>(null);
   const fact = FACTS.map((accordion, index) => <AccordionItem key={index} data={accordion} isOpen={index === openedAccordion} onToggle={() => onToggle(index)}/>);
-  const smallerThanMedium = useBreakpoints()
+  const {smallerThanMedium} = useBreakpoints()
+  console.log(smallerThanMedium)
   const onToggle = (index:number) => {
     setOpenedAccordion(index === openedAccordion ? null : index);
   }
 
   return (
     <section style={{height: openedAccordion !== null || smallerThanMedium ? '100%' : '100vh'}}>
-    <Container maxWidth="lg" sx={{my: smallerThanMedium && '20px'}} >
+    <Container maxWidth="lg" sx={{my: smallerThanMedium ? '20px' : '0'}} >
       <Box >
         <Typography variant="h4" align="left" gutterBottom sx={{mt: openedAccordion !== null ? '30px' : '0px', color:'#00454C' , mb:'50px'}}>
           Fakty i mity?
