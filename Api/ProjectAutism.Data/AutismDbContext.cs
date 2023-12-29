@@ -30,11 +30,14 @@ public class AutismDbContext : DbContext
             .HasForeignKey<Gathering>(g => g.AddressId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
-
-
+        
         modelBuilder.Entity<Gathering>()
             .Property(g => g.Type)
             .HasConversion<string>();
+
+        modelBuilder.Entity<Question>()
+            .HasMany(e => e.Answers)
+            .WithMany();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
