@@ -9,6 +9,14 @@ public class AutismDbContext : DbContext
     public DbSet<Gathering> Gatherings { get; set; }
     public DbSet<Address> Addresses { get; set; }
 
+    public DbSet<Quiz> Quizzes { get; set; }
+
+    public DbSet<Question> Questions { get; set; }
+
+    public DbSet<Answer> Answers { get; set; }
+
+    public DbSet<Result> Results { get; set; }
+
     public AutismDbContext(DbContextOptions<AutismDbContext> options) :
         base(options)
     {
@@ -23,10 +31,19 @@ public class AutismDbContext : DbContext
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 
-
         modelBuilder.Entity<Gathering>()
             .Property(g => g.Type)
             .HasConversion<string>();
+
+        modelBuilder.Entity<Question>()
+            .HasMany(e => e.Answers)
+            .WithMany()
+            .UsingEntity<QuestionAnswer>();
+
+        modelBuilder.Entity<Quiz>()
+            .HasMany<Question>(q => q.Questions)
+            .WithOne();
+
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -18,21 +18,18 @@ public class SupportController : ControllerBase
     {
         _supportRepository = supportRepository;
     }
-    
-    
+
     [HttpPost]
     public async Task<IActionResult> GetSupport(Credential credential)
     {
         try
         {
-           await _supportRepository.SendSupportMessage(credential);
-           return Ok("Massage send successfully");
+            await _supportRepository.SendSupportMessage(credential);
+            return Ok("Massage send successfully");
         }
         catch (Exception e)
         {
             return NotFound(e);
         }
     }
-
-    
 }
