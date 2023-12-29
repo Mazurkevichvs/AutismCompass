@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AutismDbContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("AutProjectDb")));
 builder.Services.AddScoped<IGatheringRepository, GatheringRepository>();
+builder.Services.AddScoped<IQuizRepository, QuizRepository>();
 builder.Services.AddScoped<SupportRepository>();
 builder.Services.AddScoped<MailHandler>();
 

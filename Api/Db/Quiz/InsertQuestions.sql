@@ -1,6 +1,4 @@
-﻿TRUNCATE TABLE question,answer;
-
-INSERT INTO question (question_id,quiz_id, question_text)
+﻿INSERT INTO question (question_id,quiz_id, question_text)
 VALUES
     (1,1,'Jak często zauważasz, że unikasz kontaktu wzrokowego?'),
     (2,1,'Czy obserwujesz u siebie powtarzające się ruchy, gesty lub obrzędy?'),

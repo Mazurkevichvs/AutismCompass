@@ -1,6 +1,4 @@
-﻿DROP TABLE question;
-
-CREATE TABLE question
+﻿CREATE TABLE question
 (
     question_id   SERIAL,
     quiz_id       INT,
@@ -11,5 +9,3 @@ CREATE TABLE question
             references quiz (quiz_id)
             ON DELETE CASCADE
 )
-
-

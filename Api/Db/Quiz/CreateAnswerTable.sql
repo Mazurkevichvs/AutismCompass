@@ -1,6 +1,4 @@
-﻿DROP TABLE answer,question_answer;
-
-CREATE TABLE answer
+﻿CREATE TABLE answer
 (
     answer_id   SERIAL,
     answer_text TEXT NOT NULL,

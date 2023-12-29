@@ -19,8 +19,11 @@ public class QuizController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Question> GetQuiz(int quizId)
-    { 
-        return _quizRepository.GetQuiz(quizId);
+    public ActionResult<Quiz> GetQuiz(int quizId)
+    {
+        var quiz = _quizRepository.GetQuiz(quizId);
+        if (quiz is null)
+            return NotFound();
+        return Ok(quiz);
     }
 }

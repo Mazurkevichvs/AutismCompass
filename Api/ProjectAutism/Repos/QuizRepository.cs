@@ -13,10 +13,12 @@ public class QuizRepository : IQuizRepository
         _autismDbContext = autismDbContext;
     }
 
-    public IEnumerable<Question> GetQuiz(int quizId)
+    public Quiz? GetQuiz(int quizId)
     {
-        var quizWithQuestionsAndAnswers = _autismDbContext.Questions
-            .Include(q => q.QuizId == quizId);
-        return quizWithQuestionsAndAnswers.ToList();
+        var quizFormDb = _autismDbContext.Quizzes
+            .Include(q => q.Questions)
+            .ThenInclude(q => q.Answers)
+            .FirstOrDefault( q => q.Id == quizId );
+        return quizFormDb;
     }
 }

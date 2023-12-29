@@ -4,5 +4,5 @@ namespace ProjectAutism.Repos;
 
 public interface IQuizRepository
 {
-    IEnumerable<Question> GetQuiz(int quizId);
+    Quiz? GetQuiz(int quizId);
 }
