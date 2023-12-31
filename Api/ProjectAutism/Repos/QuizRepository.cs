@@ -21,4 +21,13 @@ public class QuizRepository : IQuizRepository
             .FirstOrDefault( q => q.Id == quizId );
         return quizFormDb;
     }
+
+    public Result GetQuizResult(int quizId, int userResult)
+    {
+        var quizFromDb = _autismDbContext.Quizzes.FirstOrDefault(q => q.Id == quizId);
+
+        var resultScores = _autismDbContext.Results.ToList();
+        
+        throw new NotImplementedException();
+    }
 }

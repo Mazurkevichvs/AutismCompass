@@ -26,4 +26,11 @@ public class QuizController : ControllerBase
             return NotFound();
         return Ok(quiz);
     }
+
+    [HttpPost]
+    public IActionResult GetResult(int quizId, int userResult)
+    {
+        
+        return Ok();
+    }
 }
