@@ -19,7 +19,7 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ isHead, data, scrollToSection, homeRef }) => {
-  const { isMediumScreen, isLargeScreen } = useBreakpoints();
+  const { isMediumScreen, isLargeScreen, smallerThanMedium } = useBreakpoints();
   return (
     <>
       <section className="slider-container">
@@ -83,17 +83,17 @@ const Slider: React.FC<SliderProps> = ({ isHead, data, scrollToSection, homeRef 
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: '900px',
+                    width:  smallerThanMedium ? '70%' : '900px',
                     padding: '70px',
                     color: '#fff',
                     textAlign: 'center',
                     zIndex: '1',
                     bgcolor: 'rgba(167,130,149,.6)',
                   }}>
-                  <Typography sx={{ mb: '25px', textTransform: 'uppercase' }} variant="h4">
+                  <Typography sx={{ mb: '25px', textTransform: 'uppercase' }} variant={smallerThanMedium ? 'h5' :"h4"}>
                     {el.title}
                   </Typography>
-                  <Typography variant="h4">{el.description}</Typography>
+                  <Typography variant={smallerThanMedium ? 'h5' :"h4"}>{el.description}</Typography>
                 </Box>
               )}
             </SwiperSlide>

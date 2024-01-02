@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { NavItem, SideBarNav } from '..';
 import { headerStyles } from '../../styles/theme';
-import { Menu as MenuIcon } from '@mui/icons-material';
+import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import { NavigationsProps } from '../../types/types';
 import './Header.scss';
 import { Link } from 'react-router-dom';
@@ -39,19 +39,19 @@ const Header: React.FC<NavigationsProps> = ({ navigations }) => {
           </Link>
           <Box display="flex" alignItems="center" color="secondary" style={{ height: '80px' }}>
             {isSmallScreen
-              ? !menuOpen && (
+              ?  (
                   <IconButton
                     color="primary"
-                    onClick={() => setMenuOpen(true)}
+                    onClick={() => setMenuOpen(!menuOpen)}
                     className="menu-icon">
-                    <MenuIcon />
+                    {menuOpen ? <CloseIcon fontSize="large"/> : <MenuIcon />}
                   </IconButton>
                 )
               : navigationItem}
           </Box>
         </Toolbar>
         {isSmallScreen && menuOpen && (
-          <SideBarNav menuOpen={menuOpen} setMenuOpen={setMenuOpen} navigations={navigations} />
+          <SideBarNav navigations={navigations} />
         )}
       </Container>
     </AppBar>

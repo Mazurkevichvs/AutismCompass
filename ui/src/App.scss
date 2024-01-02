@@ -26,3 +26,11 @@ section {
 .facts__img {
   height: 100%;
 }
+
+@media (max-width: 960px) {
+  .facts__img {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+}

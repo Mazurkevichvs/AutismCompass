@@ -1,7 +1,8 @@
 import React, { useState, RefObject } from 'react';
-import { Box, Typography, useMediaQuery, Theme, Container, useTheme } from '@mui/material';
+import { Box, Typography, Container, useTheme } from '@mui/material';
 import { AboutCard } from '..';
 import {DESCRIPTION} from '../../consts/consts'
+import useBreakpoints from '../../hooks/useBreakpoints';
 
 interface AbourSectionProp {
   homeRef: RefObject<HTMLElement> 
@@ -9,7 +10,7 @@ interface AbourSectionProp {
 
 const AboutSection: React.FC<AbourSectionProp> = ({homeRef}) => {
   const [expandedCards, setExpandedCards] = useState<number[]>([]);
-  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const {smallerThanMedium, isLargeScreen} = useBreakpoints()
   const theme = useTheme();
 
   const handleCardClick = (cardId: number) => {
@@ -23,8 +24,8 @@ const AboutSection: React.FC<AbourSectionProp> = ({homeRef}) => {
   };
 
   return (
-    <section ref={homeRef} style={{ height: expandedCards.length > 0 ? '100%' : '100vh' }}>
-      <Container maxWidth="lg">
+    <section ref={homeRef} style={{ height: expandedCards.length > 0 || !isLargeScreen ? '100%' : '100vh' }}>
+      <Container maxWidth="lg" sx={{my: !isLargeScreen ? '20px' : ''}}>
         <Box
           sx={{
             backgroundColor: theme.palette.background.default,
@@ -58,14 +59,14 @@ const AboutSection: React.FC<AbourSectionProp> = ({homeRef}) => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            flexDirection: isSmallScreen ? 'column' : 'row',
+            flexDirection: smallerThanMedium ? 'column' : 'row',
             mb: expandedCards.length > 0 ? '30px' : '0px'
           }}>
             {DESCRIPTION.map((el) => <AboutCard
             key={el.id}
             isOpened={expandedCards.includes(el.id)}
             onCardClick={() => handleCardClick(el.id)}
-            isSmallScreen={isSmallScreen}
+            isSmallScreen={smallerThanMedium}
             description={el}
           />)}          
         </Box>

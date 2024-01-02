@@ -3,19 +3,9 @@ import './App.scss';
 import { Header, Footer, SupportForm } from './components';
 import { Routes, Route } from 'react-router-dom';
 import {Events, Home, Support, Test} from './pages/index';
+import { NAVIGATIONS } from './consts/consts';
 
-const NAVIGATIONS = [
-  {
-    name: 'Czym jest autyzm?',
-    path: '/',
-  },
-  {
-    name: 'Wsparcie dla osób z autyzmem',
-    path: '/support',
-  },
-  { name: 'Wydarzenia', path: '/events' },
-  { name: 'Test diagnozujący', path: '/test' },
-];
+
 
 const App: React.FC = () => {
   return (

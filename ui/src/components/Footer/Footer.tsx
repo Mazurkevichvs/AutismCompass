@@ -3,16 +3,15 @@ import {
   Box,
   Container,
   Typography,
-  Toolbar,
-  useMediaQuery,
-  Theme,
+  Toolbar
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { NavigationsProps } from '../../types/types';
 import { NavItem } from '..';
+import useBreakpoints from '../../hooks/useBreakpoints';
 
 const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
-  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const {smallerThanMedium} = useBreakpoints()
   const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} isFooter={true}/>);
   return (
     <footer className='footer'>
@@ -27,10 +26,10 @@ const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            flexDirection: isSmallScreen ? 'column' : 'row',
+            flexDirection: smallerThanMedium ? 'column' : 'row',
           }}>
             <Link to={'/'}>
-          <Box display="flex" alignItems="center" mr={'10px'}>
+          <Box sx={{display:"flex", alignItems:"center", mr:'10px'}} >
             <img
               src="img/main_icon.png"
               alt="Autism Compass"
@@ -42,13 +41,13 @@ const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
             </Typography>
           </Box>
           </Link>
-          <Typography variant="body2" sx={{ order: isSmallScreen ? '1' : '' }}>
+          <Typography variant="body2" sx={{order: smallerThanMedium ?  '1' : '0',  mb: smallerThanMedium ? '15px' : '' }}>
             © 2023 Autism Compass
           </Typography>
           <Box
             sx={{
               display: 'flex',
-              flexDirection: isSmallScreen ? 'column' : 'row',
+              flexDirection: 'row',
               alignItems: 'center',
               height: '80px'
             }}>

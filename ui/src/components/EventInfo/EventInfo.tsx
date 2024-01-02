@@ -1,4 +1,4 @@
-import React, { RefObject, useState,SyntheticEvent, FormEvent } from 'react';
+import React, { RefObject, useState, SyntheticEvent, FormEvent } from 'react';
 import {
   Container,
   Typography,
@@ -30,7 +30,12 @@ const EventInfo: React.FC<EventInfoProps> = ({
     surname: '',
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({ email: false, name: false, surname: false });
+  const [errors, setErrors] = useState({
+    email: false,
+    name: false,
+    surname: false,
+    submit: false,
+  });
   const theme = useTheme();
   const mb = { mb: '30px' };
   const transformedData = transformDateAndAdress(clickedEvent);
@@ -42,14 +47,28 @@ const EventInfo: React.FC<EventInfoProps> = ({
     setOpen(false);
   };
   const formValidation = () => {
-    if (!eventRegistrationData.email || !/^\S+@\S+\.\S+$/.test(eventRegistrationData.email))
-      setErrors({ ...errors, email: true });
-    if (!eventRegistrationData.name || typeof eventRegistrationData.name !== 'string')
-      setErrors({ ...errors, name: true });
-    if (!eventRegistrationData.surname || typeof eventRegistrationData.surname !== 'string')
-      setErrors({ ...errors, surname: true });
-
-    return !errors.email && !errors.name && !errors.surname ? true : false;
+    let isValid = true;
+    if (!eventRegistrationData.email || !/^\S+@\S+\.\S+$/.test(eventRegistrationData.email)) {
+      setErrors((prev) => ({ ...prev, email: true }));
+      isValid = false;
+    } else setErrors((prev) => ({ ...prev, email: false }));
+    if (
+      !eventRegistrationData.name ||
+      !eventRegistrationData.name.trim() ||
+      /\d/.test(eventRegistrationData.name)
+    ) {
+      setErrors((prev) => ({ ...prev, name: true }));
+      isValid = false;
+    } else setErrors((prev) => ({ ...prev, name: false }));
+    if (
+      !eventRegistrationData.surname ||
+      !eventRegistrationData.surname.trim() ||
+      /\d/.test(eventRegistrationData.surname)
+    ) {
+      setErrors((prev) => ({ ...prev, surname: true }));
+      isValid = false;
+    } else setErrors((prev) => ({ ...prev, surname: false }));
+    return isValid;
   };
 
   const submitEventRegistration = async (event: FormEvent) => {
@@ -69,19 +88,19 @@ const EventInfo: React.FC<EventInfoProps> = ({
           },
         );
         if (response.ok) {
-          setOpen(true);
           setEventRegistrationData({
             email: '',
             name: '',
             surname: '',
           });
-        } else {
-          console.error('Registration failed');
+          setErrors((prev) => ({ ...prev, submit: false }));
         }
       } catch (error) {
-        console.error('Error during registration', error);
+        console.error('Błąd rejestracji', error);
+        setErrors((prev) => ({ ...prev, submit: true }));
       } finally {
         setIsLoading(false);
+        setOpen(true);
       }
     }
   };
@@ -144,6 +163,8 @@ const EventInfo: React.FC<EventInfoProps> = ({
                     type="email"
                     value={eventRegistrationData.email}
                     required
+                    error={errors.email && true}
+                    helperText={errors.email && 'Wprowadź poprawny email!'}
                   />
                   <TextField
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -158,6 +179,8 @@ const EventInfo: React.FC<EventInfoProps> = ({
                     fullWidth
                     value={eventRegistrationData.name}
                     required
+                    error={errors.name && true}
+                    helperText={errors.name && 'Wprowadź poprawne imię!'}
                   />
                   <TextField
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -172,6 +195,8 @@ const EventInfo: React.FC<EventInfoProps> = ({
                     fullWidth
                     value={eventRegistrationData.surname}
                     required
+                    error={errors.surname && true}
+                    helperText={errors.surname && 'Wprowadź poprawne nazwisko!'}
                   />
                 </Box>
                 {isLoading ? (
@@ -185,8 +210,13 @@ const EventInfo: React.FC<EventInfoProps> = ({
             </Box>
           </Box>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity={errors ? 'error' : "success"} sx={{ width: '100%' }}>
-              {errors ? 'Rejestracja się nie udała' : 'Dziękujemy za rejestracje!'}
+            <Alert
+              onClose={handleClose}
+              severity={Object.values(errors).includes(true) ? 'error' : 'success'}
+              sx={{ width: '100%' }}>
+              {Object.values(errors).includes(true)
+                ? 'Rejestracja się nie udała'
+                : 'Dziękujemy za rejestracje!'}
             </Alert>
           </Snackbar>
         </Container>
