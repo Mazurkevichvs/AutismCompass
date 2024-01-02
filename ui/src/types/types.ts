@@ -27,3 +27,18 @@ export interface EventType {
   shortDescription: String;
   imgLink: string;
 }
+
+export interface QuestionType {
+  id:number,
+  name:string,
+  questions: {
+    id: number,
+    questionText: string,
+    quizId: number,
+    answers: {
+      id:number,
+      text: string,
+      value:number
+    }[]
+  }
+}

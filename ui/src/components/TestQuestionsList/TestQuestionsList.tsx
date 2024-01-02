@@ -1,9 +1,7 @@
 import { Box, Container , Button} from '@mui/material';
 import React from 'react';
 import { TestQuestionsItem } from '..';
-import { AUTISMTESTQUESTIONS } from '../../consts/consts';
-import { AUTISMTESTANSWERS } from '../../consts/consts';
-
+import { AUTISMTESTQUESTIONS, AUTISMTESTANSWERS } from '../../consts/consts';
 
 
 const TestQuestionsList: React.FC = () => {
