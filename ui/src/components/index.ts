@@ -21,3 +21,4 @@ export { default as TestQuestionsList } from './TestQuestionsList/TestQuestionsL
 export { default as TestQuestionsItem } from './TestQuestionsItem/TestQuestionsItem';
 export { default as TestResult } from './TestResult/TestResult';
 export { default as SupportStickerItem } from './SupportStickerItem/SupportStickerItem';
+export { default as TestSkeleton } from './TestSkeleton/TestSkeleton';

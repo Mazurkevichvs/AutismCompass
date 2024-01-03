@@ -40,5 +40,5 @@ export interface QuestionType {
       text: string,
       value:number
     }[]
-  }
+  }[]
 }
