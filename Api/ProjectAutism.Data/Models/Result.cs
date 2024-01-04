@@ -8,4 +8,5 @@ public class Result
     [Column("result_id")] public int Id { get; set; }
     [Column("score")] public int Score { get; set; }
     [Column("details")] public string Details { get; set; }
+    [Column("quiz_id")]public int QuizId { get; set; }
 }
