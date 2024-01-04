@@ -22,12 +22,34 @@ public class QuizRepository : IQuizRepository
         return quizFormDb;
     }
 
-    public Result GetQuizResult(int quizId, int userResult)
+    public Result? GetQuizResult(int quizId,UserTestResult userTestResult)
     {
-        var quizFromDb = _autismDbContext.Quizzes.FirstOrDefault(q => q.Id == quizId);
-
-        var resultScores = _autismDbContext.Results.ToList();
+        var answerIds = userTestResult.QuestionAnswers.Select(a => a.AnswerId).ToList();
+        var userResult = 0;
+        foreach (var answerId in answerIds)
+        {
+            var answerFromDb = _autismDbContext.Answers.FirstOrDefault(a => a.Id == answerId);
+            if (answerFromDb != null)
+                userResult += answerFromDb.Value;
+        }
         
-        throw new NotImplementedException();
+        var resultsFromDb = _autismDbContext.Results.Where(r => r.QuizId == quizId).ToList();
+        //make sort results depends on score
+        
+        if (userResult >= 0 && userResult <= resultsFromDb[0].Score)
+            return resultsFromDb[0];
+        
+        var lastResult = resultsFromDb.Last();
+        
+        for (int i = 1; i < resultsFromDb.Count; i++)
+        {
+            if (userResult >= resultsFromDb[i - 1].Score && userResult <= resultsFromDb[i].Score)
+                return resultsFromDb[i];
+            
+            if (userResult >= lastResult.Score)
+                return lastResult;
+        }
+
+        return null ;
     }
 }

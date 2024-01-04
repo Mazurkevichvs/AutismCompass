@@ -5,5 +5,5 @@ namespace ProjectAutism.Repos;
 public interface IQuizRepository
 {
     Quiz? GetQuiz(int quizId);
-    Result GetQuizResult(int quizId, int userResult);
+    Result? GetQuizResult(int quizId, UserTestResult userTestResult);
 }

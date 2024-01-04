@@ -1,7 +1,10 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using ProjectAutism;
 using ProjectAutism.Data;
+using ProjectAutism.Data.Models;
 using ProjectAutism.Repos;
+using ProjectAutism.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,7 @@ builder.Services.AddScoped<IGatheringRepository, GatheringRepository>();
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();
 builder.Services.AddScoped<SupportRepository>();
 builder.Services.AddScoped<MailHandler>();
+builder.Services.AddScoped<IValidator<UserTestResult>,UserTestResultValidator>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

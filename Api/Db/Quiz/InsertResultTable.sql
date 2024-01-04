@@ -1,7 +1,5 @@
 ﻿INSERT INTO result (result_id, score, details, quiz_id)
-VALUES (1,10,'Brak cech spektrum autyzmu (0-10 pkt):Na podstawie wyników testu można stwierdzić, że nie wykazujesz istotnych cech spektrum autyzmu.',1),
-       (2,20,'Możliwe cechy spektrum autyzmu (11-20 pkt):Wyniki sugerują, że istnieje pewne prawdopodobieństwo obecności cech spektrum autyzmu na niższym stopniu. Zalecamy dalszą obserwację i ewentualne konsultacje z specjalistą.',1),
-       (3,35,'Cechy spektrum autyzmu (21-35 pkt):Twój wynik wskazuje na obecność cech spektrum autyzmu. Zalecamy skonsultowanie się z profesjonalistą w celu dokładnej oceny i ewentualnego dalszego postępowania.',1),
-       (4,54,'Wyższy stopień cech spektrum autyzmu (35-54 pkt):Twój wynik sugeruje obecność wyższego stopnia cech spektrum autyzmu. Wskazane jest pilne skonsultowanie się z doświadczonym specjalistą celem dalszej diagnostyki i wsparcia.',1);
+VALUES (1,53,'Wyniki sugerują, że raczej nie występują cechy związane ze spektrum zaburzeń autystycznych (ASD).Jednakże, warto zaznaczyć, że testy online są jedynie narzędziami orientacyjnymi, a ich wyniki nie zastępują profesjonalnej diagnozy przeprowadzonej przez specjalistów. Jeśli mimo otrzymanych wyników pozostają jakiekolwiek wątpliwości lub pytania dotyczące zachowań czy funkcjonowania, zawsze zalecamy skonsultowanie się z lekarzem, psychologiem lub specjalistą ds. zdrowia psychicznego.',1),
+       (2,55,'Otrzymane wyniki mogą sugerować obecność pewnych cech związanych ze spektrum zaburzeń autystycznych (ASD).Warto podkreślić, że testy online są narzędziami wstępnego badania, a ich wyniki nie są zastępnikiem profesjonalnej diagnozy przeprowadzonej przez specjalistów. Jednakże, jeśli wyniki testu wskazują na pewne cechy charakterystyczne dla spektrum autyzmu, zalecamy skonsultowanie się z lekarzem lub specjalistą ds. zaburzeń ze spektrum autyzmu w celu dalszej oceny.',1);
 
 TRUNCATE TABLE result
