@@ -29,16 +29,23 @@ export interface EventType {
 }
 
 export interface QuestionType {
-  id:number,
-  name:string,
+  id: number;
+  name: string;
   questions: {
-    id: number,
-    questionText: string,
-    quizId: number,
+    id: number;
+    questionText: string;
+    quizId: number;
     answers: {
-      id:number,
-      text: string,
-      value:number
-    }[]
-  }[]
+      id: number;
+      text: string;
+      value: number;
+    }[];
+  }[];
+}
+
+export interface UserResult {
+  id: number;
+  details: string;
+  quizId: number;
+  score: number;
 }
