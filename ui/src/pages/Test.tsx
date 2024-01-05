@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { HeadingSection, TestAbout, TestQuestionsList, TestResult, TestSkeleton } from '../components';
 import { scrollToSection } from '../consts/consts';
-import { QuestionType } from '../types/types';
+import { QuestionType, UserResult } from '../types/types';
 
 const Test: React.FC = () => {
   const testSectionRef = useRef<HTMLDivElement>(null);
   const [quiz, setQuiz] = useState<QuestionType | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isResult, setIsResult] = useState(false)
+  const [userResult, setUserResult] = useState<UserResult | null>(null)
 
   const fetchQuestions = async () => {
     try {
@@ -27,8 +28,8 @@ const Test: React.FC = () => {
     <>
       <HeadingSection scrollToSection={scrollToSection} eventSectionRef={testSectionRef} bgImage={'test-heading'} title={'Test diagnozujący'} />
       <TestAbout eventSectionRef={testSectionRef}/>
-      { quiz !== null && !isLoading ? <TestQuestionsList setIsResult={setIsResult} quiz={quiz}/> : <TestSkeleton/>}
-      {isResult && <TestResult/>}
+      { quiz !== null && !isLoading ? <TestQuestionsList setIsResult={setIsResult} quiz={quiz} setUserResult={setUserResult}/> : <TestSkeleton/>}
+      {isResult && userResult && <TestResult userResult={userResult}/>}
     </>
   );
 };
