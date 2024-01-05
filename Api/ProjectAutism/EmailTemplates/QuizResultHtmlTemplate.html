@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wynik Testu Diagnostycznego [QuizName]</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #333333;
+        }
+        .container span {
+            color: #218649;
+        }
+        h1 {
+            color: #218649;
+        }
+
+        p {
+            color: #555555;
+            margin-bottom: 15px;
+        }
+
+        .result {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+        }
+
+        .result span {
+            color: #218649;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777777;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Wynik Testu Diagnostycznego [QuizName]</h1>
+    <p>Szanowny/a <span>[Email]</span>,</p>
+    <p>Twój test diagnostyczny na stronie AutismCompass został przetworzony, a oto wyniki:</p>
+
+    <div class="result">
+        <p><span>Liczba nabranych punktów:</span> [Score]</p>
+        <p><span>Wynik:</span> [Description]</p>
+    </div>
+
+    <p>Jeśli masz jakiekolwiek pytania lub wątpliwości dotyczące wyników, prosimy o kontakt z naszym zespołem.</p>
+
+    <div class="footer">
+        <p>Z poważaniem,<br>Zespół AutismCompass ;D</p>
+    </div>
+</div>
+</body>
+</html>
