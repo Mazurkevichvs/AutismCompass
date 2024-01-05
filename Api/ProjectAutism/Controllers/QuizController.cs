@@ -41,4 +41,19 @@ public class QuizController : ControllerBase
             return NotFound("Quiz dont have results");
         return Ok(result);
     }
+
+    [HttpPost("send-answer")]
+    public async Task<IActionResult> SendQuizResult(UserQuizResult userQuizResult)
+    {
+        try
+        {
+            await _quizRepository.SendQuizResultToUser(userQuizResult);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return NotFound("Problem with send" + e);
+        }
+    }
+    
 }

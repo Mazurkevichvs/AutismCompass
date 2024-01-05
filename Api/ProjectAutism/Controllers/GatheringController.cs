@@ -39,7 +39,6 @@ public class GatheringController : ControllerBase
     [HttpPost("subscribe-to-gathering")]
     public async Task<IActionResult> SubscribeToGathering(int gatheringId, Credential credential)
     {
-
         try
         {
             await _gatheringRepository.SubscribeToGathering(gatheringId, credential);
@@ -49,8 +48,5 @@ public class GatheringController : ControllerBase
         {
             return NotFound(e);
         }
-       
-       
     }
-    
 }

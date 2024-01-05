@@ -8,14 +8,12 @@ public class AutismDbContext : DbContext
 {
     public DbSet<Gathering> Gatherings { get; set; }
     public DbSet<Address> Addresses { get; set; }
-
     public DbSet<Quiz> Quizzes { get; set; }
 
     public DbSet<Question> Questions { get; set; }
-
     public DbSet<Answer> Answers { get; set; }
-
     public DbSet<Result> Results { get; set; }
+    public DbSet<UserQuizResult> UserQuizResults { get; set; }
 
     public AutismDbContext(DbContextOptions<AutismDbContext> options) :
         base(options)

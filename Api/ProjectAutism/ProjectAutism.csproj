@@ -35,6 +35,9 @@
       <None Update="EmailTemplates\SupportFormHtmlTemplate.html">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="EmailTemplates\QuizResultHtmlTemplate.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 
