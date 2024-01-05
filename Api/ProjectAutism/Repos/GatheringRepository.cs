@@ -82,6 +82,7 @@ public class GatheringRepository : IGatheringRepository
 
         var body = BuildBody(gatheringFromDb, credential);
         var mailMessage = _mailHandler.BuildMailForSend(body,credential.Email);
+        mailMessage.Subject = "Potwierdzenie Zapisu na Wydarzenie";
         
         
         await _mailHandler.SendMessage(mailMessage);

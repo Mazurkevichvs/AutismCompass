@@ -26,7 +26,6 @@ public class MailHandler
         var mailMessage = new MailMessage
         {
             From = new MailAddress(_username!),
-            Subject = "Event Subscription Confirmation",
             Body = body,
             IsBodyHtml = true,
         };

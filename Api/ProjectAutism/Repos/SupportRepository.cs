@@ -12,6 +12,7 @@ public class SupportRepository
     {
         var body = BuildBody(credential);
         var mailToSend = _mailHandler.BuildMailForSend(body, credential.Email);
+        mailToSend.Subject = "Prośba o Pomoc";
         await _mailHandler.SendMessage(mailToSend);
     }
 
