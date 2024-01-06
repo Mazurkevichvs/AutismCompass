@@ -20,6 +20,7 @@
 .slide-img {
   width: 100%;
   object-fit: cover;
+  
 }
 
 .slide-content {
@@ -48,4 +49,17 @@
   .slider__wave__svg {
     bottom: 100px;
   }
+}
+
+@media (max-width: 601px) {
+  .swiper-button-prev {
+    margin-left: 0;
+  }
+  .swiper-button-next {
+    margin-right: 0;
+  }
+  .swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 30px;
+}
 }

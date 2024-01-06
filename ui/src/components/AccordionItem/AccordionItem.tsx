@@ -4,12 +4,11 @@ import {
   Typography,
   Accordion,
   AccordionSummary,
-  AccordionDetails,
-  Theme,
-  useMediaQuery,
+  AccordionDetails
 } from '@mui/material';
 import { theme } from '../../styles/theme';
 import { ExpandMore as ExpandMoreIcon, ExpandLess as ExpandLessIcon } from '@mui/icons-material';
+import useBreakpoints from '../../hooks/useBreakpoints';
 
 interface AccordionItemProps {
   data: {
@@ -22,7 +21,7 @@ interface AccordionItemProps {
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ data, isOpen, onToggle }) => {
-  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const {smallerThanMedium} = useBreakpoints()
   
   return (
     <Accordion
@@ -33,7 +32,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ data, isOpen, onToggle })
         mb: '25px',
         color: theme.palette.primary.main,
         backgroundColor: data.type ? '#B4DBAE' : '#A78295',
-        ':last-of-type': { mb: isSmallScreen ? '25px' : '0px' },
+        ':last-of-type': { mb: smallerThanMedium ? '25px' : '0px' },
       }}>
       <AccordionSummary>
         <Box
