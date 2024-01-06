@@ -3,6 +3,7 @@
 public class SupportRepository
 {
     private readonly MailHandler _mailHandler;
+
     public SupportRepository(MailHandler mailHandler)
     {
         _mailHandler = mailHandler;
@@ -31,5 +32,4 @@ public class SupportRepository
             .Replace("[Surname]", credential.Surname);
         return body;
     }
-    
 }
