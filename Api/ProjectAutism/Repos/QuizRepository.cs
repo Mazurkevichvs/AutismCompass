@@ -93,7 +93,8 @@ public class QuizRepository : IQuizRepository
 
         body.Replace("[Email]", userQuizResult.Email)
             .Replace("[Description]", userQuizResult.Description)
-            .Replace("Score", userQuizResult.UserResult.ToString())
+            .Replace("[Score]", userQuizResult.UserResult.ToString())
+            .Replace("[ResultTitle]",userQuizResult.ResultTitle)
             .Replace("[QuizName]", userQuizResult.QuizName);
         return body.ToString();
     }

@@ -41,7 +41,6 @@ public class AutismDbContext : DbContext
         modelBuilder.Entity<Quiz>()
             .HasMany<Question>(q => q.Questions)
             .WithOne();
-
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
