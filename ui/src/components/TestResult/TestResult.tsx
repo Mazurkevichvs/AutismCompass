@@ -1,46 +1,132 @@
-import { Container, Typography, Box, TextField, Button, useTheme } from '@mui/material';
-import React from 'react';
+import {
+  Container,
+  Typography,
+  Box,
+  TextField,
+  Button,
+  useTheme,
+  Alert,
+  Snackbar,
+  CircularProgress,
+} from '@mui/material';
+import React, { FormEvent, SyntheticEvent, useState } from 'react';
 import { UserResult } from '../../types/types';
 
 interface TestResultProps {
-  userResult: UserResult
+  userResult: UserResult;
+  quizName?: string;
 }
 
-const TestResult: React.FC<TestResultProps> = ({userResult}) => {
-  const theme = useTheme()
+const TestResult: React.FC<TestResultProps> = ({ userResult, quizName }) => {
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [open, setOpen] = useState(false);
+  const theme = useTheme();
+
+  const handleClose = (_event?: SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const submitSendingResults = async (event: FormEvent) => {
+    event.preventDefault();
+    const result = {
+      userQuizResultId: userResult.id,
+      email,
+      resultTitle: userResult.resultTitle,
+      description: userResult.details,
+      userResult: userResult.score,
+      quizName,
+    };
+    event.preventDefault();
+    if (/^\S+@\S+\.\S+$/.test(email)) {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`http://localhost:5154/api/quiz/send-answer`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(result),
+        });
+        console.log(response)
+        if (response.ok) {
+          setEmail('');
+          setError(false);
+        }
+      } catch (error) {
+        console.error('Błąd wysyłki emaila', error);
+        setError(true);
+      } finally {
+        setIsLoading(false);
+        setOpen(true);
+      }
+    } else setError(true);
+  };
+
   return (
     <>
       <section>
-        <Container maxWidth="lg" sx={{display:'flex', flexDirection:'column', alignItems:'center', color:theme.palette.primary.main}}>
+        <Container
+          maxWidth="lg"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            color: theme.palette.primary.main,
+          }}>
           <Typography variant="h4" gutterBottom mb={'20px'}>
-          Wynik: Istnieje wysokie prawdopodobieństwo, ze znajdujesz się w spektrum autyzmu! 
+            Wynik: {userResult.resultTitle}
           </Typography>
-
-          <Typography mb={'30px'} variant="body1" align="left" gutterBottom>
-          {userResult.details}
-          </Typography>
-          <Typography mb={'50px'} variant="body1" align="left" gutterBottom>
-          Lorem ipsum dolor sit amet consectetur. Est orci amet gravida netus molestie sagittis fermentum. Sed nullam nullam quis est orci. Maecenas lectus pretium egestas auctor ultricies fringilla felis ullamcorper. Ut cras urna ante massa ante tempus nisi mauris aliquet. Imperdiet amet diam nisl tellus eget vehicula. Nisl malesuada mi dignissim pellentesque aliquet. Magna accumsan maecenas volutpat varius facilisi nunc ac. Molestie non sit morbi vitae elementum convallis fermentum. Montes vitae ornare quis aliquet diam dui vel cursus. Auctor cursus consectetur metus porttitor consequat vestibulum fringilla metus.
-          </Typography>
-          <Box sx={{p:'25px', borderRadius:'15px', bgcolor:'#E6F1F8', width:'50%'}}>
-          <Typography variant="h6" gutterBottom mb={'20px'}>
-          Podaj adres email na który wyślemy wyniki: 
-          </Typography>
-          <form style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-                <Box sx={{ width:'100%'}}>
-                  <TextField sx={{mb:'20px'}} label="Email" fullWidth variant="filled"  type="email" required /> 
-                </Box>
+          <div dangerouslySetInnerHTML={{ __html: userResult.details }} />
+          <Box
+            sx={{ p: '25px', borderRadius: '15px', bgcolor: '#E6F1F8', width: '50%', mt: '50px' }}>
+            <Typography variant="h6" gutterBottom mb={'20px'}>
+              Podaj adres email na który wyślemy wyniki:
+            </Typography>
+            <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <Box sx={{ width: '100%' }}>
+                <TextField
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    setEmail(event.target.value);
+                  }}
+                  value={email}
+                  sx={{ mb: '20px' }}
+                  label="Email"
+                  fullWidth
+                  variant="filled"
+                  type="email"
+                  required
+                  error={error}
+                  helperText={error && 'Wprowadź poprawnego maila!'}
+                />
+              </Box>
+              {isLoading ? (
+                <CircularProgress />
+              ) : (
                 <Button
-                sx={{width:'50%'}}
+                onClick={submitSendingResults}
+                  sx={{ width: '50%' }}
                   variant="contained"
                   color="primary"
                   fullWidth
                   type="submit">
                   Zatwierdź
                 </Button>
-              </form>
+              )}
+            </form>
           </Box>
-
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert
+              onClose={handleClose}
+              severity={error ? 'error' : 'success'}
+              sx={{ width: '100%' }}>
+              {error ? 'Mail nie został wysłany' : 'Mail został wysłany!'}
+            </Alert>
+          </Snackbar>
         </Container>
       </section>
     </>

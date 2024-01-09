@@ -48,4 +48,5 @@ export interface UserResult {
   details: string;
   quizId: number;
   score: number;
+  resultTitle: string;
 }

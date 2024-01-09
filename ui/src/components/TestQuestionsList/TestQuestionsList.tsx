@@ -37,6 +37,7 @@ const TestQuestionsList: React.FC<TestQuestionsListProps> = ({
 
   const submitTest = async () => {
     const obj = { questionAnswers: userResponses };
+    console.log(obj)
     try {
       if (!userResponses || userResponses.length !== 15) {
         setError(true);
@@ -56,6 +57,7 @@ const TestQuestionsList: React.FC<TestQuestionsListProps> = ({
         const responseBody = await response.json();
         setUserResult(responseBody);
         setIsResult(true);
+        console.log(responseBody)
       }
     } catch (error) {
       console.error('Błąd otrzymania wyniku', error);

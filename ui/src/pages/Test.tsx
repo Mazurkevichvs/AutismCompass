@@ -16,7 +16,6 @@ const Test: React.FC = () => {
       const data: QuestionType = await res.json();
       setQuiz(data)
       setIsLoading(false)
-      console.log(quiz)
     } catch (err) {
       console.error(err);
     } 
@@ -29,7 +28,7 @@ const Test: React.FC = () => {
       <HeadingSection scrollToSection={scrollToSection} eventSectionRef={testSectionRef} bgImage={'test-heading'} title={'Test diagnozujący'} />
       <TestAbout eventSectionRef={testSectionRef}/>
       { quiz !== null && !isLoading ? <TestQuestionsList setIsResult={setIsResult} quiz={quiz} setUserResult={setUserResult}/> : <TestSkeleton/>}
-      {isResult && userResult && <TestResult userResult={userResult}/>}
+      {isResult && userResult && <TestResult quizName={quiz?.name} userResult={userResult}/>}
     </>
   );
 };

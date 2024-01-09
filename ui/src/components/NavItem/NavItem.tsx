@@ -20,7 +20,7 @@ const NavItem: React.FC<NavItemProps> = ({ page }) => {
           <Box
             sx={{
               ...headerStyles.navigationLink,
-              ml: isExtraSmallScreen ? '0' : '',
+              ml: isExtraSmallScreen ? '0' : '20px',
               '&:hover': {
                 color: '#008492',
                 borderBottom: '3px solid #008492',
