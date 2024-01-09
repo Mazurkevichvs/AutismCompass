@@ -10,7 +10,7 @@ interface AbourSectionProp {
 
 const AboutSection: React.FC<AbourSectionProp> = ({homeRef}) => {
   const [expandedCards, setExpandedCards] = useState<number[]>([]);
-  const {smallerThanMedium, isLargeScreen} = useBreakpoints()
+  const {smallerThanMedium, isLargeScreen, isExtraSmallScreen} = useBreakpoints()
   const theme = useTheme();
 
   const handleCardClick = (cardId: number) => {
@@ -25,20 +25,20 @@ const AboutSection: React.FC<AbourSectionProp> = ({homeRef}) => {
 
   return (
     <section ref={homeRef} style={{ height: expandedCards.length > 0 || !isLargeScreen ? '100%' : '100vh' }}>
-      <Container maxWidth="lg" sx={{my: !isLargeScreen ? '20px' : ''}}>
+      <Container maxWidth="lg" sx={{my: isExtraSmallScreen ? '10px' : !isLargeScreen ? '20px' : ''}}>
         <Box
           sx={{
             backgroundColor: theme.palette.background.default,
             color: theme.palette.primary.main,
           }}>
-          <Typography variant="h4" align="left" gutterBottom mb={'30px'} mt={expandedCards.length > 0 ? '30px' : '0px'}>
+          <Typography variant="h4" align="left" gutterBottom mb={isExtraSmallScreen ? '15px' : '30px'} mt={expandedCards.length > 0 ? '30px' : '0px'}>
             Czym jest autyzm ?
           </Typography>
-          <Typography variant="h6" align="left" gutterBottom mb={'20px'}>
+          <Typography variant="h6" align="left" gutterBottom mb={isExtraSmallScreen ? '15px' :'20px'}>
             Autyzm to rodzaj zaburzenia rozwojowego, które wpływa na to, w jaki sposób ludzie myślą,
             uczą się i komunikują.
           </Typography>
-          <Typography mb={'40px'} variant="body1" align="left" gutterBottom>
+          <Typography mb={isExtraSmallScreen ? '15px' : '40px'} variant="body1" align="left" gutterBottom>
             Osoby z autyzmem mogą mieć trudności w nawiązywaniu relacji społecznych, zrozumieniu
             emocji innych osób oraz w komunikacji werbalnej i niewerbalnej. To jest swoiste
             spektrum, co oznacza, że objawy autyzmu mogą się bardzo różnić od łagodnych do bardziej
@@ -49,7 +49,7 @@ const AboutSection: React.FC<AbourSectionProp> = ({homeRef}) => {
             różnorodności autyzmu, wspierać jednostki z tym zaburzeniem oraz pracować nad tworzeniem
             bardziej inkluzywnej i akceptującej przestrzeni dla wszystkich.
           </Typography>
-          <Typography mb={'60px'} variant="body1" align="left" gutterBottom>
+          <Typography mb={isExtraSmallScreen ? '30px' :'60px'} variant="body1" align="left" gutterBottom>
             Pozwól nam razem zanurzyć się w świecie autyzmu, by lepiej zrozumieć i szanować
             niepowtarzalność każdej jednostki na tym fascynującym spektrum.
           </Typography>
@@ -66,7 +66,6 @@ const AboutSection: React.FC<AbourSectionProp> = ({homeRef}) => {
             key={el.id}
             isOpened={expandedCards.includes(el.id)}
             onCardClick={() => handleCardClick(el.id)}
-            isSmallScreen={smallerThanMedium}
             description={el}
           />)}          
         </Box>

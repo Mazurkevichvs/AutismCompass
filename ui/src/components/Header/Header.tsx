@@ -5,8 +5,6 @@ import {
   Box,
   Typography,
   Container,
-  useMediaQuery,
-  Theme,
   IconButton,
 } from '@mui/material';
 import { NavItem, SideBarNav } from '..';
@@ -15,10 +13,11 @@ import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import { NavigationsProps } from '../../types/types';
 import './Header.scss';
 import { Link } from 'react-router-dom';
+import useBreakpoints from '../../hooks/useBreakpoints';
 
 const Header: React.FC<NavigationsProps> = ({ navigations }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const {smallerThanMedium, isExtraSmallScreen} = useBreakpoints();
   const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} />);
   return (
     <AppBar position="absolute" style={headerStyles.appBar}>
@@ -29,7 +28,7 @@ const Header: React.FC<NavigationsProps> = ({ navigations }) => {
               <img
                 src="/img/main_icon.png"
                 alt="Autism Compass"
-                height="80px"
+                height={isExtraSmallScreen ? '40px' :"80px"}
                 style={headerStyles.logo}
               />
               <Typography variant="h6" maxWidth="100px" fontFamily="Jua" fontSize={26}>
@@ -37,20 +36,20 @@ const Header: React.FC<NavigationsProps> = ({ navigations }) => {
               </Typography>
             </Box>
           </Link>
-          <Box display="flex" alignItems="center" color="secondary" style={{ height: '80px' }}>
-            {isSmallScreen
+          <Box display="flex" alignItems="center" color="secondary" style={{ height:isExtraSmallScreen ? '100%' : '80px' }}>
+            {smallerThanMedium
               ?  (
                   <IconButton
                     color="primary"
                     onClick={() => setMenuOpen(!menuOpen)}
                     className="menu-icon">
-                    {menuOpen ? <CloseIcon fontSize="large"/> : <MenuIcon />}
+                    {menuOpen ? <CloseIcon  fontSize={isExtraSmallScreen ? 'small' : "large"}/> : <MenuIcon fontSize={isExtraSmallScreen ? 'small' : "large"}/>}
                   </IconButton>
                 )
               : navigationItem}
           </Box>
         </Toolbar>
-        {isSmallScreen && menuOpen && (
+        {smallerThanMedium && menuOpen && (
           <SideBarNav navigations={navigations} />
         )}
       </Container>

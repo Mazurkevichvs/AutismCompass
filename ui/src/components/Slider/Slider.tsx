@@ -19,7 +19,7 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ isHead, data, scrollToSection, homeRef }) => {
-  const { isMediumScreen, isLargeScreen, smallerThanMedium } = useBreakpoints();
+  const { isMediumScreen, isLargeScreen, smallerThanMedium, isExtraSmallScreen } = useBreakpoints();
   return (
     <>
       <section className="slider-container">
@@ -31,6 +31,7 @@ const Slider: React.FC<SliderProps> = ({ isHead, data, scrollToSection, homeRef 
                   className="slide-img"
                   src={`img/slide-${isHead ? i + 1 : i + 5}.png`}
                   alt="slide"
+                  height={!isHead && isExtraSmallScreen ? '400px' : !isHead && smallerThanMedium ? '600px' : ''}
                 />
                 {isHead && (
                   <svg
@@ -53,7 +54,7 @@ const Slider: React.FC<SliderProps> = ({ isHead, data, scrollToSection, homeRef 
                     textAlign: 'left',
                     zIndex: '1',
                     bgcolor: 'rgba(117, 188, 105, 0.6)',
-                    p: '20px',
+                    p: isExtraSmallScreen ? '10px' : '20px',
                     borderRadius: '15px',
                   }}>
                   <Typography
@@ -84,7 +85,7 @@ const Slider: React.FC<SliderProps> = ({ isHead, data, scrollToSection, homeRef 
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     width:  smallerThanMedium ? '70%' : '900px',
-                    padding: '70px',
+                    padding: isExtraSmallScreen ? '20px' : '70px',
                     color: '#fff',
                     textAlign: 'center',
                     zIndex: '1',

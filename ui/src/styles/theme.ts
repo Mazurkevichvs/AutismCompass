@@ -39,6 +39,31 @@ export const theme = createTheme({
   typography: {
     fontFamily: 'Noto Sans , sans-serif',
     fontSize: 16,
+    body1: { 
+      '@media (max-width:601px)': {
+        fontSize: 13, 
+      },
+    },
+    body2: { 
+      '@media (max-width:601px)': {
+        fontSize: 13, 
+      },
+    },
+    h4: { 
+      '@media (max-width:601px)': {
+        fontSize: 23, 
+      },
+    },
+    h6: { 
+      '@media (max-width:601px)': {
+        fontSize: 18, 
+      },
+    },
+    h5: { 
+      '@media (max-width:601px)': {
+        fontSize: 16, 
+      },
+    },
   },
   breakpoints: {
     values: {

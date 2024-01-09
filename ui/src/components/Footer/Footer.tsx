@@ -11,8 +11,8 @@ import { NavItem } from '..';
 import useBreakpoints from '../../hooks/useBreakpoints';
 
 const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
-  const {smallerThanMedium} = useBreakpoints()
-  const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page} isFooter={true}/>);
+  const {smallerThanMedium, isExtraSmallScreen} = useBreakpoints()
+  const navigationItem = navigations.map((page, i) => <NavItem key={i} page={page}/>);
   return (
     <footer className='footer'>
       <Container
@@ -33,10 +33,10 @@ const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
             <img
               src="img/main_icon.png"
               alt="Autism Compass"
-              height="80px"
-              style={{ marginRight: '20px' }}
+              height= {isExtraSmallScreen ? '40px' : "80px"}
+              style={{ marginRight: isExtraSmallScreen ? '10px' : '20px' }}
             />
-            <Typography variant="h6" maxWidth="100px" fontFamily="Jua" fontSize={26}>
+            <Typography variant="h6" maxWidth="70px" fontFamily="Jua" fontSize={26}>
               Autism Compass
             </Typography>
           </Box>
@@ -47,7 +47,7 @@ const Footer: React.FC<NavigationsProps> = ({ navigations }) => {
           <Box
             sx={{
               display: 'flex',
-              flexDirection: 'row',
+              flexDirection: isExtraSmallScreen ? 'column' : 'row',
               alignItems: 'center',
               height: '80px'
             }}>
